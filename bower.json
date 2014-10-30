@@ -8,7 +8,7 @@
     "angular-messages": "latest",
     "angular-route": "latest",
     "angular-resource": "latest",
-    "angular-ui-bootstrap": "latest",
+    "angular-bootstrap": "latest",
     "moment": "latest",
     "font-awesome": "latest",
     "select2": "latest"
