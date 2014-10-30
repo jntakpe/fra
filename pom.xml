@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.jntakpe</groupId>
     <artifactId>fra</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>0.0.1-SNAPSHOT</version>
     <name>fake rest api</name>
     <description>API rest renvoyant des données</description>
 

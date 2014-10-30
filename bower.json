@@ -1,0 +1,19 @@
+{
+  "name": "fra",
+  "version": "0.0.1-SNAPSHOT",
+  "dependencies": {
+    "jquery": "latest",
+    "bootstrap": "latest",
+    "angular": "latest",
+    "angular-messages": "latest",
+    "angular-route": "latest",
+    "angular-resource": "latest",
+    "angular-ui-bootstrap": "latest",
+    "moment": "latest",
+    "font-awesome": "latest",
+    "select2": "latest"
+  },
+  "resolutions": {
+    "jquery": "2.1.1"
+  }
+}
