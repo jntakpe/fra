@@ -1,3 +1,5 @@
+management:
+  context-path: /manage
 spring:
   profiles: dev
   datasource:
@@ -5,3 +7,5 @@ spring:
     username: postgres
     password: sopra*
     driverClassName: org.postgresql.Driver
+  thymeleaf:
+      cache: false

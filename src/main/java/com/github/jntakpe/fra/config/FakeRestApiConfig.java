@@ -41,7 +41,7 @@ public class FakeRestApiConfig extends SpringBootServletInitializer {
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
         LOG.debug("Démarrage de l'application en mode 'classique'");
-        String profile = SystemUtils.IS_OS_MAC_OSX ? Constants.DEV_PROFILE : Constants.PROD_PROFILE;
+        String profile = SystemUtils.IS_OS_LINUX ? Constants.PROD_PROFILE : Constants.DEV_PROFILE;
         LOG.debug("Profil '{}' sélectionné", profile);
         application.profiles(profile);
         return application.sources(FakeRestApiConfig.class);
