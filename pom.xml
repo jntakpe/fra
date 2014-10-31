@@ -16,9 +16,10 @@
     </parent>
 
     <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.github.jntakpe.fra.config.FakeRestApiConfig</start-class>
         <java.version>1.8</java.version>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring.version>4.1.1.RELEASE</spring.version>
     </properties>
 
     <dependencies>
