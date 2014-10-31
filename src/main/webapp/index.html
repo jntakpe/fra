@@ -14,10 +14,78 @@
     <link rel="stylesheet" href="static/css/unify.css"/>
     <link rel="stylesheet" href="static/css/sky-forms.css"/>
     <link rel="stylesheet" href="static/css/sky-forms-custom.css"/>
-    <link rel="stylesheet" href="static/css/unify-theme.css"/>
 </head>
 <body ng-app="fraApp">
-<div ng-view></div>
+<header class="header">
+    <div class="topbar">
+        <div class="container">
+            <div class="col-md-offset-4 col-md-2 title-bar">
+                <a href="/">Fake REST API</a>
+            </div>
+            <ul class="loginbar pull-right"></ul>
+        </div>
+    </div>
+    <div class="navbar navbar-default" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse"
+                        data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="fa fa-bars"></span>
+                </button>
+                <a class="navbar-brand" href="#/">
+                    <img id="logo-brand" src="static/img/sopra-logo.jpg}" alt="Logo"/>
+                </a>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="#/"><i class="fa fa-home"></i> <span>Accueil</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="breadcrumbs">
+    <div class="container">
+        <h1 class="pull-left">Fake REST API</h1>
+        <ul class="pull-right breadcrumb">
+            <li class="active">Fake REST API</li>
+        </ul>
+    </div>
+</div>
+<div class="content">
+    <!--Vues AngularJS-->
+    <div ng-view></div>
+    <!--Fin vues AngularJS-->
+</div>
+<footer>
+    <div class="navbar navbar-default navbar-fixed-bottom copyright">
+        <div class="container">
+            <div class="col-md-6">
+                <p class="copyright-space">
+                    2014 | Fake REST API | Version 0.0.1 |
+                    <a href="mailto:jntakpe@gmail.com"><span class="icon-envelope"></span> Contact</a>
+                </p>
+            </div>
+            <div class="col-md-2">
+                <ul class="social-icons">
+                    <li><a href="https://github.com/jntakpe" data-original-title="Github" class="social_github"></a>
+                    </li>
+                    <li><a href="https://twitter.com/jntakpe" data-original-title="Twitter" class="social_twitter"></a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <a href="/#">
+                    <img id="logo-footer" src="static/img/logo2-blue.png" class="pull-right" alt=""/>
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>
 <script src="static/bower_components/jquery/dist/jquery.js"></script>
 <script src="static/bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="static/bower_components/angular/angular.js"></script>
