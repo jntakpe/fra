@@ -1343,115 +1343,115 @@ span.badge-dark {
 }
 
 .social_amazon {
-    background: url(../img/icons/social/amazon.png) no-repeat;
+    background: url(../images/icons/social/amazon.png) no-repeat;
 }
 
 .social_behance {
-    background: url(../img/icons/social/behance.png) no-repeat;
+    background: url(../images/icons/social/behance.png) no-repeat;
 }
 
 .social_blogger {
-    background: url(../img/icons/social/blogger.png) no-repeat;
+    background: url(../images/icons/social/blogger.png) no-repeat;
 }
 
 .social_deviantart {
-    background: url(../img/icons/social/deviantart.png) no-repeat;
+    background: url(../images/icons/social/deviantart.png) no-repeat;
 }
 
 .social_dribbble {
-    background: url(../img/icons/social/dribbble.png) no-repeat;
+    background: url(../images/icons/social/dribbble.png) no-repeat;
 }
 
 .social_dropbox {
-    background: url(../img/icons/social/dropbox.png) no-repeat;
+    background: url(../images/icons/social/dropbox.png) no-repeat;
 }
 
 .social_evernote {
-    background: url(../img/icons/social/evernote.png) no-repeat;
+    background: url(../images/icons/social/evernote.png) no-repeat;
 }
 
 .social_facebook {
-    background: url(../img/icons/social/facebook.png) no-repeat;
+    background: url(../images/icons/social/facebook.png) no-repeat;
 }
 
 .social_forrst {
-    background: url(../img/icons/social/forrst.png) no-repeat;
+    background: url(../images/icons/social/forrst.png) no-repeat;
 }
 
 .social_github {
-    background: url(../img/icons/social/github.png) no-repeat;
+    background: url(../images/icons/social/github.png) no-repeat;
 }
 
 .social_googleplus {
-    background: url(../img/icons/social/googleplus.png) no-repeat;
+    background: url(../images/icons/social/googleplus.png) no-repeat;
 }
 
 .social_jolicloud {
-    background: url(../img/icons/social/jolicloud.png) no-repeat;
+    background: url(../images/icons/social/jolicloud.png) no-repeat;
 }
 
 .social_last-fm {
-    background: url(../img/icons/social/last-fm.png) no-repeat;
+    background: url(../images/icons/social/last-fm.png) no-repeat;
 }
 
 .social_linkedin {
-    background: url(../img/icons/social/linkedin.png) no-repeat;
+    background: url(../images/icons/social/linkedin.png) no-repeat;
 }
 
 .social_picasa {
-    background: url(../img/icons/social/picasa.png) no-repeat;
+    background: url(../images/icons/social/picasa.png) no-repeat;
 }
 
 .social_pintrest {
-    background: url(../img/icons/social/pintrest.png) no-repeat;
+    background: url(../images/icons/social/pintrest.png) no-repeat;
 }
 
 .social_rss {
-    background: url(../img/icons/social/rss.png) no-repeat;
+    background: url(../images/icons/social/rss.png) no-repeat;
 }
 
 .social_skype {
-    background: url(../img/icons/social/skype.png) no-repeat;
+    background: url(../images/icons/social/skype.png) no-repeat;
 }
 
 .social_spotify {
-    background: url(../img/icons/social/spotify.png) no-repeat;
+    background: url(../images/icons/social/spotify.png) no-repeat;
 }
 
 .social_stumbleupon {
-    background: url(../img/icons/social/stumbleupon.png) no-repeat;
+    background: url(../images/icons/social/stumbleupon.png) no-repeat;
 }
 
 .social_tumblr {
-    background: url(../img/icons/social/tumblr.png) no-repeat;
+    background: url(../images/icons/social/tumblr.png) no-repeat;
 }
 
 .social_twitter {
-    background: url(../img/icons/social/twitter.png) no-repeat;
+    background: url(../images/icons/social/twitter.png) no-repeat;
 }
 
 .social_vimeo {
-    background: url(../img/icons/social/vimeo.png) no-repeat;
+    background: url(../images/icons/social/vimeo.png) no-repeat;
 }
 
 .social_wordpress {
-    background: url(../img/icons/social/wordpress.png) no-repeat;
+    background: url(../images/icons/social/wordpress.png) no-repeat;
 }
 
 .social_xing {
-    background: url(../img/icons/social/xing.png) no-repeat;
+    background: url(../images/icons/social/xing.png) no-repeat;
 }
 
 .social_yahoo {
-    background: url(../img/icons/social/yahoo.png) no-repeat;
+    background: url(../images/icons/social/yahoo.png) no-repeat;
 }
 
 .social_youtube {
-    background: url(../img/icons/social/youtube.png) no-repeat;
+    background: url(../images/icons/social/youtube.png) no-repeat;
 }
 
 .social_vk {
-    background: url(../img/icons/social/vk.png) no-repeat;
+    background: url(../images/icons/social/vk.png) no-repeat;
 }
 
 /*Font Awesome Icon Styles*/
@@ -3198,19 +3198,19 @@ img.img-circle {
     box-shadow: 0 0 5px #ccc;
     margin-left: auto !important;
     margin-right: auto !important;
-    background: url(../img/patterns/15.png) repeat;
+    background: url(../images/patterns/15.png) repeat;
 }
 
 /*Parallax Backgrounds
 ------------------------------------*/
 .parallax-bg {
-    background: url(../img/blur/img1.jpg) 50% 0 repeat fixed;
+    background: url(../images/blur/img1.jpg) 50% 0 repeat fixed;
 }
 
 /*Parallax Counter Block*/
 .parallax-counter {
     padding: 60px 0;
-    background: url(../img/bg/9.jpg) 50% 0 no-repeat fixed;
+    background: url(../images/bg/9.jpg) 50% 0 no-repeat fixed;
 }
 
 .parallax-counter h4 {
@@ -4070,7 +4070,7 @@ img.img-circle {
 .purchase {
     padding: 25px 0 30px;
     border-bottom: solid 1px #eee;
-    background: url(../img/breadcrumbs.png) repeat;
+    background: url(../images/breadcrumbs.png) repeat;
 }
 
 .purchase p {
@@ -4359,7 +4359,7 @@ img.img-circle {
     overflow: hidden;
     padding: 10px 0 6px;
     border-bottom: solid 1px #eee;
-    background: url(../img/breadcrumbs.png) repeat;
+    background: url(../images/breadcrumbs.png) repeat;
 }
 
 .breadcrumbs h1 {
@@ -4653,7 +4653,7 @@ a.thumbnail {
     padding: 40px 0;
     border-top: 1px solid #eee;
     border-bottom: 1px solid #eee;
-    background: url(../img/breadcrumbs.png) repeat;
+    background: url(../images/breadcrumbs.png) repeat;
 }
 
 /*Gallery Page
@@ -4874,7 +4874,7 @@ ul.blog-tags a:hover i {
 
 .slider-promo-info-bg {
     padding: 25px 20px 20px;
-    background: url(../img/bg-black.png) repeat;
+    background: url(../images/bg-black.png) repeat;
 }
 
 .slider-promo-info span.big-size {
@@ -5592,7 +5592,7 @@ ul.labels-demo li {
 .breadcrumbs-v2 {
     text-align: center;
     position: relative;
-    background: url(../img/bg/11.jpg) no-repeat center;
+    background: url(../images/bg/11.jpg) no-repeat center;
 }
 
 .breadcrumbs-v2-in {

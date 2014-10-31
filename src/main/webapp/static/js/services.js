@@ -1,3 +1,4 @@
-/**
- * Created by jOSS on 30/10/14.
- */
+fraApp.factory('Endpoints', ['$resource', function ($resource) {
+    "use strict";
+    return $resource('/endpoints', {}, {});
+}]);

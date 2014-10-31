@@ -1,3 +1,7 @@
-/**
- * Created by jOSS on 30/10/14.
- */
+fraApp.controller('HomeCtrl', ['$scope', function () {
+}]);
+
+fraApp.controller('EndpointsCtrl', ['$scope', function ($scope) {
+    "use strict";
+
+}]);

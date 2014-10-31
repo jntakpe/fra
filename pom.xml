@@ -8,6 +8,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>fake rest api</name>
     <description>API rest renvoyant des données</description>
+    <packaging>war</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
