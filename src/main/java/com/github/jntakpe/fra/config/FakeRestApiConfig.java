@@ -7,8 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
+import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 /**
  * Classe mère de configuration
@@ -17,6 +19,8 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @EnableAutoConfiguration
+@EntityScan("com.github.jntakpe.fra.domain")
+@EnableJpaRepositories("com.github.jntakpe.fra.repository")
 @ComponentScan("com.github.jntakpe.fra")
 public class FakeRestApiConfig extends SpringBootServletInitializer {
 

@@ -3,6 +3,9 @@ package com.github.jntakpe.fra.domain;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+import javax.validation.constraints.NotNull;
 
 /**
  * Bean représentant un endpoint REST
@@ -10,11 +13,17 @@ import javax.persistence.Entity;
  * @author jntakpe
  */
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"uri", "method"})})
 public class RestEndpoint extends GenericDomain {
 
+    @NotNull
     private String uri;
 
+    @NotNull
     private String method;
+
+    @NotNull
+    private String content;
 
     public String getUri() {
         return uri;
@@ -30,6 +39,14 @@ public class RestEndpoint extends GenericDomain {
 
     public void setMethod(String method) {
         this.method = method;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
     }
 
     @Override

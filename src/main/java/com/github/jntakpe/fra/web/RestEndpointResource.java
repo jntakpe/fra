@@ -1,10 +1,10 @@
 package com.github.jntakpe.fra.web;
 
 import com.github.jntakpe.fra.domain.RestEndpoint;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.github.jntakpe.fra.repository.RestEndpointRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,6 +17,9 @@ import java.util.List;
 @RequestMapping("/endpoints")
 public class RestEndpointResource {
 
+    @Autowired
+    private RestEndpointRepository restEndpointRepository;
+
     @RequestMapping(method = RequestMethod.GET)
     public List<RestEndpoint> list() {
         return null;
@@ -27,8 +30,9 @@ public class RestEndpointResource {
         return null;
     }
 
-    @RequestMapping(method = RequestMethod.POST)
-    public RestEndpoint create(RestEndpoint restEndpoint) {
-        return null;
+    @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public RestEndpoint create(@RequestBody RestEndpoint restEndpoint) {
+        System.out.println(restEndpoint);
+        return restEndpointRepository.save(restEndpoint);
     }
 }

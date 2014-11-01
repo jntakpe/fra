@@ -1,10 +1,10 @@
 <div class="container">
-    <form class="sky-form">
+    <form class="sky-form" name="endpointForm" ng-submit="submit()">
         <fielset>
             <section>
                 <label class="label">URI du endpoint REST</label>
                 <label class="input">
-                    <input type="text" placeholder="URI du endpoint REST"/>
+                    <input type="text" name="uri" placeholder="URI du endpoint REST" ng-model="endpoint.uri"/>
                 </label>
             </section>
             <section>
@@ -12,19 +12,23 @@
 
                 <div class="inline-group">
                     <label class="radio">
-                        <input name="radio-inline" checked="" type="radio"><i class="rounded-x"></i>GET</label>
+                        <input name="method" checked="" type="radio" value="GET" ng-model="endpoint.method">
+                        <i class="rounded-x"></i>GET</label>
                     <label class="radio">
-                        <input name="radio-inline" type="radio"><i class="rounded-x"></i>POST</label>
+                        <input name="method" type="radio" value="POST" ng-model="endpoint.method">
+                        <i class="rounded-x"></i>POST</label>
                     <label class="radio">
-                        <input name="radio-inline" type="radio"><i class="rounded-x"></i>PUT</label>
+                        <input name="method" type="radio" value="PUT" ng-model="endpoint.method">
+                        <i class="rounded-x"></i>PUT</label>
                     <label class="radio">
-                        <input name="radio-inline" type="radio"><i class="rounded-x"></i>DELETE</label>
+                        <input name="method" type="radio" value="DELETE" ng-model="endpoint.method">
+                        <i class="rounded-x"></i>DELETE</label>
                 </div>
             </section>
             <section>
                 <label class="label">Réponse du endpoint REST au format JSON</label>
                 <label class="textarea textarea-resizable">
-                    <textarea rows="10"></textarea>
+                    <textarea name="content" rows="10" ng-model="endpoint.content"></textarea>
                 </label>
             </section>
         </fielset>
