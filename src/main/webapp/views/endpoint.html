@@ -1,0 +1,40 @@
+<div class="container">
+    <form class="sky-form">
+        <fielset>
+            <section>
+                <label class="label">URI du endpoint REST</label>
+                <label class="input">
+                    <input type="text" placeholder="URI du endpoint REST"/>
+                </label>
+            </section>
+            <section>
+                <label class="label">Méthode HTTP</label>
+
+                <div class="inline-group">
+                    <label class="radio">
+                        <input name="radio-inline" checked="" type="radio"><i class="rounded-x"></i>GET</label>
+                    <label class="radio">
+                        <input name="radio-inline" type="radio"><i class="rounded-x"></i>POST</label>
+                    <label class="radio">
+                        <input name="radio-inline" type="radio"><i class="rounded-x"></i>PUT</label>
+                    <label class="radio">
+                        <input name="radio-inline" type="radio"><i class="rounded-x"></i>DELETE</label>
+                </div>
+            </section>
+            <section>
+                <label class="label">Réponse du endpoint REST au format JSON</label>
+                <label class="textarea textarea-resizable">
+                    <textarea rows="10"></textarea>
+                </label>
+            </section>
+        </fielset>
+        <footer>
+            <button type="button" class="btn btn-warning">
+                <i class="fa fa-arrow-circle-left"></i> Précédent
+            </button>
+            <button type="submit" class="btn btn-success pull-right">
+                <i class="fa fa-check"></i> Créer le endpoint
+            </button>
+        </footer>
+    </form>
+</div>

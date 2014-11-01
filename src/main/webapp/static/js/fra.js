@@ -8,7 +8,8 @@ function BreadCrumb(title, link, navbar) {
 var fraApp = angular.module('fraApp', ['ngMessages', 'ngRoute', 'ngResource', 'ui.bootstrap']),
     breadcrumbs = {
         home: new BreadCrumb('Accueil', '#/', 'home'),
-        endpoints: new BreadCrumb('Gestion des endpoints', '#/endpoints', 'endpoints')
+        endpoints: new BreadCrumb('Gestion des endpoints', '#/endpoints', 'endpoints'),
+        newEndpoint: new BreadCrumb('Création d\'un endpoint', '#/endpoints/new', 'new-endpoint')
     };
 
 
@@ -18,6 +19,10 @@ fraApp.config(function ($routeProvider) {
         templateUrl: 'views/endpoints.html',
         controller: 'EndpointsCtrl',
         breadcrumb: [breadcrumbs.home, breadcrumbs.endpoints]
+    }).when('/endpoints/new', {
+        templateUrl: 'views/endpoint.html',
+        controller: 'EndpointCtrl',
+        breadcrumb: [breadcrumbs.home, breadcrumbs.endpoints, breadcrumbs.newEndpoint]
     }).otherwise({
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',
