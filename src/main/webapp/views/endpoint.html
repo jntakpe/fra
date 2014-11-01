@@ -1,18 +1,27 @@
 <div class="container">
-    <form class="sky-form" name="endpointForm" ng-submit="submit()">
+    <form class="sky-form" name="endpointForm" ng-submit="submit()" novalidate>
         <fielset>
             <section>
                 <label class="label">URI du endpoint REST</label>
-                <label class="input">
-                    <input type="text" name="uri" placeholder="URI du endpoint REST" ng-model="endpoint.uri"/>
+                <label class="input" ng-class="{'state-error': endpointForm.uri.$touched && endpointForm.uri.$invalid}">
+                    <input type="text" name="uri" placeholder="URI du endpoint REST" ng-model="endpoint.uri" required
+                           endpoint-available-validator/>
+
+                    <div ng-messages="endpointForm.uri.$touched && endpointForm.uri.$error" class="note note-error">
+                        <div ng-message="required">L'URI du endpoint REST est obligatoire.</div>
+                        <div ng-message="endpointAvailable">Cette URI et cette méthode HTTP sont déjà utilisées.
+                            Veuillez changer l'une de ces valeurs
+                        </div>
+                    </div>
                 </label>
             </section>
             <section>
                 <label class="label">Méthode HTTP</label>
 
                 <div class="inline-group">
-                    <label class="radio">
-                        <input name="method" checked="" type="radio" value="GET" ng-model="endpoint.method">
+                    <label class="radio" ng-init="endpoint.method = 'GET'">
+                        <input name="method" type="radio" value="GET" ng-model="endpoint.method"
+                               endpoint-available-validator>
                         <i class="rounded-x"></i>GET</label>
                     <label class="radio">
                         <input name="method" type="radio" value="POST" ng-model="endpoint.method">
@@ -24,19 +33,32 @@
                         <input name="method" type="radio" value="DELETE" ng-model="endpoint.method">
                         <i class="rounded-x"></i>DELETE</label>
                 </div>
+                <div ng-messages="endpointForm.method.$touched && endpointForm.method.$invalid" class="note note-error">
+                    <div ng-message="required">La méthode HTTP est obligatoire.</div>
+                    <div ng-message="endpointAvailable">Cette URI et cette méthode HTTP sont déjà utilisées.
+                        Veuillez changer l'une de ces valeurs
+                    </div>
+                </div>
             </section>
             <section>
                 <label class="label">Réponse du endpoint REST au format JSON</label>
-                <label class="textarea textarea-resizable">
-                    <textarea name="content" rows="10" ng-model="endpoint.content"></textarea>
+                <label class="textarea textarea-resizable"
+                       ng-class="{'state-error' : endpointForm.content.$touched && endpointForm.content.$invalid}">
+                    <textarea name="content" rows="10" ng-model="endpoint.content" required></textarea>
+
                 </label>
+
+                <div ng-messages="endpointForm.content.$touched && endpointForm.content.$error"
+                     class="note note-error">
+                    <div ng-message="required">La réponse du endpoint REST est obligatoire.</div>
+                </div>
             </section>
         </fielset>
         <footer>
             <button type="button" class="btn btn-warning">
                 <i class="fa fa-arrow-circle-left"></i> Précédent
             </button>
-            <button type="submit" class="btn btn-success pull-right">
+            <button type="submit" class="btn btn-success pull-right" ng-disabled="endpointForm.$invalid">
                 <i class="fa fa-check"></i> Créer le endpoint
             </button>
         </footer>

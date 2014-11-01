@@ -1,9 +1,13 @@
 package com.github.jntakpe.fra.web;
 
 import com.github.jntakpe.fra.domain.RestEndpoint;
-import com.github.jntakpe.fra.repository.RestEndpointRepository;
+import com.github.jntakpe.fra.service.RestEndpointService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,7 +22,7 @@ import java.util.List;
 public class RestEndpointResource {
 
     @Autowired
-    private RestEndpointRepository restEndpointRepository;
+    private RestEndpointService restEndpointService;
 
     @RequestMapping(method = RequestMethod.GET)
     public List<RestEndpoint> list() {
@@ -32,7 +36,15 @@ public class RestEndpointResource {
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public RestEndpoint create(@RequestBody RestEndpoint restEndpoint) {
-        System.out.println(restEndpoint);
-        return restEndpointRepository.save(restEndpoint);
+        return restEndpointService.save(restEndpoint);
+    }
+
+    @RequestMapping(value = "/available", method = RequestMethod.GET)
+    public ResponseEntity<String> available(Long id, String uri, String method) {
+        if (StringUtils.isBlank(uri) || StringUtils.isBlank(method)) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        boolean available = restEndpointService.isAvailable(id, uri, HttpMethod.valueOf(method));
+        return new ResponseEntity<>(available ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
     }
 }

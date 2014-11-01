@@ -1,7 +1,6 @@
 management:
   context-path: /manage
 spring:
-  profiles: dev
   datasource:
     url: jdbc:postgresql://localhost:5432/fra
     username: postgres

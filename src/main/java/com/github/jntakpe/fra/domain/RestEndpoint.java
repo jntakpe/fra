@@ -1,10 +1,9 @@
 package com.github.jntakpe.fra.domain;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.springframework.http.HttpMethod;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -20,7 +19,8 @@ public class RestEndpoint extends GenericDomain {
     private String uri;
 
     @NotNull
-    private String method;
+    @Enumerated(EnumType.STRING)
+    private HttpMethod method;
 
     @NotNull
     private String content;
@@ -33,11 +33,11 @@ public class RestEndpoint extends GenericDomain {
         this.uri = uri;
     }
 
-    public String getMethod() {
+    public HttpMethod getMethod() {
         return method;
     }
 
-    public void setMethod(String method) {
+    public void setMethod(HttpMethod method) {
         this.method = method;
     }
 
