@@ -21,12 +21,16 @@ import java.util.List;
 @RequestMapping("/endpoints")
 public class RestEndpointResource {
 
-    @Autowired
     private RestEndpointService restEndpointService;
+
+    @Autowired
+    public RestEndpointResource(RestEndpointService restEndpointService) {
+        this.restEndpointService = restEndpointService;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public List<RestEndpoint> list() {
-        return null;
+        return restEndpointService.findAll();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)

@@ -7,6 +7,8 @@ import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 /**
  * Service associées à l'entité {@link com.github.jntakpe.fra.service.RestEndpointService}
  *
@@ -17,8 +19,22 @@ public class RestEndpointService {
 
     public static final String REST_PREFIX = "/rest/";
 
-    @Autowired
     private RestEndpointRepository restEndpointRepository;
+
+    @Autowired
+    public RestEndpointService(RestEndpointRepository restEndpointRepository) {
+        this.restEndpointRepository = restEndpointRepository;
+    }
+
+    /**
+     * Renvoie tous les {@link com.github.jntakpe.fra.domain.RestEndpoint}
+     *
+     * @return la liste de tous les endpoints
+     */
+    @Transactional(readOnly = true)
+    public List<RestEndpoint> findAll() {
+        return restEndpointRepository.findAll();
+    }
 
     /**
      * Indique si le couple uri et méthode HTTP est disponnible
@@ -30,7 +46,7 @@ public class RestEndpointService {
      */
     @Transactional(readOnly = true)
     public boolean isAvailable(Long id, String uri, HttpMethod method) {
-        RestEndpoint restEndpoint = restEndpointRepository.findByUriAndMethod(uri, method);
+        RestEndpoint restEndpoint = restEndpointRepository.findByUriAndMethod(normalizeUri(uri), method);
         return restEndpoint == null || restEndpoint.getId().equals(id);
     }
 
@@ -48,7 +64,16 @@ public class RestEndpointService {
         return restEndpointRepository.save(restEndpoint);
     }
 
+    /**
+     * Normalisation des URIs REST en supprimant les slashs inutiles et en ajoutant le prefix "/rest/"
+     *
+     * @param uri uri initiale
+     * @return l'URI normalisée
+     */
     private String normalizeUri(String uri) {
+        if (uri.startsWith("/rest/")) {
+            return uri;
+        }
         if (uri.startsWith("/")) {
             uri = uri.substring(1);
         }
