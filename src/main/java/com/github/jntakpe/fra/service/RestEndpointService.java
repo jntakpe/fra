@@ -15,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class RestEndpointService {
 
+    public static final String REST_PREFIX = "/rest/";
+
     @Autowired
     private RestEndpointRepository restEndpointRepository;
 
@@ -42,10 +44,17 @@ public class RestEndpointService {
     @Transactional
     public RestEndpoint save(RestEndpoint restEndpoint) {
         String uri = restEndpoint.getUri().toLowerCase();
+        restEndpoint.setUri(normalizeUri(uri));
+        return restEndpointRepository.save(restEndpoint);
+    }
+
+    private String normalizeUri(String uri) {
+        if (uri.startsWith("/")) {
+            uri = uri.substring(1);
+        }
         if (uri.endsWith("/")) {
             uri = uri.substring(0, uri.length() - 1);
         }
-        restEndpoint.setUri(uri);
-        return restEndpointRepository.save(restEndpoint);
+        return REST_PREFIX + uri;
     }
 }
