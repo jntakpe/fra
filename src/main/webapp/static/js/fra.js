@@ -18,7 +18,12 @@ fraApp.config(function ($routeProvider) {
     $routeProvider.when('/endpoints', {
         templateUrl: 'views/endpoints.html',
         controller: 'EndpointsCtrl',
-        breadcrumb: [breadcrumbs.home, breadcrumbs.endpoints]
+        breadcrumb: [breadcrumbs.home, breadcrumbs.endpoints],
+        resolve: {
+            resolvedEndpoints: ['EndpointsService', function (EndpointsService) {
+                return EndpointsService.query();
+            }]
+        }
     }).when('/endpoints/new', {
         templateUrl: 'views/endpoint.html',
         controller: 'EndpointCtrl',

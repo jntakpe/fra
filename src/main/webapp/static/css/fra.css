@@ -1,11 +1,9 @@
-.header .navbar-header .navbar-brand {
-    top: -25px;
+.table-wrap {
+    table-layout: fixed;
 }
 
-.header .topbar {
-    padding-bottom: 0;
-}
-
-.page-content {
-    padding-top: 25px;
+.table-wrap td {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

@@ -23,6 +23,7 @@ public class RestEndpoint extends GenericDomain {
     private HttpMethod method;
 
     @NotNull
+    @Column(columnDefinition = "TEXT")
     private String content;
 
     public String getUri() {

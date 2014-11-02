@@ -24,7 +24,7 @@
     <logger name="org.springframework" level="WARN">
     </logger>
 
-    <logger name="org.springframework.web" level="WANR">
+    <logger name="org.springframework.web" level="WARN">
     </logger>
 
     <logger name="org.springframework.security" level="WARN">

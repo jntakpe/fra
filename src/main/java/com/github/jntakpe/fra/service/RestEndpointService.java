@@ -37,6 +37,17 @@ public class RestEndpointService {
     }
 
     /**
+     * Renvoie le endpoint REST correspondant à l'URI et la méthode HTTP passées en paramètre
+     * @param uri URI du endpoint REST
+     * @param method méthode HTTP
+     * @return endpoint REST correspondant aux paramètre sinon {@code null}
+     */
+    @Transactional(readOnly = true)
+    public RestEndpoint findByUriAndMethod(String uri, String method) {
+        return restEndpointRepository.findByUriAndMethod(uri, HttpMethod.valueOf(method));
+    }
+
+    /**
      * Indique si le couple uri et méthode HTTP est disponnible
      *
      * @param id     identifiant dans le cas d'une modification
@@ -62,6 +73,16 @@ public class RestEndpointService {
         String uri = restEndpoint.getUri().toLowerCase();
         restEndpoint.setUri(normalizeUri(uri));
         return restEndpointRepository.save(restEndpoint);
+    }
+
+    /**
+     * Supprime un {@link com.github.jntakpe.fra.domain.RestEndpoint} correspondant à l'identifiant
+     *
+     * @param id identifiant du endpoint à supprimer
+     */
+    @Transactional
+    public void delete(Long id) {
+        restEndpointRepository.delete(id);
     }
 
     /**

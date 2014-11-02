@@ -43,6 +43,12 @@ public class RestEndpointResource {
         return restEndpointService.save(restEndpoint);
     }
 
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public ResponseEntity<String> delete(@PathVariable Long id) {
+        restEndpointService.delete(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/available", method = RequestMethod.GET)
     public ResponseEntity<String> available(Long id, String uri, String method) {
         if (StringUtils.isBlank(uri) || StringUtils.isBlank(method)) {

@@ -1,4 +1,5 @@
 <div class="container">
+    <alert ng-if="alert" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
     <form class="sky-form" name="endpointForm" ng-submit="submit()" novalidate>
         <fielset>
             <section>

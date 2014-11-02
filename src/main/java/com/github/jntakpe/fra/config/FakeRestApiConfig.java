@@ -6,6 +6,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
+import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;
+import org.springframework.boot.context.embedded.MimeMappings;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.orm.jpa.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
@@ -22,9 +25,21 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EntityScan("com.github.jntakpe.fra.domain")
 @EnableJpaRepositories("com.github.jntakpe.fra.repository")
 @ComponentScan("com.github.jntakpe.fra")
-public class FakeRestApiConfig extends SpringBootServletInitializer {
+public class FakeRestApiConfig extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
 
     private static final Logger LOG = LoggerFactory.getLogger(FakeRestApiConfig.class);
+
+    /**
+     * Force l'encodage en UTF-8 en mode embedded
+     *
+     * @param container conteneur embedded de servlet Spring boot
+     */
+    @Override
+    public void customize(ConfigurableEmbeddedServletContainer container) {
+        MimeMappings mappings = new MimeMappings(MimeMappings.DEFAULT);
+        mappings.add("html", "text/html;charset=utf-8");
+        container.setMimeMappings(mappings);
+    }
 
     /**
      * Démarre l'application en mode 'embedded'

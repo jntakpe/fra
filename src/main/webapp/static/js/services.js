@@ -1,4 +1,4 @@
-fraApp.factory('Endpoints', ['$resource', function ($resource) {
+fraApp.factory('EndpointsService', ['$resource', function ($resource) {
     "use strict";
-    return $resource('/endpoints', {}, {});
+    return $resource('/endpoints/:endpointId', {endpointId: '@id'}, {});
 }]);
