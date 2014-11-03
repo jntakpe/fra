@@ -8,7 +8,12 @@ fraApp.factory('EndpointsService', ['$resource', function ($resource) {
             listProps.numberPerPage = 2;
             listProps.numPages = Math.ceil(listProps.total / listProps.numberPerPage);
             return listProps;
+        },
+        refreshPage: function (currentPage, numberPerPage, endpoints) {
+            var offset = (currentPage - 1) * numberPerPage;
+            return endpoints.slice(offset, offset + numberPerPage);
         }
+
     };
 }]);
 
