@@ -8,7 +8,7 @@
     <version>0.1.0</version>
     <name>fra</name>
     <description>API rest renvoyant des données</description>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <groupId>org.springframework.boot</groupId>
