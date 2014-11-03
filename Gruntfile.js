@@ -2,35 +2,23 @@
  * Fichier de configuration de Grunt permettant de builder les ressources 'statiques'
  *
  * @param grunt
- * @author jntakpe
+ * @author ntakpe_j
  */
 module.exports = function (grunt) {
     'use strict';
     grunt.util.linefeed = '\n';
 
-    grunt.initConfig();
-
-    // Load plugins
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-bower-task');
-    grunt.loadNpmTasks('grunt-contrib-concat');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
-    grunt.loadNpmTasks('grunt-contrib-cssmin');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-
-
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         bowerrc: grunt.file.readJSON('.bowerrc'),
+
+        // Path configuration from Gruntfile.js
         dirs: {
             bowerRes: '<%= bowerrc.directory %>',
-            tmpDir: 'src/main/webapp/static/tmp'
+            target: 'src/main/webapp/static'
         },
 
-        /** Tasks **/
-        clean: {
-            all: ['<%= dirs.tmpDir %>']
-        },
+        /********************************** Tasks **********************************/
 
         bower: {
             install: {
@@ -46,50 +34,58 @@ module.exports = function (grunt) {
         },
 
         concat: {
-            jscore: {
+            jsCore: {
                 options: {
                     stripBanners: {
                         block: true
                     },
-                    src: [
-                        '<%= dirs.bowerRes %>/jquery/dist/jquery.min.js',
-                        '<%= dirs.bowerRes %>/boostrap/dist/js/boostrap.min.js',
-                        '<%= dirs.bowerRes %>/angular/angular.min.js',
-                        '<%= dirs.bowerRes %>/angular-resource/angular-resource.min.js',
-                        '<%= dirs.bowerRes %>/angular-route/angular-route.min.js',
-                        '<%= dirs.bowerRes %>/angular-messages/angular-messages.min.js',
-                        '<%= dirs.bowerRes %>/angular-bootstrap/ui-bootstrap-tpls.min.js'
-                    ],
-                    dest: '<%= dirs.tmpDir %>/js/jscore.min.js'
-                }
+                    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - Librairies tierces - ' +
+                    '<%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                },
+                src: [
+                    '<%= dirs.bowerRes %>/jquery/dist/jquery.min.js',
+                    '<%= dirs.bowerRes %>/bootstrap/dist/js/bootstrap.min.js'
+                ],
+                dest: '<%= dirs.target %>/js/js-core.min.js'
             },
-            csscore: {
+            cssCore: {
                 options: {
                     stripBanners: {
                         block: true
                     },
-                    src: [
-                        '<%= dirs.bowerRes %>/boostrap/dist/css/boostrap.min.css',
-                        '<%= dirs.bowerRes %>/font-awesome/css/font-awesome.min.css'
-                    ],
-                    dest: '<%= dirs.tmpDir %>/css/csscore.min.css'
-                }
+                    banner: '/*! <%= pkg.name %> - v<%= pkg.version %> - Librairies tierces - ' +
+                    '<%= grunt.template.today("yyyy-mm-dd") %> */\n'
+                },
+                src: [
+                    '<%= dirs.bowerRes %>/bootstrap/dist/css/bootstrap.min.css',
+                    '<%= dirs.bowerRes %>/font-awesome/css/font-awesome.min.css'
+                ],
+                dest: '<%= dirs.target %>/css/css-core.min.css'
             }
         },
+
         copy: {
             fonts: {
                 files: [
                     {
                         expand: true, flatten: true, src: [
-                        '<%= dirs.bowerRes %>/boostrap/dist/fonts/*',
+                        '<%= dirs.bowerRes %>/bootstrap/dist/fonts/*',
                         '<%= dirs.bowerRes %>/font-awesome/fonts/*'
-                    ], dest: '<%= dirs.tmpDir %>/fonts', filter: 'isFile'
+                    ], dest: '<%= dirs.target %>/fonts', filter: 'isFile'
                     }
                 ]
             }
         }
-
     });
 
-    grunt.registerTask('default', ['clean:all', 'bower:install', 'concat:jscore', 'concat:csscore']);
+    // Load plugins
+    grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-bower-task');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
+    grunt.loadNpmTasks('grunt-contrib-copy');
+
+    // Callable tasks
+    grunt.registerTask('default', ['bower:install', 'concat:jsCore', 'concat:cssCore', 'copy:fonts']);
 };
