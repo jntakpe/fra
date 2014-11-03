@@ -28,6 +28,12 @@
         </tr>
         </tbody>
     </table>
-    <pagination total-items="endpointsProps.total" ng-model="currentPage" max-size="5" boundary-links="true"
-                items-per-page="endpointsProps.numberPerPage" num-pages="endpointsProps.numPages"></pagination>
+    <div class="col-md-4 padding-top-20">
+        <a href="#/endpoints/new" class="btn btn-success"> <i class="fa fa-plus"></i> Créer un endpoint</a>
+    </div>
+    <div class="col-md-8">
+        <pagination total-items="endpointsProps.total" ng-model="currentPage" max-size="5" boundary-links="true"
+                    items-per-page="endpointsProps.numberPerPage" num-pages="endpointsProps.numPages"
+                    class="pull-right"></pagination>
+    </div>
 </div>

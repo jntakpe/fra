@@ -58,4 +58,5 @@ fraApp.controller('EndpointCtrl', ['$scope', '$location', 'EndpointsService',
         $scope.closeAlert = function () {
             $scope.alert = null;
         };
+
     }]);
