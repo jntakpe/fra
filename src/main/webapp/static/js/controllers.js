@@ -1,10 +1,22 @@
 fraApp.controller('HomeCtrl', ['$scope', function () {
 }]);
 
-fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService', 'resolvedEndpoints',
-    function ($scope, $routeParams, EndpointsService, resolvedEndpoints) {
+fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService',
+    function ($scope, $routeParams, EndpointsService) {
         "use strict";
-        $scope.endpoints = resolvedEndpoints;
+        EndpointsService.query(function (response) {
+            $scope.endpoints = response;
+            $scope.totalEndpoints = $scope.endpoints.length;
+        });
+
+        $scope.currentPage = 1;
+        $scope.numPerPage = 2;
+        $scope.numPages = Math.ceil($scope.totalEndpoints / $scope.numPerPage);
+
+        $scope.$watch('currentPage', function () {
+            var offset = ($scope.currentPage - 1) * $scope.numPerPage;
+            $scope.currentEndpoints = $scope.endpoints.slice(offset, offset + $scope.numPerPage);
+        });
 
         if ($routeParams.uri) {
             $scope.alert = {
@@ -22,6 +34,7 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
                 $scope.endpoints.splice(index, 1);
             });
         };
+
 
     }]);
 

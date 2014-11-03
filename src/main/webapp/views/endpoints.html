@@ -11,7 +11,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="endpoint in endpoints">
+        <tr ng-repeat="endpoint in currentEndpoints">
             <td>{{endpoint.uri}}</td>
             <td>{{endpoint.method}}</td>
             <td>{{endpoint.content}}</td>
@@ -28,4 +28,6 @@
         </tr>
         </tbody>
     </table>
+    <pagination total-items="totalEndpoints" ng-model="currentPage" max-size="5" boundary-links="true"
+                items-per-page="numPerPage" num-pages="numPages"></pagination>
 </div>

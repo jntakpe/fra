@@ -44,7 +44,12 @@ module.exports = function (grunt) {
                 },
                 src: [
                     '<%= dirs.bowerRes %>/jquery/dist/jquery.min.js',
-                    '<%= dirs.bowerRes %>/bootstrap/dist/js/bootstrap.min.js'
+                    '<%= dirs.bowerRes %>/bootstrap/dist/js/bootstrap.min.js',
+                    '<%= dirs.bowerRes %>/angular/angular.min.js',
+                    '<%= dirs.bowerRes %>/angular-route/angular-route.min.js',
+                    '<%= dirs.bowerRes %>/angular-messages/angular-messages.min.js',
+                    '<%= dirs.bowerRes %>/angular-resource/angular-resource.min.js',
+                    '<%= dirs.bowerRes %>/angular-bootstrap/ui-bootstrap-tpls.min.js'
                 ],
                 dest: '<%= dirs.target %>/js/js-core.min.js'
             },
