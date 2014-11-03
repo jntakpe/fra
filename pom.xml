@@ -6,7 +6,7 @@
     <groupId>com.github.jntakpe</groupId>
     <artifactId>fra</artifactId>
     <version>0.1.0</version>
-    <name>fake rest api</name>
+    <name>fra</name>
     <description>API rest renvoyant des données</description>
     <packaging>war</packaging>
 
@@ -84,7 +84,7 @@
     </dependencies>
 
     <build>
-        <finalName>fake rest api</finalName>
+        <finalName>fra</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
