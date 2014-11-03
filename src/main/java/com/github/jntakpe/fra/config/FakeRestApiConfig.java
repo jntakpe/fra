@@ -87,6 +87,7 @@ public class FakeRestApiConfig extends SpringBootServletInitializer implements E
         config.setJdbcUrl("jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath());
         config.setUsername(dbUri.getUserInfo().split(":")[0]);
         config.setPassword(dbUri.getUserInfo().split(":")[1]);
+        config.setDriverClassName("org.postgresql.Driver");
         return new HikariDataSource(config);
     }
 
