@@ -9,9 +9,7 @@
     "angular-route": "latest",
     "angular-resource": "latest",
     "angular-bootstrap": "latest",
-    "moment": "latest",
-    "font-awesome": "latest",
-    "select2": "latest"
+    "font-awesome": "latest"
   },
   "resolutions": {
     "jquery": "2.1.1"
