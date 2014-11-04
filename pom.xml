@@ -84,7 +84,7 @@
     </dependencies>
 
     <build>
-        <finalName>fakerestapi</finalName>
+        <finalName>fra</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
