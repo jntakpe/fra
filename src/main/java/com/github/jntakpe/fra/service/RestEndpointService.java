@@ -37,6 +37,16 @@ public class RestEndpointService {
     }
 
     /**
+     * Renvoie le {@link com.github.jntakpe.fra.domain.RestEndpoint} correspondant à cet identifiant
+     * @param id identifiant du endpoint
+     * @return endpoint correspondant à cet identifiant sinon {@code null}
+     */
+    @Transactional(readOnly = true)
+    public RestEndpoint findOne(Long id) {
+        return restEndpointRepository.findOne(id);
+    }
+
+    /**
      * Renvoie le endpoint REST correspondant à l'URI et la méthode HTTP passées en paramètre
      * @param uri URI du endpoint REST
      * @param method méthode HTTP

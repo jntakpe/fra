@@ -9,7 +9,8 @@ var fraApp = angular.module('fraApp', ['ngMessages', 'ngRoute', 'ngResource', 'u
     breadcrumbs = {
         home: new BreadCrumb('Accueil', '#/', 'home'),
         endpoints: new BreadCrumb('Gestion des endpoints', '#/endpoints', 'endpoints'),
-        newEndpoint: new BreadCrumb('Création d\'un endpoint', '#/endpoints/new', 'new-endpoint')
+        newEndpoint: new BreadCrumb('Création d\'un endpoint', '#/endpoints/new', 'endpoints'),
+        editEndpoint: new BreadCrumb('Modification d\'un endpoint', '#/endpoints/edit', 'endpoints')
     };
 
 
@@ -28,8 +29,19 @@ fraApp.config(function ($routeProvider) {
         }
     }).when('/endpoints/new', {
         templateUrl: 'views/endpoint.html',
-        controller: 'EndpointCtrl',
+        controller: 'EndpointCreateCtrl',
         breadcrumb: [breadcrumbs.home, breadcrumbs.endpoints, breadcrumbs.newEndpoint]
+    }).when('/endpoints/:endpointId', {
+        templateUrl: 'views/endpoint.html',
+        controller: 'EndpointEditCtrl',
+        breadcrumb: [breadcrumbs.home, breadcrumbs.endpoints, breadcrumbs.editEndpoint],
+        resolve: {
+            editEndpoint: ['$route', 'EndpointsService', function ($route, EndpointsService) {
+                console.log('at least trying');
+                var endpoint = EndpointsService.resource.get({endpointId: $route.current.params.endpointId});
+                return endpoint.$promise;
+            }]
+        }
     }).otherwise({
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',

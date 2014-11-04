@@ -60,7 +60,7 @@
                 <i class="fa fa-arrow-circle-left"></i> Précédent
             </button>
             <button type="submit" class="btn btn-success pull-right" ng-disabled="endpointForm.$invalid">
-                <i class="fa fa-check"></i> Créer le endpoint
+                <i class="fa fa-check"></i> {{endpoint.id ? 'Modifier le endpoint' : 'Créer le endpoint'}}
             </button>
         </footer>
     </form>

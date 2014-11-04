@@ -35,11 +35,16 @@ public class RestEndpointResource {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public RestEndpoint get(@PathVariable Long id) {
-        return null;
+        return restEndpointService.findOne(id);
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
     public RestEndpoint create(@RequestBody RestEndpoint restEndpoint) {
+        return restEndpointService.save(restEndpoint);
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    public RestEndpoint update(@PathVariable Long id, @RequestBody RestEndpoint restEndpoint) {
         return restEndpointService.save(restEndpoint);
     }
 

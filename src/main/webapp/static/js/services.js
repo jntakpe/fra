@@ -1,11 +1,11 @@
 fraApp.factory('EndpointsService', ['$resource', function ($resource) {
     "use strict";
     return {
-        resource: $resource('/endpoints/:endpointId', {endpointId: '@id'}, {}),
+        resource: $resource('/endpoints/:endpointId', {endpointId: '@id'}, {'update': {method: 'PUT'}}),
         listProps: function (endpoints) {
             var listProps = {};
             listProps.total = endpoints.length;
-            listProps.numberPerPage = 2;
+            listProps.numberPerPage = 8;
             listProps.numPages = Math.ceil(listProps.total / listProps.numberPerPage);
             return listProps;
         },
@@ -15,10 +15,4 @@ fraApp.factory('EndpointsService', ['$resource', function ($resource) {
         }
 
     };
-}]);
-
-fraApp.factory('WaitInit', ['$timeout', function ($timeout) {
-    "use strict";
-    return $timeout(function () {
-    }, 3000);
 }]);

@@ -17,10 +17,12 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
             refresh();
         });
 
+
         if ($routeParams.uri) {
             $scope.alert = {
                 type: 'success',
-                msg: 'Nouveau endpoint REST créé à l\'adresse : ' + $routeParams.uri
+                msg: 'Nouveau endpoint REST créé à l\'adresse : ',
+                uri: $routeParams.uri
             };
         }
 
@@ -32,13 +34,13 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
             endpoint.$delete(function () {
                 $scope.endpoints.splice(index, 1);
                 refresh();
+                $scope.endpointsProps = EndpointsService.listProps($scope.endpoints);
             });
         };
 
-
     }]);
 
-fraApp.controller('EndpointCtrl', ['$scope', '$location', 'EndpointsService',
+fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsService',
     function ($scope, $location, EndpointsService) {
         "use strict";
 
@@ -50,7 +52,7 @@ fraApp.controller('EndpointCtrl', ['$scope', '$location', 'EndpointsService',
                 function () {
                     $scope.alert = {
                         type: 'danger',
-                        msg: 'Erreur lors de la sauvegarde du endpoint REST'
+                        msg: 'Erreur lors de la création du endpoint REST'
                     };
                 });
         };
@@ -59,4 +61,30 @@ fraApp.controller('EndpointCtrl', ['$scope', '$location', 'EndpointsService',
             $scope.alert = null;
         };
 
+    }]);
+
+fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService', 'editEndpoint',
+    function ($scope, $location, EndpointsService, editEndpoint) {
+        "use strict";
+
+        $scope.endpoint = editEndpoint;
+        console.log($scope.endpoint);
+
+        $scope.submit = function () {
+            EndpointsService.resource.update($scope.endpoint,
+                function (response) {
+                    $location.path('/endpoints').search('uri', response.uri);
+                },
+                function () {
+                    $scope.alert = {
+                        type: 'danger',
+                        msg: 'Erreur de la modification du endpoint REST'
+                    };
+                }
+            );
+        };
+
+        $scope.closeAlert = function () {
+            $scope.alert = null;
+        };
     }]);
