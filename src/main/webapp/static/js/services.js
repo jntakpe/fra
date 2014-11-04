@@ -13,6 +13,5 @@ fraApp.factory('EndpointsService', ['$resource', function ($resource) {
             var offset = (currentPage - 1) * numberPerPage;
             return endpoints.slice(offset, offset + numberPerPage);
         }
-
     };
 }]);

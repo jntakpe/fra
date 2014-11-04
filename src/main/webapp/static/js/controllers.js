@@ -18,11 +18,18 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
         });
 
 
-        if ($routeParams.uri) {
+        if ($routeParams.create) {
             $scope.alert = {
                 type: 'success',
                 msg: 'Nouveau endpoint REST créé à l\'adresse : ',
-                uri: $routeParams.uri
+                uri: $routeParams.create
+            };
+        }
+        if ($routeParams.edit) {
+            $scope.alert = {
+                type: 'success',
+                msg: 'Modification du endpoint REST pour l\'adresse : ',
+                uri: $routeParams.edit
             };
         }
 
@@ -47,7 +54,7 @@ fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsServic
         $scope.submit = function () {
             EndpointsService.resource.save($scope.endpoint,
                 function (response) {
-                    $location.path('/endpoints').search('uri', response.uri);
+                    $location.path('/endpoints').search('create', response.uri);
                 },
                 function () {
                     $scope.alert = {
@@ -68,12 +75,11 @@ fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService'
         "use strict";
 
         $scope.endpoint = editEndpoint;
-        console.log($scope.endpoint);
 
         $scope.submit = function () {
             EndpointsService.resource.update($scope.endpoint,
                 function (response) {
-                    $location.path('/endpoints').search('uri', response.uri);
+                    $location.path('/endpoints').search('edit', response.uri);
                 },
                 function () {
                     $scope.alert = {
