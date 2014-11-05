@@ -37,7 +37,6 @@ fraApp.config(function ($routeProvider) {
         breadcrumb: [breadcrumbs.home, breadcrumbs.endpoints, breadcrumbs.editEndpoint],
         resolve: {
             editEndpoint: ['$route', 'EndpointsService', function ($route, EndpointsService) {
-                console.log('at least trying');
                 var endpoint = EndpointsService.resource.get({endpointId: $route.current.params.endpointId});
                 return endpoint.$promise;
             }]

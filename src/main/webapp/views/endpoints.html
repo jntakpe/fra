@@ -14,7 +14,7 @@
         </thead>
         <tbody>
         <tr ng-repeat="endpoint in currentEndpoints">
-            <td>{{endpoint.uri}}</td>
+            <td><a href="{{endpoint.uri}}">{{endpoint.uri}}</a></td>
             <td>{{endpoint.method}}</td>
             <td>{{endpoint.content}}</td>
             <td>
