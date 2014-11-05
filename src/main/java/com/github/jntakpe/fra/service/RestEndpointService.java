@@ -38,6 +38,7 @@ public class RestEndpointService {
 
     /**
      * Renvoie le {@link com.github.jntakpe.fra.domain.RestEndpoint} correspondant à cet identifiant
+     *
      * @param id identifiant du endpoint
      * @return endpoint correspondant à cet identifiant sinon {@code null}
      */
@@ -48,7 +49,8 @@ public class RestEndpointService {
 
     /**
      * Renvoie le endpoint REST correspondant à l'URI et la méthode HTTP passées en paramètre
-     * @param uri URI du endpoint REST
+     *
+     * @param uri    URI du endpoint REST
      * @param method méthode HTTP
      * @return endpoint REST correspondant aux paramètre sinon {@code null}
      */
@@ -60,15 +62,14 @@ public class RestEndpointService {
     /**
      * Indique si le couple uri et méthode HTTP est disponnible
      *
-     * @param id     identifiant dans le cas d'une modification
-     * @param uri    uri du endpoint
-     * @param method méthode HTTP du endpoint
+     * @param formEndpoint formulaire représentant un {@link com.github.jntakpe.fra.domain.RestEndpoint}
      * @return true si les valeurs sont disponnibles
      */
     @Transactional(readOnly = true)
-    public boolean isAvailable(Long id, String uri, HttpMethod method) {
-        RestEndpoint restEndpoint = restEndpointRepository.findByUriAndMethod(normalizeUri(uri), method);
-        return restEndpoint == null || restEndpoint.getId().equals(id);
+    public boolean isAvailable(RestEndpoint formEndpoint) {
+        String uri = normalizeUri(formEndpoint.getUri());
+        RestEndpoint restEndpoint = restEndpointRepository.findByUriAndMethod(uri, formEndpoint.getMethod());
+        return restEndpoint == null || restEndpoint.getId().equals(formEndpoint.getId());
     }
 
     /**

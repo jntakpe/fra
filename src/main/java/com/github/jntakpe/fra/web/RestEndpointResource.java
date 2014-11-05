@@ -2,9 +2,7 @@ package com.github.jntakpe.fra.web;
 
 import com.github.jntakpe.fra.domain.RestEndpoint;
 import com.github.jntakpe.fra.service.RestEndpointService;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -39,13 +37,19 @@ public class RestEndpointResource {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public RestEndpoint create(@RequestBody RestEndpoint restEndpoint) {
-        return restEndpointService.save(restEndpoint);
+    public ResponseEntity<RestEndpoint> create(@RequestBody RestEndpoint restEndpoint) {
+        if (restEndpointService.isAvailable(restEndpoint)) {
+            return new ResponseEntity<>(restEndpointService.save(restEndpoint), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public RestEndpoint update(@PathVariable Long id, @RequestBody RestEndpoint restEndpoint) {
-        return restEndpointService.save(restEndpoint);
+    public ResponseEntity<RestEndpoint> update(@PathVariable Long id, @RequestBody RestEndpoint restEndpoint) {
+        if (restEndpointService.isAvailable(restEndpoint)) {
+            return new ResponseEntity<>(restEndpointService.save(restEndpoint), HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.CONFLICT);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
@@ -54,12 +58,4 @@ public class RestEndpointResource {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/available", method = RequestMethod.GET)
-    public ResponseEntity<String> available(Long id, String uri, String method) {
-        if (StringUtils.isBlank(uri) || StringUtils.isBlank(method)) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        boolean available = restEndpointService.isAvailable(id, uri, HttpMethod.valueOf(method));
-        return new ResponseEntity<>(available ? HttpStatus.NO_CONTENT : HttpStatus.CONFLICT);
-    }
 }

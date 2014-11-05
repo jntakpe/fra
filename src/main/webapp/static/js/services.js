@@ -12,6 +12,12 @@ fraApp.factory('EndpointsService', ['$resource', function ($resource) {
         refreshPage: function (currentPage, numberPerPage, endpoints) {
             var offset = (currentPage - 1) * numberPerPage;
             return endpoints.slice(offset, offset + numberPerPage);
+        },
+        getErrorMsg: function (error) {
+            if (error.status === 409) {
+                return 'Sauvegarde impossible. Un endpoint avec ces URI et méthode existe déjà';
+            }
+            return 'Erreur lors de la sauvegarde du endpoint REST';
         }
     };
 }]);

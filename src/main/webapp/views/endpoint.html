@@ -5,8 +5,7 @@
             <section>
                 <label class="label">URI du endpoint REST</label>
                 <label class="input" ng-class="{'state-error': endpointForm.uri.$touched && endpointForm.uri.$invalid}">
-                    <input type="text" name="uri" placeholder="URI du endpoint REST" ng-model="endpoint.uri" required
-                           endpoint-available-validator/>
+                    <input type="text" name="uri" placeholder="URI du endpoint REST" ng-model="endpoint.uri" required/>
 
                     <div ng-messages="endpointForm.uri.$touched && endpointForm.uri.$error" class="note note-error">
                         <div ng-message="required">L'URI du endpoint REST est obligatoire.</div>
@@ -21,8 +20,7 @@
 
                 <div class="inline-group">
                     <label class="radio" ng-init="endpoint.method = 'GET'">
-                        <input name="method" type="radio" value="GET" ng-model="endpoint.method"
-                               endpoint-available-validator>
+                        <input name="method" type="radio" value="GET" ng-model="endpoint.method">
                         <i class="rounded-x"></i>GET</label>
                     <label class="radio">
                         <input name="method" type="radio" value="POST" ng-model="endpoint.method">

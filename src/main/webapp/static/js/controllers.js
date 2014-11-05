@@ -56,12 +56,13 @@ fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsServic
                 function (response) {
                     $location.path('/endpoints').search('create', response.uri);
                 },
-                function () {
+                function (error) {
                     $scope.alert = {
                         type: 'danger',
-                        msg: 'Erreur lors de la création du endpoint REST'
+                        msg: EndpointsService.getErrorMsg(error)
                     };
-                });
+                }
+            );
         };
 
         $scope.closeAlert = function () {
@@ -77,14 +78,15 @@ fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService'
         $scope.endpoint = editEndpoint;
 
         $scope.submit = function () {
+
             EndpointsService.resource.update($scope.endpoint,
                 function (response) {
                     $location.path('/endpoints').search('edit', response.uri);
                 },
-                function () {
+                function (error) {
                     $scope.alert = {
                         type: 'danger',
-                        msg: 'Erreur de la modification du endpoint REST'
+                        msg: EndpointsService.getErrorMsg(error)
                     };
                 }
             );

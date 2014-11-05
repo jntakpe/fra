@@ -46,11 +46,19 @@ public class RestEndpointServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testIsAvailable() throws Exception {
-        assertThat(restEndpointService.isAvailable(null, "/toto", HttpMethod.GET)).isTrue();
-        assertThat(restEndpointService.isAvailable(null, "/hello", HttpMethod.GET)).isFalse();
-        assertThat(restEndpointService.isAvailable(null, "/hello", HttpMethod.POST)).isTrue();
-        assertThat(restEndpointService.isAvailable(99L, "/hello", HttpMethod.GET)).isFalse();
-        assertThat(restEndpointService.isAvailable(1L, "/hello", HttpMethod.GET)).isTrue();
+        RestEndpoint restEndpoint = new RestEndpoint();
+        restEndpoint.setMethod(HttpMethod.GET);
+        restEndpoint.setUri("/toto");
+        assertThat(restEndpointService.isAvailable(restEndpoint)).isTrue();
+        restEndpoint.setUri("/hello");
+        assertThat(restEndpointService.isAvailable(restEndpoint)).isFalse();
+        restEndpoint.setMethod(HttpMethod.POST);
+        assertThat(restEndpointService.isAvailable(restEndpoint)).isTrue();
+        restEndpoint.setMethod(HttpMethod.GET);
+        restEndpoint.setId(99L);
+        assertThat(restEndpointService.isAvailable(restEndpoint)).isFalse();
+        restEndpoint.setId(1L);
+        assertThat(restEndpointService.isAvailable(restEndpoint)).isTrue();
 
     }
 
