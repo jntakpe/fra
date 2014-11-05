@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpMethod;
 
 /**
- * Publication des méthode de gestion de l'entité {@link com.github.jntakpe.fra.domain.RestEndpoint}
+ * Publication des méthodes de gestion de l'entité {@link com.github.jntakpe.fra.domain.RestEndpoint}
  *
  * @author jntakpe
  */
