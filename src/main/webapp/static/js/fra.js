@@ -10,7 +10,8 @@ var fraApp = angular.module('fraApp', ['ngMessages', 'ngRoute', 'ngResource', 'u
         home: new BreadCrumb('Accueil', '#/', 'home'),
         endpoints: new BreadCrumb('Gestion des endpoints', '#/endpoints', 'endpoints'),
         newEndpoint: new BreadCrumb('Création d\'un endpoint', '#/endpoints/new', 'endpoints'),
-        editEndpoint: new BreadCrumb('Modification d\'un endpoint', '#/endpoints/edit', 'endpoints')
+        editEndpoint: new BreadCrumb('Modification d\'un endpoint', '#/endpoints/edit', 'endpoints'),
+        trace: new BreadCrumb('Dernières requêtes', '#/trace', 'trace')
     };
 
 
@@ -41,6 +42,10 @@ fraApp.config(function ($routeProvider) {
                 return endpoint.$promise;
             }]
         }
+    }).when('/trace', {
+        templateUrl: 'views/trace.html',
+        controller: 'TraceCtrl',
+        breadcrumb: [breadcrumbs.home, breadcrumbs.trace]
     }).otherwise({
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',

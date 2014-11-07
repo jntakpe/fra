@@ -100,3 +100,9 @@ fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService'
             $scope.alert = null;
         };
     }]);
+
+fraApp.controller('TraceCtrl', ['$scope',
+    function ($scope) {
+        "use strict";
+
+    }]);

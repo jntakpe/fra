@@ -38,7 +38,7 @@ public class RestEndpointService {
      */
     @Transactional(readOnly = true)
     public List<RestEndpoint> findAll() {
-        LOG.debug("Récupréa");
+        LOG.debug("Récupération de tous les endpoints REST");
         return restEndpointRepository.findAll();
     }
 
