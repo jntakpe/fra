@@ -45,6 +45,19 @@ public class RestEndpointServiceTest extends AbstractTestNGSpringContextTests {
     }
 
     @Test
+    public void testFindOne() throws Exception {
+        assertThat(restEndpointService.findOne(9999999L)).isNull();
+        assertThat(restEndpointService.findOne(restEndpointService.findAll().get(0).getId())).isNotNull();
+    }
+
+    @Test
+    public void testFindByUriAndMethod() throws Exception {
+        assertThat(restEndpointService.findByUriAndMethod("toto/au/ski", "DELETE")).isNull();
+        assertThat(restEndpointService.findByUriAndMethod("/rest/hello", "GET")).isNotNull();
+        assertThat(restEndpointService.findByUriAndMethod("/rest/hello", "POST")).isNull();
+    }
+
+    @Test
     public void testIsAvailable() throws Exception {
         RestEndpoint restEndpoint = new RestEndpoint();
         restEndpoint.setMethod(HttpMethod.GET);
@@ -77,5 +90,13 @@ public class RestEndpointServiceTest extends AbstractTestNGSpringContextTests {
         RestEndpoint editedFoo = restEndpointService.save(savedFoo);
         assertThat(editedFoo.getUri()).isEqualTo(savedFoo.getUri());
         assertThat(editedFoo.getMethod()).isEqualTo(HttpMethod.POST);
+    }
+
+    @Test(enabled = false)
+    public void testDelete() throws Exception {
+        Integer initSize = jdbcTemplate.queryForObject(COUNT_QUERY, Integer.class);
+        assertThat(initSize).isNotZero();
+        restEndpointService.delete(restEndpointService.findAll().get(0).getId());
+        assertThat(jdbcTemplate.queryForObject(COUNT_QUERY, Integer.class)).isEqualTo(initSize - 1);
     }
 }

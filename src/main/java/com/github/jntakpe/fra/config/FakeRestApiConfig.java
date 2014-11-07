@@ -18,6 +18,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -29,12 +30,31 @@ import java.net.URISyntaxException;
  */
 @Configuration
 @EnableAutoConfiguration
+@EnableScheduling
 @EntityScan("com.github.jntakpe.fra.domain")
 @EnableJpaRepositories("com.github.jntakpe.fra.repository")
 @ComponentScan("com.github.jntakpe.fra")
 public class FakeRestApiConfig extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
 
     private static final Logger LOG = LoggerFactory.getLogger(FakeRestApiConfig.class);
+
+    /**
+     * Initialisation de la source de données POSTGRES pour le cloud Heroku
+     *
+     * @return la source de données initialisée
+     * @throws URISyntaxException si l'URI n'est pas correcte
+     */
+    @Bean
+    @Profile(Constants.PROD_PROFILE)
+    public HikariDataSource hikariDataSource() throws URISyntaxException {
+        URI dbUri = new URI(System.getenv("DATABASE_URL"));
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl("jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath());
+        config.setUsername(dbUri.getUserInfo().split(":")[0]);
+        config.setPassword(dbUri.getUserInfo().split(":")[1]);
+        config.setDriverClassName("org.postgresql.Driver");
+        return new HikariDataSource(config);
+    }
 
     /**
      * Force l'encodage en UTF-8 en mode embedded
@@ -71,24 +91,6 @@ public class FakeRestApiConfig extends SpringBootServletInitializer implements E
         LOG.debug("Profil '{}' sélectionné", profile);
         application.profiles(profile);
         return application.sources(FakeRestApiConfig.class);
-    }
-
-    /**
-     * Initialisation de la source de données POSTGRES pour le cloud Heroku
-     *
-     * @return la source de données initialisée
-     * @throws URISyntaxException si l'URI n'est pas correcte
-     */
-    @Bean
-    @Profile(Constants.PROD_PROFILE)
-    public HikariDataSource hikariDataSource() throws URISyntaxException {
-        URI dbUri = new URI(System.getenv("DATABASE_URL"));
-        HikariConfig config = new HikariConfig();
-        config.setJdbcUrl("jdbc:postgresql://" + dbUri.getHost() + ':' + dbUri.getPort() + dbUri.getPath());
-        config.setUsername(dbUri.getUserInfo().split(":")[0]);
-        config.setPassword(dbUri.getUserInfo().split(":")[1]);
-        config.setDriverClassName("org.postgresql.Driver");
-        return new HikariDataSource(config);
     }
 
 }

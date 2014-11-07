@@ -1,7 +1,10 @@
 package com.github.jntakpe.fra.service;
 
+import com.github.jntakpe.fra.config.FakeRestApiConfig;
 import com.github.jntakpe.fra.domain.RestEndpoint;
 import com.github.jntakpe.fra.repository.RestEndpointRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,8 @@ public class RestEndpointService {
 
     public static final String REST_PREFIX = "/rest/";
 
+    private static final Logger LOG = LoggerFactory.getLogger(FakeRestApiConfig.class);
+
     private RestEndpointRepository restEndpointRepository;
 
     @Autowired
@@ -33,6 +38,7 @@ public class RestEndpointService {
      */
     @Transactional(readOnly = true)
     public List<RestEndpoint> findAll() {
+        LOG.debug("Récupréa");
         return restEndpointRepository.findAll();
     }
 
@@ -44,6 +50,7 @@ public class RestEndpointService {
      */
     @Transactional(readOnly = true)
     public RestEndpoint findOne(Long id) {
+        LOG.debug("Recherche du endpoint correspondant à l'identifiant {}", id);
         return restEndpointRepository.findOne(id);
     }
 
@@ -56,6 +63,7 @@ public class RestEndpointService {
      */
     @Transactional(readOnly = true)
     public RestEndpoint findByUriAndMethod(String uri, String method) {
+        LOG.debug("Récupération des données pour l'url {} et la méthode {}", uri, method);
         return restEndpointRepository.findByUriAndMethod(uri, HttpMethod.valueOf(method));
     }
 
@@ -67,6 +75,7 @@ public class RestEndpointService {
      */
     @Transactional(readOnly = true)
     public boolean isAvailable(RestEndpoint formEndpoint) {
+        LOG.debug("Vérification de la disponibilité du endpoint {}", formEndpoint);
         String uri = normalizeUri(formEndpoint.getUri());
         RestEndpoint restEndpoint = restEndpointRepository.findByUriAndMethod(uri, formEndpoint.getMethod());
         return restEndpoint == null || restEndpoint.getId().equals(formEndpoint.getId());
@@ -81,6 +90,7 @@ public class RestEndpointService {
      */
     @Transactional
     public RestEndpoint save(RestEndpoint restEndpoint) {
+        LOG.info("Enregistrement du endpoint {}", restEndpoint);
         String uri = restEndpoint.getUri().toLowerCase();
         restEndpoint.setUri(normalizeUri(uri));
         return restEndpointRepository.save(restEndpoint);
@@ -93,6 +103,7 @@ public class RestEndpointService {
      */
     @Transactional
     public void delete(Long id) {
+        LOG.info("Suppression du endpoint ayant l'identifiant : {}", id);
         restEndpointRepository.delete(id);
     }
 

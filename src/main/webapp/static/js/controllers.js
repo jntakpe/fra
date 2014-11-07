@@ -44,7 +44,7 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
                 $scope.endpointsProps = EndpointsService.listProps($scope.endpoints);
                 $scope.alert = {
                     type: 'success',
-                    msg: 'Suppression du endpoint : ' + endpoint.uri
+                    msg: 'Suppression du endpoint : ' + endpoint.uri + ' effectuée avec succès'
                 };
             });
         };
