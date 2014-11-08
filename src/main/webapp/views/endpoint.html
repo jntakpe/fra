@@ -1,5 +1,8 @@
 <div class="container">
-    <alert ng-if="alert" type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</alert>
+    <alert ng-if="alert" type="{{alert.type}}" close="closeAlert()">
+        <i class="fa" ng-class="alert.type === 'success' ? 'fa-check':'fa-warning'"></i>
+        &nbsp;{{alert.msg}}
+    </alert>
     <form class="sky-form" name="endpointForm" ng-submit="submit()" novalidate>
         <fielset>
             <section>
