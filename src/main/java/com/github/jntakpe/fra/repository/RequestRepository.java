@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface RequestRepository extends JpaRepository<Request, Long> {
 
-    List<Request> findByTimestampAfter(Date timestamp);
+    List<Request> findByTimestampBefore(Date timestamp);
 
 }

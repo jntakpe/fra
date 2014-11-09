@@ -34,7 +34,7 @@ public class RequestServiceTest extends AbstractTestNGSpringContextTests {
     public void testClean() throws Exception {
         Integer initSize = jdbcTemplate.queryForObject(COUNT_QUERY, Integer.class);
         requestService.clean();
-        assertThat(jdbcTemplate.queryForObject(COUNT_QUERY, Integer.class)).isEqualTo(initSize - 2);
+        assertThat(jdbcTemplate.queryForObject(COUNT_QUERY, Integer.class)).isEqualTo(initSize - 3);
     }
 
     @Test

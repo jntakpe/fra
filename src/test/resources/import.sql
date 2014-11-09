@@ -10,3 +10,6 @@ INSERT INTO request (version, method, path, status, timestamp)
 VALUES (0, 'GET', '/rest/dfgdfg/sdfsdf', 'OK', '2014-01-07 18:00:00.000000');
 INSERT INTO request (version, method, path, status, timestamp)
 VALUES (0, 'GET', '/rest/new/endpoint', 'NOT_FOUND', '2013-10-07 00:00:00.000000');
+INSERT INTO request (version, method, path, status, timestamp)
+VALUES (0, 'GET', '/rest/new/sdf', 'OK', '2012-10-07 00:00:00.000000');
+

@@ -41,7 +41,7 @@ public class RequestService {
         Instant limit = Instant.now().minus(7, ChronoUnit.DAYS);
         Date limitDate = Date.from(limit);
         LOG.info("Suppression des requêtes effectuées avant le : {}", limit);
-        List<Request> requests = requestRepository.findByTimestampAfter(limitDate);
+        List<Request> requests = requestRepository.findByTimestampBefore(limitDate);
         requestRepository.delete(requests);
     }
 
