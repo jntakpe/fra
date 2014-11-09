@@ -22,7 +22,7 @@
                 <label class="label">Méthode HTTP</label>
 
                 <div class="inline-group">
-                    <label class="radio" ng-init="endpoint.method = 'GET'">
+                    <label class="radio" ng-init="endpoint.method = endpoint.method ? endpoint.method : 'GET'">
                         <input name="method" type="radio" value="GET" ng-model="endpoint.method">
                         <i class="rounded-x"></i>GET</label>
                     <label class="radio">

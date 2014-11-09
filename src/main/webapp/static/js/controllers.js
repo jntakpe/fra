@@ -89,8 +89,7 @@ fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsServic
                         type: 'danger',
                         msg: EndpointsService.getErrorMsg(error)
                     };
-                }
-            );
+                });
         };
 
         $scope.closeAlert = function () {
@@ -116,8 +115,7 @@ fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService'
                         type: 'danger',
                         msg: EndpointsService.getErrorMsg(error)
                     };
-                }
-            );
+                });
         };
 
         $scope.closeAlert = function () {
