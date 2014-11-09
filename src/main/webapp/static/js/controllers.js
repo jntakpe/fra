@@ -47,8 +47,8 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'Endpoi
         $scope.delete = function (endpoint, index) {
             endpoint.$delete(function () {
                 $scope.endpoints.splice(index, 1);
+                $scope.endpointsProps = PageService.listProps($scope.endpoints);
                 refresh();
-                $scope.endpointsProps = EndpointsService.listProps($scope.endpoints);
                 $scope.alert = {
                     type: 'success',
                     msg: 'Suppression du endpoint : ' + endpoint.uri + ' effectuée avec succès'
