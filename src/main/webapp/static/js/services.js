@@ -21,3 +21,8 @@ fraApp.factory('EndpointsService', ['$resource', function ($resource) {
         }
     };
 }]);
+
+fraApp.factory('TraceService', ['$resource', function ($resource) {
+    "use strict";
+    return $resource('/request');
+}]);

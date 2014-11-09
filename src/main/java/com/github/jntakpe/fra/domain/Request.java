@@ -1,7 +1,5 @@
 package com.github.jntakpe.fra.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -16,21 +14,17 @@ import java.util.Date;
  * @author jntakpe
  */
 @Entity
-@JsonIgnoreProperties(ignoreUnknown = true)
 public class Request extends GenericDomain {
 
     @NotNull
-    @JsonProperty("info.path")
     private String path;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    @JsonProperty("response.status")
     private HttpStatus status;
 
     @NotNull
     @Enumerated(EnumType.STRING)
-    @JsonProperty("response.method")
     private HttpMethod method;
 
     @NotNull

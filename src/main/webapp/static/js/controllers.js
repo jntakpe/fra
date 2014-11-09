@@ -123,8 +123,8 @@ fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService'
         };
     }]);
 
-fraApp.controller('TraceCtrl', ['$scope',
-    function ($scope) {
+fraApp.controller('TraceCtrl', ['$scope', 'TraceService',
+    function ($scope, TraceService) {
         "use strict";
-
+        $scope.requests = TraceService.query();
     }]);
