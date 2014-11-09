@@ -28,4 +28,5 @@ public class RequestResource {
     public List<Request> list() {
         return requestService.findAll();
     }
+
 }
