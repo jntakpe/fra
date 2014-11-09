@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.jntakpe</groupId>
     <artifactId>fra</artifactId>
-    <version>0.2.0</version>
+    <version>0.3.0</version>
     <name>fra</name>
     <description>API rest renvoyant des données</description>
     <packaging>jar</packaging>
