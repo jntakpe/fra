@@ -1,13 +1,15 @@
 fraApp.controller('HomeCtrl', ['$scope', function () {
 }]);
 
-fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService', 'PageService', 'resolvedEndpoints',
-    function ($scope, $routeParams, EndpointsService, PageService, resolvedEndpoints) {
+fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'EndpointsService', 'PageService',
+    'resolvedEndpoints',
+    function ($scope, $routeParams, $filter, EndpointsService, PageService, resolvedEndpoints) {
         "use strict";
 
         function refresh() {
+            var orderedEndpoints = $filter('orderBy')($scope.endpoints, $scope.sort.column, $scope.sort.reverse);
             $scope.currentEndpoints = PageService.paginate($scope.currentPage, $scope.endpointsProps.numberPerPage,
-                $scope.endpoints);
+                orderedEndpoints);
         }
 
         $scope.sort = {
@@ -55,24 +57,12 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
         };
 
         $scope.sortColumn = function (column) {
-            if ($scope.sort.column === column) {
-                if ($scope.sort.reverse) {
-                    $scope.sort.column = null;
-                    $scope.sort.reverse = false;
-                } else {
-                    $scope.sort.reverse = true;
-                }
-            } else {
-                $scope.sort.column = column;
-                $scope.sort.reverse = false;
-            }
+            PageService.refreshSort(column, $scope.sort);
+            refresh();
         };
 
         $scope.sortClass = function (column) {
-            if ($scope.sort.column === column) {
-                return $scope.sort.reverse ? 'fa-sort-desc' : 'fa-sort-asc';
-            }
-            return 'fa-sort';
+            return PageService.refreshSortClass(column, $scope.sort);
         };
     }]);
 
@@ -124,15 +114,34 @@ fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService'
         };
     }]);
 
-fraApp.controller('TraceCtrl', ['$scope', 'PageService', 'resolvedRequests',
-    function ($scope, PageService, resolvedRequests) {
+fraApp.controller('TraceCtrl', ['$scope', '$filter', 'PageService', 'resolvedRequests',
+    function ($scope, $filter, PageService, resolvedRequests) {
         "use strict";
+
+        function refresh() {
+            var orderedRequests = $filter('orderBy')($scope.requests, $scope.sort.column, $scope.sort.reverse);
+            $scope.currentRequests = PageService.paginate($scope.currentPage, $scope.requestsProps.numberPerPage,
+                orderedRequests);
+        }
+
+        $scope.sort = {
+            column: null,
+            reverse: false
+        };
         $scope.requests = resolvedRequests;
         $scope.requestsProps = PageService.listProps($scope.requests);
         $scope.currentPage = 1;
 
         $scope.$watch('currentPage', function () {
-            $scope.currentRequests = PageService.paginate($scope.currentPage, $scope.requestsProps.numberPerPage,
-                $scope.requests);
+            refresh();
         });
+
+        $scope.sortColumn = function (column) {
+            PageService.refreshSort(column, $scope.sort);
+            refresh();
+        };
+
+        $scope.sortClass = function (column) {
+            return PageService.refreshSortClass(column, $scope.sort);
+        };
     }]);

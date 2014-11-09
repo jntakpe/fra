@@ -24,6 +24,25 @@ fraApp.factory('PageService', [function () {
             listProps.numberPerPage = 8;
             listProps.numPages = Math.ceil(listProps.total / listProps.numberPerPage);
             return listProps;
+        },
+        refreshSort: function (column, sort) {
+            if (sort.column === column) {
+                if (sort.reverse) {
+                    sort.column = null;
+                    sort.reverse = false;
+                } else {
+                    sort.reverse = true;
+                }
+            } else {
+                sort.column = column;
+                sort.reverse = false;
+            }
+        },
+        refreshSortClass: function (column, sort) {
+            if (sort.column === column) {
+                return sort.reverse ? 'fa-sort-desc' : 'fa-sort-asc';
+            }
+            return 'fa-sort';
         }
     };
 }]);

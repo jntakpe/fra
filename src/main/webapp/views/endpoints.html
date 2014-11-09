@@ -16,7 +16,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="endpoint in currentEndpoints | orderBy : sort.column : sort.reverse">
+        <tr ng-repeat="endpoint in currentEndpoints">
             <td><a href="{{endpoint.uri}}">{{endpoint.uri}}</a></td>
             <td>{{endpoint.method}}</td>
             <td>{{endpoint.content}}</td>

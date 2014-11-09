@@ -2,14 +2,18 @@
     <table class="table table-striped table-wrap">
         <thead>
         <tr>
-            <th class="col-md-3">URL</th>
-            <th class="col-md-3">Statut</th>
-            <th class="col-md-3">Méthode</th>
-            <th class="col-md-3">Date</th>
+            <th class="col-md-3" ng-click="sortColumn('path')">URL
+                <i class="pull-right fa" ng-class="sortClass('path')"></i></th>
+            <th class="col-md-3" ng-click="sortColumn('status')">Statut
+                <i class="pull-right fa" ng-class="sortClass('status')"></i></th>
+            <th class="col-md-3" ng-click="sortColumn('method')">Méthode
+                <i class="pull-right fa" ng-class="sortClass('method')"></i></th>
+            <th class="col-md-3" ng-click="sortColumn('timestamp')">Date
+                <i class="pull-right fa" ng-class="sortClass('timestamp')"></i></th>
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="request in currentRequests">
+        <tr ng-repeat="request in currentRequests | orderBy : sort.column : sort.reverse">
             <td>{{request.path}}</td>
             <td>{{request.status}}</td>
             <td>{{request.method}}</td>
