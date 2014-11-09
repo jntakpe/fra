@@ -9,6 +9,11 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
             $scope.currentEndpoints = EndpointsService.refreshPage($scope.currentPage, $scope.endpointsProps.numberPerPage, $scope.endpoints);
         }
 
+        $scope.sort = {
+            column: null,
+            reverse: false
+        };
+
         $scope.endpoints = resolvedEndpoints;
         $scope.endpointsProps = EndpointsService.listProps($scope.endpoints);
         $scope.currentPage = 1;
@@ -16,7 +21,6 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
         $scope.$watch('currentPage', function () {
             refresh();
         });
-
 
         if ($routeParams.create) {
             $scope.alert = {
@@ -49,6 +53,26 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
             });
         };
 
+        $scope.sortColumn = function (column) {
+            if ($scope.sort.column === column) {
+                if ($scope.sort.reverse) {
+                    $scope.sort.column = null;
+                    $scope.sort.reverse = false;
+                } else {
+                    $scope.sort.reverse = true;
+                }
+            } else {
+                $scope.sort.column = column;
+                $scope.sort.reverse = false;
+            }
+        };
+
+        $scope.sortClass = function (column) {
+            if ($scope.sort.column === column) {
+                return $scope.sort.reverse ? 'fa-sort-desc' : 'fa-sort-asc';
+            }
+            return 'fa-sort';
+        };
     }]);
 
 fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsService',
