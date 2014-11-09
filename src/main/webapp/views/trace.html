@@ -9,7 +9,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="request in requests">
+        <tr ng-repeat="request in currentRequests">
             <td>{{request.path}}</td>
             <td>{{request.status}}</td>
             <td>{{request.method}}</td>
@@ -17,4 +17,7 @@
         </tr>
         </tbody>
     </table>
+    <pagination total-items="requestsProps.total" ng-model="currentPage" max-size="5" boundary-links="true"
+                items-per-page="requestsProps.numberPerPage" num-pages="requestsProps.numPages" class="pull-right">
+    </pagination>
 </div>

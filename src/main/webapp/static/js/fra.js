@@ -45,7 +45,12 @@ fraApp.config(function ($routeProvider) {
     }).when('/trace', {
         templateUrl: 'views/trace.html',
         controller: 'TraceCtrl',
-        breadcrumb: [breadcrumbs.home, breadcrumbs.trace]
+        breadcrumb: [breadcrumbs.home, breadcrumbs.trace],
+        resolve: {
+            resolvedRequests: ['TraceService', function (TraceService) {
+                return TraceService.query().$promise;
+            }]
+        }
     }).otherwise({
         templateUrl: 'views/home.html',
         controller: 'HomeCtrl',

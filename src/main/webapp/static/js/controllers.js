@@ -1,12 +1,13 @@
 fraApp.controller('HomeCtrl', ['$scope', function () {
 }]);
 
-fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService', 'resolvedEndpoints',
-    function ($scope, $routeParams, EndpointsService, resolvedEndpoints) {
+fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService', 'PageService', 'resolvedEndpoints',
+    function ($scope, $routeParams, EndpointsService, PageService, resolvedEndpoints) {
         "use strict";
 
         function refresh() {
-            $scope.currentEndpoints = EndpointsService.refreshPage($scope.currentPage, $scope.endpointsProps.numberPerPage, $scope.endpoints);
+            $scope.currentEndpoints = PageService.paginate($scope.currentPage, $scope.endpointsProps.numberPerPage,
+                $scope.endpoints);
         }
 
         $scope.sort = {
@@ -15,7 +16,7 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', 'EndpointsService'
         };
 
         $scope.endpoints = resolvedEndpoints;
-        $scope.endpointsProps = EndpointsService.listProps($scope.endpoints);
+        $scope.endpointsProps = PageService.listProps($scope.endpoints);
         $scope.currentPage = 1;
 
         $scope.$watch('currentPage', function () {
@@ -123,8 +124,15 @@ fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService'
         };
     }]);
 
-fraApp.controller('TraceCtrl', ['$scope', 'TraceService',
-    function ($scope, TraceService) {
+fraApp.controller('TraceCtrl', ['$scope', 'PageService', 'resolvedRequests',
+    function ($scope, PageService, resolvedRequests) {
         "use strict";
-        $scope.requests = TraceService.query();
+        $scope.requests = resolvedRequests;
+        $scope.requestsProps = PageService.listProps($scope.requests);
+        $scope.currentPage = 1;
+
+        $scope.$watch('currentPage', function () {
+            $scope.currentRequests = PageService.paginate($scope.currentPage, $scope.requestsProps.numberPerPage,
+                $scope.requests);
+        });
     }]);
