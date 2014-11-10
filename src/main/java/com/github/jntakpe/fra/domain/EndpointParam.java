@@ -13,7 +13,7 @@ import javax.persistence.UniqueConstraint;
  * @author jntakpe
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "value", "restEndpoint"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "value", "endpoint_id"}))
 public class EndpointParam extends GenericDomain {
 
     private String name;
@@ -21,7 +21,7 @@ public class EndpointParam extends GenericDomain {
     private String value;
 
     @ManyToOne(optional = false)
-    private RestEndpoint restEndpoint;
+    private RestEndpoint endpoint;
 
     public String getName() {
         return name;
@@ -39,12 +39,12 @@ public class EndpointParam extends GenericDomain {
         this.value = value;
     }
 
-    public RestEndpoint getRestEndpoint() {
-        return restEndpoint;
+    public RestEndpoint getEndpoint() {
+        return endpoint;
     }
 
-    public void setRestEndpoint(RestEndpoint restEndpoint) {
-        this.restEndpoint = restEndpoint;
+    public void setEndpoint(RestEndpoint endpoint) {
+        this.endpoint = endpoint;
     }
 
     @Override
@@ -55,7 +55,7 @@ public class EndpointParam extends GenericDomain {
 
         EndpointParam that = (EndpointParam) o;
 
-        if (restEndpoint != null ? !restEndpoint.equals(that.restEndpoint) : that.restEndpoint != null) return false;
+        if (endpoint != null ? !endpoint.equals(that.endpoint) : that.endpoint != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (value != null ? !value.equals(that.value) : that.value != null) return false;
 
@@ -67,7 +67,7 @@ public class EndpointParam extends GenericDomain {
         int result = super.hashCode();
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (value != null ? value.hashCode() : 0);
-        result = 31 * result + (restEndpoint != null ? restEndpoint.hashCode() : 0);
+        result = 31 * result + (endpoint != null ? endpoint.hashCode() : 0);
         return result;
     }
 
@@ -76,7 +76,7 @@ public class EndpointParam extends GenericDomain {
         return new ToStringBuilder(this)
                 .append("name", name)
                 .append("value", value)
-                .append("endpoint", restEndpoint)
+                .append("endpoint", endpoint)
                 .toString();
     }
 }

@@ -6,7 +6,9 @@ import org.springframework.http.HttpMethod;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Bean représentant un endpoint REST
@@ -27,8 +29,17 @@ public class RestEndpoint extends GenericDomain {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @OneToMany(mappedBy = "restEndpoint", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "endpoint", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private Set<EndpointParam> params = new HashSet<>();
+
+    /**
+     * Transforme un set de {@link com.github.jntakpe.fra.domain.EndpointParam} en map
+     *
+     * @return une map prenant en clé le nom du paramètre et en valeur la valeur pour ce nom
+     */
+    public Map<String, String> toMap() {
+        return params.stream().collect(Collectors.toMap(EndpointParam::getName, EndpointParam::getValue));
+    }
 
     public String getUri() {
         return uri;

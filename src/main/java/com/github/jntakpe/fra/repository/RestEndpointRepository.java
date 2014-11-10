@@ -4,6 +4,8 @@ import com.github.jntakpe.fra.domain.RestEndpoint;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.http.HttpMethod;
 
+import java.util.List;
+
 /**
  * Publication des méthodes de gestion de l'entité {@link com.github.jntakpe.fra.domain.RestEndpoint}
  *
@@ -11,6 +13,6 @@ import org.springframework.http.HttpMethod;
  */
 public interface RestEndpointRepository extends JpaRepository<RestEndpoint, Long> {
 
-    public RestEndpoint findByUriAndMethod(String uri, HttpMethod method);
+    List<RestEndpoint> findByUriAndMethod(String uri, HttpMethod method);
 
 }

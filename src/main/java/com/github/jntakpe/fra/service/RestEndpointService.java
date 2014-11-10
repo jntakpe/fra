@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 /**
  * Service associées à l'entité {@link com.github.jntakpe.fra.service.RestEndpointService}
@@ -55,30 +57,32 @@ public class RestEndpointService {
     }
 
     /**
-     * Renvoie le endpoint REST correspondant à l'URI et la méthode HTTP passées en paramètre
+     * Renvoie le endpoint REST correspondant à l'URI, à la méthode HTTP et aux paramètres
      *
      * @param uri    URI du endpoint REST
      * @param method méthode HTTP
-     * @return endpoint REST correspondant aux paramètre sinon {@code null}
+     *               @param params map correspondant aux paramètres du endpoint
+     * @return endpoint REST correspondant aux paramètre
      */
     @Transactional(readOnly = true)
-    public RestEndpoint findByUriAndMethod(String uri, String method) {
-        LOG.debug("Récupération des données pour l'url {} et la méthode {}", uri, method);
-        return restEndpointRepository.findByUriAndMethod(uri, HttpMethod.valueOf(method));
+    public Optional<RestEndpoint> findMatchingEndpoint(String uri, String method, Map<String, String> params) {
+        LOG.debug("Récupération des données pour l'url {}, la méthode {} et les paramètres {}", uri, method, params);
+        List<RestEndpoint> endpoints = restEndpointRepository.findByUriAndMethod(uri, HttpMethod.valueOf(method));
+        return endpoints.stream().filter(e -> e.toMap().equals(params)).findAny();
     }
 
     /**
-     * Indique si le couple uri et méthode HTTP est disponnible
+     * Indique un endpoint avec ces paramètres n'est pas déjà créé
      *
-     * @param formEndpoint formulaire représentant un {@link com.github.jntakpe.fra.domain.RestEndpoint}
+     * @param endpoint formulaire représentant un {@link com.github.jntakpe.fra.domain.RestEndpoint}
      * @return true si les valeurs sont disponnibles
      */
     @Transactional(readOnly = true)
-    public boolean isAvailable(RestEndpoint formEndpoint) {
-        LOG.debug("Vérification de la disponibilité du endpoint {}", formEndpoint);
-        String uri = normalizeUri(formEndpoint.getUri());
-        RestEndpoint restEndpoint = restEndpointRepository.findByUriAndMethod(uri, formEndpoint.getMethod());
-        return restEndpoint == null || restEndpoint.getId().equals(formEndpoint.getId());
+    public boolean isAvailable(RestEndpoint endpoint) {
+        LOG.debug("Vérification de la disponibilité du endpoint {}", endpoint);
+        String uri = normalizeUri(endpoint.getUri());
+        Optional<RestEndpoint> opt = findMatchingEndpoint(uri, endpoint.getMethod().name(), endpoint.toMap());
+        return opt.map(e -> e.getId().equals(endpoint.getId())).orElse(true);
     }
 
     /**

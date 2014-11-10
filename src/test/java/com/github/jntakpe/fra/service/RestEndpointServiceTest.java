@@ -52,9 +52,9 @@ public class RestEndpointServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testFindByUriAndMethod() throws Exception {
-        assertThat(restEndpointService.findByUriAndMethod("toto/au/ski", "DELETE")).isNull();
-        assertThat(restEndpointService.findByUriAndMethod("/rest/hello", "GET")).isNotNull();
-        assertThat(restEndpointService.findByUriAndMethod("/rest/hello", "POST")).isNull();
+        assertThat(restEndpointService.findMatchingEndpoint("toto/au/ski", "DELETE")).isNull();
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET")).isNotNull();
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "POST")).isNull();
     }
 
     @Test
