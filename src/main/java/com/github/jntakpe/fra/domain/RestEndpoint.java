@@ -5,6 +5,8 @@ import org.springframework.http.HttpMethod;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Bean représentant un endpoint REST
@@ -12,7 +14,6 @@ import javax.validation.constraints.NotNull;
  * @author jntakpe
  */
 @Entity
-@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"uri", "method"})})
 public class RestEndpoint extends GenericDomain {
 
     @NotNull
@@ -25,6 +26,9 @@ public class RestEndpoint extends GenericDomain {
     @NotNull
     @Column(columnDefinition = "TEXT")
     private String content;
+
+    @OneToMany(mappedBy = "restEndpoint", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Set<EndpointParam> params = new HashSet<>();
 
     public String getUri() {
         return uri;
@@ -50,6 +54,14 @@ public class RestEndpoint extends GenericDomain {
         this.content = content;
     }
 
+    public Set<EndpointParam> getParams() {
+        return params;
+    }
+
+    public void setParams(Set<EndpointParam> params) {
+        this.params = params;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,7 +70,8 @@ public class RestEndpoint extends GenericDomain {
 
         RestEndpoint that = (RestEndpoint) o;
 
-        if (method != null ? !method.equals(that.method) : that.method != null) return false;
+        if (method != that.method) return false;
+        if (params != null ? !params.equals(that.params) : that.params != null) return false;
         if (uri != null ? !uri.equals(that.uri) : that.uri != null) return false;
 
         return true;
@@ -69,6 +82,7 @@ public class RestEndpoint extends GenericDomain {
         int result = super.hashCode();
         result = 31 * result + (uri != null ? uri.hashCode() : 0);
         result = 31 * result + (method != null ? method.hashCode() : 0);
+        result = 31 * result + (params != null ? params.hashCode() : 0);
         return result;
     }
 
@@ -77,6 +91,8 @@ public class RestEndpoint extends GenericDomain {
         return new ToStringBuilder(this)
                 .append("uri", uri)
                 .append("method", method)
+                .append("content", content)
+                .append("params", params)
                 .toString();
     }
 }
