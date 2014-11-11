@@ -11,6 +11,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import javax.sql.DataSource;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -54,9 +56,19 @@ public class RestEndpointServiceTest extends AbstractTestNGSpringContextTests {
     @Test
     public void testFindByUriAndMethod() throws Exception {
         Optional<RestEndpoint> empty = Optional.<RestEndpoint>empty();
-        assertThat(restEndpointService.findMatchingEndpoint("toto/au/ski", "DELETE", null)).isEqualTo(empty);
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", null)).isEqualTo(empty);
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "POST", null)).isEqualTo(empty);
+        Map<String, String> params = new HashMap<>();
+        assertThat(restEndpointService.findMatchingEndpoint("toto/au/ski", "DELETE", params)).isEqualTo(empty);
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "POST", params)).isEqualTo(empty);
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", params)).isNotEqualTo(empty);
+        params.put("say", "coucou");
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", params)).isEqualTo(empty);
+        params.put("say", "hello");
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", params)).isEqualTo(empty);
+        params.put("toto", "titi");
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", params)).isNotEqualTo(empty);
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello/joss", "GET", params)).isEqualTo(empty);
+        params.remove("say");
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello/joss", "GET", params)).isNotEqualTo(empty);
     }
 
     @Test
@@ -72,9 +84,8 @@ public class RestEndpointServiceTest extends AbstractTestNGSpringContextTests {
         restEndpoint.setMethod(HttpMethod.GET);
         restEndpoint.setId(99L);
         assertThat(restEndpointService.isAvailable(restEndpoint)).isFalse();
-        restEndpoint.setId(1L);
+        restEndpoint.setId(4L);
         assertThat(restEndpointService.isAvailable(restEndpoint)).isTrue();
-
     }
 
     @Test

@@ -13,7 +13,7 @@ import javax.persistence.UniqueConstraint;
  * @author jntakpe
  */
 @Entity
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "value", "endpoint_id"}))
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "endpoint_id"}))
 public class EndpointParam extends GenericDomain {
 
     private String name;
@@ -57,7 +57,6 @@ public class EndpointParam extends GenericDomain {
 
         if (endpoint != null ? !endpoint.equals(that.endpoint) : that.endpoint != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
-        if (value != null ? !value.equals(that.value) : that.value != null) return false;
 
         return true;
     }
@@ -66,7 +65,6 @@ public class EndpointParam extends GenericDomain {
     public int hashCode() {
         int result = super.hashCode();
         result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (value != null ? value.hashCode() : 0);
         result = 31 * result + (endpoint != null ? endpoint.hashCode() : 0);
         return result;
     }

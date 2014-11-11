@@ -1,6 +1,11 @@
 INSERT INTO rest_endpoint (version, uri, method, content) VALUES (0, '/rest/hello', 'GET', 'say hello');
 INSERT INTO rest_endpoint (version, uri, method, content) VALUES (0, '/rest/hello/joss', 'GET', 'hello jOSS');
 INSERT INTO rest_endpoint (version, uri, method, content) VALUES (0, '/rest/hello/add/toto', 'POST', 'add toto');
+INSERT INTO rest_endpoint (version, uri, method, content) VALUES (0, '/rest/hello', 'GET', 'say hello');
+
+INSERT INTO endpoint_param(version, name, value, endpoint_id) VALUES (0, 'say', 'hello', 1);
+INSERT INTO endpoint_param(version, name, value, endpoint_id) VALUES (0, 'toto', 'titi', 1);
+INSERT INTO endpoint_param(version, name, value, endpoint_id) VALUES (0, 'toto', 'titi', 2);
 
 INSERT INTO request (version, method, path, status, timestamp) VALUES (0, 'GET', '/rest/sdfsdf/hahahhhahahah', 'OK', current_timestamp);
 INSERT INTO request (version, method, path, status, timestamp) VALUES (0, 'GET', '/rest/test/tutu/fuckyeahbaby', 'NOT_FOUND', current_timestamp);
