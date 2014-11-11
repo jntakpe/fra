@@ -11,6 +11,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import javax.sql.DataSource;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -52,9 +53,10 @@ public class RestEndpointServiceTest extends AbstractTestNGSpringContextTests {
 
     @Test
     public void testFindByUriAndMethod() throws Exception {
-        assertThat(restEndpointService.findMatchingEndpoint("toto/au/ski", "DELETE")).isNull();
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET")).isNotNull();
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "POST")).isNull();
+        Optional<RestEndpoint> empty = Optional.<RestEndpoint>empty();
+        assertThat(restEndpointService.findMatchingEndpoint("toto/au/ski", "DELETE", null)).isEqualTo(empty);
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", null)).isEqualTo(empty);
+        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "POST", null)).isEqualTo(empty);
     }
 
     @Test
