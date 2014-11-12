@@ -1,6 +1,7 @@
 package com.github.jntakpe.fra.service;
 
 import com.github.jntakpe.fra.config.FakeRestApiConfig;
+import com.github.jntakpe.fra.domain.EndpointParam;
 import com.github.jntakpe.fra.domain.RestEndpoint;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
@@ -11,9 +12,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
 import javax.sql.DataSource;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -103,6 +102,14 @@ public class RestEndpointServiceTest extends AbstractTestNGSpringContextTests {
         RestEndpoint editedFoo = restEndpointService.save(savedFoo);
         assertThat(editedFoo.getUri()).isEqualTo(savedFoo.getUri());
         assertThat(editedFoo.getMethod()).isEqualTo(HttpMethod.POST);
+        EndpointParam endpointParam = new EndpointParam();
+        endpointParam.setEndpoint(editedFoo);
+        endpointParam.setName("param");
+        endpointParam.setValue("test");
+        Set<EndpointParam> params = new HashSet<>();
+        params.add(endpointParam);
+        editedFoo.setParams(params);
+        assertThat(restEndpointService.save(editedFoo).getParams()).isNotEmpty();
     }
 
     @Test(enabled = false)

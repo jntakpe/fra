@@ -68,7 +68,7 @@ public class RestEndpointService {
     public Optional<RestEndpoint> findMatchingEndpoint(String uri, String method, Map<String, String> params) {
         LOG.debug("Récupération des données pour l'url {}, la méthode {} et les paramètres {}", uri, method, params);
         List<RestEndpoint> endpoints = restEndpointRepository.findByUriAndMethod(uri, HttpMethod.valueOf(method));
-        return endpoints.stream().filter(e -> e.toMap().keySet().equals(params.keySet())).findAny();
+        return endpoints.stream().filter(e -> e.toMap().equals(params)).findAny();
     }
 
     /**
