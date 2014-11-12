@@ -44,9 +44,9 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'PageSe
             $scope.alert = null;
         };
 
-        $scope.delete = function (endpoint, index) {
+        $scope.delete = function (endpoint) {
             endpoint.$delete(function () {
-                $scope.endpoints.splice(index, 1);
+                $scope.endpoints.splice($scope.endpoints.indexOf(endpoint), 1);
                 $scope.endpointsProps = PageService.listProps($scope.endpoints);
                 refresh();
                 $scope.alert = {
