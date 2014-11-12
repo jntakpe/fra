@@ -3,7 +3,7 @@ management:
 spring:
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
 ---
 spring:
   profiles: dev

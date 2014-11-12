@@ -120,6 +120,14 @@ fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService'
                 });
         };
 
+        $scope.addParam = function () {
+            $scope.endpoint.params.push({});
+        };
+
+        $scope.removeParam = function ($index) {
+            $scope.endpoint.params.splice($index, 1);
+        };
+
         $scope.closeAlert = function () {
             $scope.alert = null;
         };

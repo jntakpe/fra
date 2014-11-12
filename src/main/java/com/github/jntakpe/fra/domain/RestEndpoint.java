@@ -29,7 +29,7 @@ public class RestEndpoint extends GenericDomain {
     @Column(columnDefinition = "TEXT")
     private String content;
 
-    @OneToMany(mappedBy = "endpoint", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "endpoint", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<EndpointParam> params = new HashSet<>();
 
     /**
@@ -70,7 +70,7 @@ public class RestEndpoint extends GenericDomain {
     }
 
     public void setParams(Set<EndpointParam> params) {
-        this.params = params;
+        this.params = params.stream().peek(p -> p.setEndpoint(this)).collect(Collectors.toSet());
     }
 
     @Override

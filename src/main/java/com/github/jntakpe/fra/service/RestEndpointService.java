@@ -61,14 +61,14 @@ public class RestEndpointService {
      *
      * @param uri    URI du endpoint REST
      * @param method méthode HTTP
-     *               @param params map correspondant aux paramètres du endpoint
+     * @param params map correspondant aux paramètres du endpoint
      * @return endpoint REST correspondant aux paramètre
      */
     @Transactional(readOnly = true)
     public Optional<RestEndpoint> findMatchingEndpoint(String uri, String method, Map<String, String> params) {
         LOG.debug("Récupération des données pour l'url {}, la méthode {} et les paramètres {}", uri, method, params);
         List<RestEndpoint> endpoints = restEndpointRepository.findByUriAndMethod(uri, HttpMethod.valueOf(method));
-        return endpoints.stream().filter(e -> e.toMap().equals(params)).findAny();
+        return endpoints.stream().filter(e -> e.toMap().keySet().equals(params.keySet())).findAny();
     }
 
     /**

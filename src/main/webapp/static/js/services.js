@@ -4,7 +4,7 @@ fraApp.factory('EndpointsService', ['$resource', function ($resource) {
         resource: $resource('/endpoints/:endpointId', {endpointId: '@id'}, {'update': {method: 'PUT'}}),
         getErrorMsg: function (error) {
             if (error.status === 409) {
-                return 'Sauvegarde impossible. Un endpoint avec ces URI et méthode existe déjà';
+                return 'Sauvegarde impossible. Un endpoint correspondant à ces paramètres existe déjà';
             }
             return 'Erreur lors de la sauvegarde du endpoint REST';
         }

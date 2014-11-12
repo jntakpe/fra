@@ -1,5 +1,6 @@
 package com.github.jntakpe.fra.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import javax.persistence.Entity;
@@ -20,6 +21,7 @@ public class EndpointParam extends GenericDomain {
 
     private String value;
 
+    @JsonIgnore
     @ManyToOne(optional = false)
     private RestEndpoint endpoint;
 
