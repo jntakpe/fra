@@ -1,9 +1,9 @@
 fraApp.controller('HomeCtrl', ['$scope', function () {
 }]);
 
-fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'EndpointsService', 'PageService',
+fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'PageService',
     'resolvedEndpoints',
-    function ($scope, $routeParams, $filter, EndpointsService, PageService, resolvedEndpoints) {
+    function ($scope, $routeParams, $filter, PageService, resolvedEndpoints) {
         "use strict";
 
         function refresh() {
@@ -70,6 +70,9 @@ fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsServic
     function ($scope, $location, EndpointsService) {
         "use strict";
 
+        $scope.endpoint = {};
+        $scope.endpoint.params = [];
+
         $scope.submit = function () {
             EndpointsService.resource.save($scope.endpoint,
                 function (response) {
@@ -81,6 +84,14 @@ fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsServic
                         msg: EndpointsService.getErrorMsg(error)
                     };
                 });
+        };
+
+        $scope.addParam = function () {
+            $scope.endpoint.params.push({});
+        };
+
+        $scope.removeParam = function ($index) {
+            $scope.endpoint.params.splice($index, 1);
         };
 
         $scope.closeAlert = function () {
