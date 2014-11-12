@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -37,7 +38,7 @@ public class RestEndpointResource {
     }
 
     @RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<RestEndpoint> create(@RequestBody RestEndpoint restEndpoint) {
+    public ResponseEntity<RestEndpoint> create(@Valid @RequestBody RestEndpoint restEndpoint) {
         if (restEndpointService.isAvailable(restEndpoint)) {
             return new ResponseEntity<>(restEndpointService.save(restEndpoint), HttpStatus.OK);
         }
@@ -45,7 +46,7 @@ public class RestEndpointResource {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<RestEndpoint> update(@PathVariable Long id, @RequestBody RestEndpoint restEndpoint) {
+    public ResponseEntity<RestEndpoint> update(@PathVariable Long id, @Valid @RequestBody RestEndpoint restEndpoint) {
         if (restEndpointService.isAvailable(restEndpoint)) {
             return new ResponseEntity<>(restEndpointService.save(restEndpoint), HttpStatus.OK);
         }

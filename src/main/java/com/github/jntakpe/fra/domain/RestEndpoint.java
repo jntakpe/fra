@@ -1,5 +1,6 @@
 package com.github.jntakpe.fra.domain;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.springframework.http.HttpMethod;
 
@@ -70,7 +71,10 @@ public class RestEndpoint extends GenericDomain {
     }
 
     public void setParams(Set<EndpointParam> params) {
-        this.params = params.stream().peek(p -> p.setEndpoint(this)).collect(Collectors.toSet());
+        this.params = params.stream()
+                .filter(p -> StringUtils.isNotBlank(p.getName()))
+                .peek(p -> p.setEndpoint(this))
+                .collect(Collectors.toSet());
     }
 
     @Override

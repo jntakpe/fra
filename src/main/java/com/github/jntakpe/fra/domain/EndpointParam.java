@@ -2,6 +2,7 @@ package com.github.jntakpe.fra.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
@@ -17,6 +18,7 @@ import javax.persistence.UniqueConstraint;
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = {"name", "endpoint_id"}))
 public class EndpointParam extends GenericDomain {
 
+    @NotEmpty
     private String name;
 
     private String value;
