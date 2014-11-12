@@ -21,7 +21,7 @@ public class EndpointParam extends GenericDomain {
     @NotEmpty
     private String name;
 
-    private String value;
+    private String value = "";
 
     @JsonIgnore
     @ManyToOne(optional = false)
