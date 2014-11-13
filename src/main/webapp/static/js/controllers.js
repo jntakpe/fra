@@ -65,6 +65,22 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'PageSe
             return PageService.refreshSortClass(column, $scope.sort);
         };
 
+        $scope.buildFullUri = function (endpoint) {
+            var uri = endpoint.uri, params = endpoint.params, param;
+            if (!params.length) {
+                return uri;
+            }
+            uri = uri + '?';
+            for (param in params) {
+                if (params.hasOwnProperty(param)) {
+                    uri = uri + params[param].name + '=' + params[param].value;
+                    if (params.length - 1 !== parseInt(param, 10)) {
+                        uri = uri + '&';
+                    }
+                }
+            }
+            return uri;
+        };
     }]);
 
 fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsService',
