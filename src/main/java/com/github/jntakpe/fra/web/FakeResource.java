@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Resource répondant à toutes les requêtes REST fake
@@ -26,8 +27,8 @@ public class FakeResource {
     }
 
     @RequestMapping("/rest/**")
-    public ResponseEntity<String> fake(HttpServletRequest request) {
-        return endpointService.findMatchingEndpoint(request.getRequestURI(), request.getMethod(), new HashMap<>())
+    public ResponseEntity<String> fake(HttpServletRequest request, @RequestParam Map<String, String> params) {
+        return endpointService.findMatchingEndpoint(request.getRequestURI(), request.getMethod(), params)
                 .map(e -> new ResponseEntity<>(e.getContent(), HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
