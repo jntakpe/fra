@@ -18,7 +18,7 @@
         <tbody>
         <tr ng-repeat="endpoint in currentEndpoints">
             <td>
-                <a href="{{buildFullUri(endpoint)}}">{{buildFullUri(endpoint)}}</a></td>
+                <a href="{{endpoint.fullUri}}">{{endpoint.fullUri}}</a></td>
             <td>{{endpoint.method}}</td>
             <td>{{endpoint.content}}</td>
             <td>

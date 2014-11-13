@@ -7,6 +7,28 @@ fraApp.factory('EndpointsService', ['$resource', function ($resource) {
                 return 'Sauvegarde impossible. Un endpoint correspondant à ces paramètres existe déjà';
             }
             return 'Erreur lors de la sauvegarde du endpoint REST';
+        },
+        addFullUri: function (endpoints) {
+            var endpoint, uri, param, params;
+            for (endpoint in endpoints) {
+                if (endpoints.hasOwnProperty(endpoint)) {
+                    uri = endpoints[endpoint].uri;
+                    params = endpoints[endpoint].params;
+                    if (params && params.length) {
+                        uri = uri + '?';
+                        for (param in params) {
+                            if (params.hasOwnProperty(param)) {
+                                uri = uri + params[param].name + '=' + params[param].value;
+                                if (params.length - 1 !== parseInt(param, 10)) {
+                                    uri = uri + '&';
+                                }
+                            }
+                        }
+                    }
+                    endpoints[endpoint].fullUri = uri;
+                }
+            }
+            return endpoints;
         }
     };
 }]);

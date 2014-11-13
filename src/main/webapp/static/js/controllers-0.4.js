@@ -1,9 +1,9 @@
 fraApp.controller('HomeCtrl', ['$scope', function () {
 }]);
 
-fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'PageService',
+fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'EndpointsService', 'PageService',
     'resolvedEndpoints',
-    function ($scope, $routeParams, $filter, PageService, resolvedEndpoints) {
+    function ($scope, $routeParams, $filter, EndpointsService, PageService, resolvedEndpoints) {
         "use strict";
 
         function refresh() {
@@ -17,7 +17,7 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'PageSe
             reverse: false
         };
 
-        $scope.endpoints = resolvedEndpoints;
+        $scope.endpoints = EndpointsService.addFullUri(resolvedEndpoints);
         $scope.endpointsProps = PageService.listProps($scope.endpoints);
         $scope.currentPage = 1;
 
@@ -51,7 +51,7 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'PageSe
                 refresh();
                 $scope.alert = {
                     type: 'success',
-                    msg: 'Suppression du endpoint : ' + endpoint.uri + ' effectuée avec succès'
+                    msg: 'Suppression du endpoint : ' + endpoint.fullUri + ' effectuée avec succès'
                 };
             });
         };
@@ -65,22 +65,6 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'PageSe
             return PageService.refreshSortClass(column, $scope.sort);
         };
 
-        $scope.buildFullUri = function (endpoint) {
-            var uri = endpoint.uri, params = endpoint.params, param;
-            if (!params.length) {
-                return uri;
-            }
-            uri = uri + '?';
-            for (param in params) {
-                if (params.hasOwnProperty(param)) {
-                    uri = uri + params[param].name + '=' + params[param].value;
-                    if (params.length - 1 !== parseInt(param, 10)) {
-                        uri = uri + '&';
-                    }
-                }
-            }
-            return uri;
-        };
     }]);
 
 fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsService',
