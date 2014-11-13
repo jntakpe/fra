@@ -64,6 +64,7 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'PageSe
         $scope.sortClass = function (column) {
             return PageService.refreshSortClass(column, $scope.sort);
         };
+
     }]);
 
 fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsService',
