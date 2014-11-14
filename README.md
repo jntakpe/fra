@@ -4,7 +4,8 @@
 
 ## Description
 
-Fake REST API permet de créer une multitude de endpoints REST et de gérer ces endpoints.
+Fake REST API permet de créer des endpoints REST et de gérer ces endpoints.
+Pour chaque endpoint, il est possible de choisir la méthode HTTP et les paramètres.
 Les dernières requêtes (sur une semaine) peuvent également être visualisées pour afin de faciliter le debug.
 
 ## Usage
