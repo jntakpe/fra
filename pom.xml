@@ -13,14 +13,13 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.1.8.RELEASE</version>
+        <version>1.2.0.RC2</version>
     </parent>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <start-class>com.github.jntakpe.fra.config.FakeRestApiConfig</start-class>
         <java.version>1.8</java.version>
-        <spring.version>4.1.1.RELEASE</spring.version>
         <testng.version>6.8.8</testng.version>
         <assertj.version>1.2.0</assertj.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
@@ -81,6 +80,11 @@
             <artifactId>HikariCP</artifactId>
             <version>${hikaricp.version}</version>
         </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>${dropwizard-metrics.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -118,4 +122,22 @@
             </plugin>
         </plugins>
     </build>
+    <repositories>
+        <repository>
+            <id>spring-snapshots</id>
+            <name>Spring Snapshots</name>
+            <url>http://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>http://repo.spring.io/milestone</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>
