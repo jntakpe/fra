@@ -28,7 +28,8 @@ public class FakeResource {
     }
 
     @RequestMapping("/rest/**")
-    public ResponseEntity<String> fake(HttpServletRequest request, @RequestParam Map<String, String> params, @RequestBody String body) {
+    public ResponseEntity<String> fake(HttpServletRequest request, @RequestParam Map<String, String> params,
+                                       @RequestBody(required = false) String body) {
         return endpointService.findMatchingEndpoint(request.getRequestURI(), request.getMethod(), params)
                 .map(e -> new ResponseEntity<>(e.getContent(), HttpStatus.OK))
                 .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
