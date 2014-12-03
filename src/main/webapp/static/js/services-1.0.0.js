@@ -1,5 +1,10 @@
 fraApp.factory('EndpointsService', ['$resource', function ($resource) {
     "use strict";
+
+    function isLiteral(obj) {
+        return Object.prototype.toString.call(obj) === '[object Object]';
+    }
+
     return {
         resource: $resource('/endpoints/:endpointId', {endpointId: '@id'}, {'update': {method: 'PUT'}}),
         getErrorMsg: function (error) {
@@ -11,7 +16,7 @@ fraApp.factory('EndpointsService', ['$resource', function ($resource) {
         addFullUri: function (endpoints) {
             var endpoint, uri, param, params;
             for (endpoint in endpoints) {
-                if (endpoints.hasOwnProperty(endpoint)) {
+                if (endpoints.hasOwnProperty(endpoint) && isLiteral(endpoints[endpoint])) {
                     uri = endpoints[endpoint].uri;
                     params = endpoints[endpoint].params;
                     if (params && params.length) {
