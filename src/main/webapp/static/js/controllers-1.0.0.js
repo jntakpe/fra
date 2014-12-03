@@ -1,9 +1,9 @@
 fraApp.controller('HomeCtrl', ['$scope', function () {
 }]);
 
-fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'EndpointsService', 'PageService',
+fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', '$modal', 'EndpointsService', 'PageService',
     'resolvedEndpoints',
-    function ($scope, $routeParams, $filter, EndpointsService, PageService, resolvedEndpoints) {
+    function ($scope, $routeParams, $filter, $modal, EndpointsService, PageService, resolvedEndpoints) {
         "use strict";
 
         function refresh() {
@@ -65,7 +65,30 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', 'Endpoi
             return PageService.refreshSortClass(column, $scope.sort);
         };
 
+        $scope.openModal = function (content) {
+            $modal.open({
+                templateUrl: 'views/modal/json-view.html',
+                controller: 'ModalJsonViewCtrl',
+                size: 'lg',
+                resolve: {
+                    json: function () {
+                        return content;
+                    }
+                }
+            });
+
+        };
+
     }]);
+
+fraApp.controller('ModalJsonViewCtrl', ['$scope', '$modalInstance', 'json', function ($scope, $modalInstance, json) {
+    "use strict";
+    $scope.jsonContent = JSON.parse(json);
+
+    $scope.close = function () {
+        $modalInstance.close();
+    };
+}]);
 
 fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsService',
     function ($scope, $location, EndpointsService) {

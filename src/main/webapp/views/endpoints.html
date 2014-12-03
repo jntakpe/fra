@@ -10,7 +10,8 @@
                 <i class="pull-right fa" ng-class="sortClass('uri')"></i></th>
             <th class="col-md-1" ng-click="sortColumn('method')">Méthode
                 <i class="pull-right fa" ng-class="sortClass('method')"></i></th>
-            <th class="col-md-4">Contenu</th>
+            <th class="col-md-3">Contenu</th>
+            <th class="col-md-1">Visualiser</th>
             <th class="col-md-1">Modifier</th>
             <th class="col-md-1">Supprimer</th>
         </tr>
@@ -21,6 +22,11 @@
                 <a href="{{endpoint.fullUri}}">{{endpoint.fullUri}}</a></td>
             <td>{{endpoint.method}}</td>
             <td>{{endpoint.content}}</td>
+            <td>
+                <button class="btn btn-info btn-xs" ng-click="openModal(endpoint.content)">
+                    <i class="fa fa-search"></i> Visualiser
+                </button>
+            </td>
             <td>
                 <a class="btn btn-warning btn-xs" href="#/endpoints/{{endpoint.id}}">
                     <i class="fa fa-pencil"></i> Modifier
