@@ -1,6 +1,13 @@
 <div class="modal-header">
-    <h3 class="modal-title">{{row.uri}}</h3>
+    <h2 class="modal-title">URI :
+        <small>{{row.uri}}</small>
+    </h2>
 </div>
 <div class="modal-body">
     <pre>{{row.content | json}}</pre>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-warning" ng-click="close()">
+        <i class="fa fa-times"></i> Fermer
+    </button>
 </div>

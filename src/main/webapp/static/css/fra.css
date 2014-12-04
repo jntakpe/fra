@@ -11,3 +11,8 @@
 .padding-top-20 {
     padding-top: 20px;
 }
+
+.modal .modal-lg .modal-body {
+    max-height: 400px;
+    overflow-y: auto;
+}
