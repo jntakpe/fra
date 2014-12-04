@@ -65,14 +65,17 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', '$modal
             return PageService.refreshSortClass(column, $scope.sort);
         };
 
-        $scope.openModal = function (content) {
+        $scope.openModal = function (row) {
             $modal.open({
                 templateUrl: 'views/modal/json-view.html',
                 controller: 'ModalJsonViewCtrl',
                 size: 'lg',
                 resolve: {
-                    json: function () {
-                        return content;
+                    row: function () {
+                        return {
+                            uri: row.uri,
+                            content: row.content
+                        };
                     }
                 }
             });
@@ -81,9 +84,13 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', '$modal
 
     }]);
 
-fraApp.controller('ModalJsonViewCtrl', ['$scope', '$modalInstance', 'json', function ($scope, $modalInstance, json) {
+fraApp.controller('ModalJsonViewCtrl', ['$scope', '$modalInstance', 'row', function ($scope, $modalInstance, row) {
     "use strict";
-    $scope.jsonContent = JSON.parse(json);
+
+    $scope.row = {
+        uri: row.uri,
+        content: JSON.parse(row.content)
+    };
 
     $scope.close = function () {
         $modalInstance.close();
