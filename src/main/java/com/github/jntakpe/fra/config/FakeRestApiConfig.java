@@ -19,7 +19,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
+import javax.servlet.Filter;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -66,6 +68,19 @@ public class FakeRestApiConfig extends SpringBootServletInitializer implements E
         MimeMappings mappings = new MimeMappings(MimeMappings.DEFAULT);
         mappings.add("html", "text/html;charset=utf-8");
         container.setMimeMappings(mappings);
+    }
+
+    /**
+     * Ajout du filter de forçage des caractères en UTF-8
+     *
+     * @return le filtre configuré en UTF-8
+     */
+    @Bean
+    public Filter charsetFilterEncoding() {
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        return characterEncodingFilter;
     }
 
     /**
