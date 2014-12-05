@@ -90,6 +90,10 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', '$modal
             refresh();
         };
 
+        $scope.resetSearch = function () {
+            $scope.search = {};
+            refresh();
+        };
     }]);
 
 fraApp.controller('ModalJsonViewCtrl', ['$scope', '$modalInstance', 'row', function ($scope, $modalInstance, row) {
