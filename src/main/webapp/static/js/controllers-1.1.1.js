@@ -11,7 +11,7 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', '$modal
             filteredEndpoints = $filter('filter')($scope.endpoints, $scope.search);
             orderedEndpoints = $filter('orderBy')(filteredEndpoints, $scope.sort.column, $scope.sort.reverse);
             paginate = PageService.paginate($scope.currentPage, $scope.endpointsProps.numberPerPage, orderedEndpoints);
-            $scope.currentEndpoints = paginate.endpoints;
+            $scope.currentEndpoints = paginate.data;
             $scope.currentPage = paginate.page;
             $scope.endpointsProps.total = paginate.total;
         }
@@ -183,7 +183,7 @@ fraApp.controller('TraceCtrl', ['$scope', '$filter', 'PageService', 'resolvedReq
         function refresh() {
             var orderedRequests = $filter('orderBy')($scope.requests, $scope.sort.column, $scope.sort.reverse);
             $scope.currentRequests = PageService.paginate($scope.currentPage, $scope.requestsProps.numberPerPage,
-                orderedRequests);
+                orderedRequests).data;
         }
 
         $scope.sort = {

@@ -50,7 +50,7 @@ fraApp.factory('PageService', [function () {
             }
             offset = (currentPage - 1) * numberPerPage;
             return {
-                endpoints: data.slice(offset, offset + numberPerPage),
+                data: data.slice(offset, offset + numberPerPage),
                 page: currentPage,
                 total: data.length
             };
