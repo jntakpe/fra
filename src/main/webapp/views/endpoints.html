@@ -13,8 +13,13 @@
         <div class="form-group col-md-2">
             <label class="sr-only" for="search-uri">Méthode</label>
 
-            <input type="text" class="form-control full-size" id="search-method" placeholder="Méthode"
-                   ng-change="searchChange()" ng-model="search.method">
+            <select type="text" class="form-control full-size" id="search-method" ng-change="searchChange()"
+                    ng-model="search.method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="DELETE">DELETE</option>
+            </select>
         </div>
         <div class="form-group col-md-4">
             <label class="sr-only" for="search-uri">Rechercher un contenu</label>
