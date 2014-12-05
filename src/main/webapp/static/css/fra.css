@@ -16,3 +16,7 @@
     max-height: 400px;
     overflow-y: auto;
 }
+
+.form-inline .full-size {
+    width: 100%;
+}

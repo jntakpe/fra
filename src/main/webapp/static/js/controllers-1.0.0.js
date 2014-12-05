@@ -7,9 +7,13 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', '$modal
         "use strict";
 
         function refresh() {
-            var orderedEndpoints = $filter('orderBy')($scope.endpoints, $scope.sort.column, $scope.sort.reverse);
-            $scope.currentEndpoints = PageService.paginate($scope.currentPage, $scope.endpointsProps.numberPerPage,
-                orderedEndpoints);
+            var filteredEndpoints, orderedEndpoints, paginate;
+            filteredEndpoints = $filter('filter')($scope.endpoints, $scope.search);
+            orderedEndpoints = $filter('orderBy')(filteredEndpoints, $scope.sort.column, $scope.sort.reverse);
+            paginate = PageService.paginate($scope.currentPage, $scope.endpointsProps.numberPerPage, orderedEndpoints);
+            $scope.currentEndpoints = paginate.endpoints;
+            $scope.currentPage = paginate.page;
+            $scope.endpointsProps.total = paginate.total;
         }
 
         $scope.sort = {
@@ -80,6 +84,10 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', '$modal
                 }
             });
 
+        };
+
+        $scope.searchChange = function () {
+            refresh();
         };
 
     }]);

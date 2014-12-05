@@ -3,6 +3,26 @@
         <i class="fa" ng-class="alert.type === 'success' ? 'fa-check' : 'fa-warning'"></i>
         &nbsp;{{alert.msg}}<a ng-if="alert.uri" href="{{alert.uri}}">{{alert.uri}}</a>
     </alert>
+    <form class="form-inline" role="form">
+        <div class="form-group col-md-5">
+            <label class="sr-only" for="search-uri">Rechercher une URL</label>
+
+            <input type="text" class="form-control full-size" id="search-uri" placeholder="Rechercher une URL"
+                   ng-change="searchChange()" ng-model="search.uri">
+        </div>
+        <div class="form-group col-md-2">
+            <label class="sr-only" for="search-uri">Méthode</label>
+
+            <input type="text" class="form-control full-size" id="search-method" placeholder="Méthode"
+                   ng-change="searchChange()" ng-model="search.method">
+        </div>
+        <div class="form-group col-md-4">
+            <label class="sr-only" for="search-uri">Rechercher un contenu</label>
+
+            <input type="text" class="form-control full-size" id="search-content" placeholder="Rechercher un contenu"
+                   ng-change="searchChange()" ng-model="search.content">
+        </div>
+    </form>
     <table class="table table-striped table-wrap">
         <thead>
         <tr>
@@ -45,7 +65,6 @@
     </div>
     <div class="col-md-8">
         <pagination total-items="endpointsProps.total" ng-model="currentPage" max-size="5" boundary-links="true"
-                    items-per-page="endpointsProps.numberPerPage" num-pages="endpointsProps.numPages"
-                    class="pull-right"></pagination>
+                    items-per-page="endpointsProps.numberPerPage" class="pull-right"></pagination>
     </div>
 </div>

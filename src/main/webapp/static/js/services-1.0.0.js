@@ -42,8 +42,18 @@ fraApp.factory('PageService', [function () {
     "use strict";
     return {
         paginate: function (currentPage, numberPerPage, data) {
-            var offset = (currentPage - 1) * numberPerPage;
-            return data.slice(offset, offset + numberPerPage);
+            var offset, page;
+            page = data.length / numberPerPage;
+            if (currentPage > page) {
+                page = page < 1 ? 1 : Math.ceil(page);
+                currentPage = page;
+            }
+            offset = (currentPage - 1) * numberPerPage;
+            return {
+                endpoints: data.slice(offset, offset + numberPerPage),
+                page: currentPage,
+                total: data.length
+            };
         },
         listProps: function (data) {
             var listProps = {};
@@ -51,7 +61,9 @@ fraApp.factory('PageService', [function () {
             listProps.numberPerPage = 8;
             listProps.numPages = Math.ceil(listProps.total / listProps.numberPerPage);
             return listProps;
-        },
+        }
+
+        ,
         refreshSort: function (column, sort) {
             if (sort.column === column) {
                 if (sort.reverse) {
@@ -64,7 +76,8 @@ fraApp.factory('PageService', [function () {
                 sort.column = column;
                 sort.reverse = false;
             }
-        },
+        }
+        ,
         refreshSortClass: function (column, sort) {
             if (sort.column === column) {
                 return sort.reverse ? 'fa-sort-desc' : 'fa-sort-asc';
@@ -72,7 +85,8 @@ fraApp.factory('PageService', [function () {
             return 'fa-sort';
         }
     };
-}]);
+}])
+;
 
 fraApp.factory('TraceService', ['$resource', function ($resource) {
     "use strict";
