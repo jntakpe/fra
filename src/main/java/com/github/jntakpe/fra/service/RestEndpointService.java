@@ -7,12 +7,18 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Service associées à l'entité {@link com.github.jntakpe.fra.service.RestEndpointService}
@@ -57,19 +63,38 @@ public class RestEndpointService {
     }
 
     /**
-     * Renvoie le endpoint REST correspondant à l'URI, à la méthode HTTP et aux paramètres
+     * Renvoie la réponse contenant le endpoint REST correspondant à l'URI, à la méthode HTTP et aux paramètres après un
+     * certain temps
      *
      * @param uri    URI du endpoint REST
      * @param method méthode HTTP
      * @param params map correspondant aux paramètres du endpoint
-     * @return endpoint REST correspondant aux paramètre
+     * @return réponse contenant endpoint REST correspondant aux paramètre
      */
-    @Transactional(readOnly = true)
-    public Optional<RestEndpoint> findMatchingEndpoint(String uri, String method, Map<String, String> params) {
-        LOG.debug("Récupération des données pour l'url {}, la méthode {} et les paramètres {}", uri, method, params);
-        List<RestEndpoint> endpoints = restEndpointRepository.findByUriAndMethod(uri, HttpMethod.valueOf(method));
-        return endpoints.stream().filter(e -> e.toMap().equals(params)).findAny();
+    public ResponseEntity<String> delayFindMatchingEndpoint(String uri, String method, Map<String, String> params) {
+        Optional<RestEndpoint> matchingEndpoint = findMatchingEndpoint(uri, method, params);
+        if (matchingEndpoint.isPresent()) {
+            RestEndpoint endpoint = matchingEndpoint.get();
+            if (endpoint.getDelay() != null && endpoint.getDelay() > 0) {
+                return applyDelay(endpoint);
+            } else {
+                return new ResponseEntity<>(endpoint.getContent(), HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
+
+    private ResponseEntity<String> applyDelay(RestEndpoint endpoint) {
+        try {
+            ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+            return new ResponseEntity<>(executorService.schedule(endpoint::getContent, endpoint.getDelay(),
+                    TimeUnit.MILLISECONDS).get(), HttpStatus.OK);
+        } catch (InterruptedException | ExecutionException e) {
+            LOG.error("Erreur lors de la récupération du endpoint {}", endpoint.getUri(), e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 
     /**
      * Indique un endpoint avec ces paramètres n'est pas déjà créé
@@ -109,6 +134,21 @@ public class RestEndpointService {
     public void delete(Long id) {
         LOG.info("Suppression du endpoint ayant l'identifiant : {}", id);
         restEndpointRepository.delete(id);
+    }
+
+    /**
+     * Renvoie le endpoint REST correspondant à l'URI, à la méthode HTTP et aux paramètres
+     *
+     * @param uri    URI du endpoint REST
+     * @param method méthode HTTP
+     * @param params map correspondant aux paramètres du endpoint
+     * @return endpoint REST correspondant aux paramètre
+     */
+    @Transactional(readOnly = true)
+    private Optional<RestEndpoint> findMatchingEndpoint(String uri, String method, Map<String, String> params) {
+        LOG.debug("Récupération des données pour l'url {}, la méthode {} et les paramètres {}", uri, method, params);
+        List<RestEndpoint> endpoints = restEndpointRepository.findByUriAndMethod(uri, HttpMethod.valueOf(method));
+        return endpoints.stream().filter(e -> e.toMap().equals(params)).findAny();
     }
 
     /**
