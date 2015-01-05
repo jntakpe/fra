@@ -21,7 +21,7 @@
                         </div>
                     </label>
                 </section>
-                <section class="col-md-5 pull-right">
+                <section class="col-md-5">
                     <label class="label">Méthode HTTP</label>
 
                     <div class="inline-group">
@@ -46,6 +46,21 @@
                         </div>
                     </div>
                 </section>
+                <section class="col-md-2">
+                    <label class="label">Délai d'attente</label>
+                    <label class="input"
+                           ng-class="{'state-error': endpointForm.delay.$touched && endpointForm.delay.$invalid}">
+                        <input type="number" name="delay" placeholder="Délai d'attente" ng-model="endpoint.delay"
+                               min="0"/>
+
+                        <div ng-messages="endpointForm.delay.$touched && endpointForm.delay.$error"
+                             class="note note-error">
+                            <div ng-message="number">Le délai d'attente doit être numérique</div>
+                            <div ng-message="min">Le délai d'attente doit être un positif</div>
+                        </div>
+                    </label>
+                </section>
+
             </div>
             <section>
                 <table class="table table-wrap table-striped" ng-if="endpoint.params.length">

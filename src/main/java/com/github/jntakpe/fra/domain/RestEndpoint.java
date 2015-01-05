@@ -30,6 +30,8 @@ public class RestEndpoint extends GenericDomain {
     @Column(columnDefinition = "TEXT")
     private String content;
 
+    private Integer delay;
+
     @OneToMany(mappedBy = "endpoint", fetch = FetchType.EAGER, orphanRemoval = true, cascade = CascadeType.ALL)
     private Set<EndpointParam> params = new HashSet<>();
 
@@ -64,6 +66,14 @@ public class RestEndpoint extends GenericDomain {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public Integer getDelay() {
+        return delay;
+    }
+
+    public void setDelay(Integer delay) {
+        this.delay = delay;
     }
 
     public Set<EndpointParam> getParams() {
