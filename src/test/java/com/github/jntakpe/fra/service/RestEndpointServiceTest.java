@@ -56,18 +56,18 @@ public class RestEndpointServiceTest extends AbstractTestNGSpringContextTests {
     public void testFindByUriAndMethod() throws Exception {
         Optional<RestEndpoint> empty = Optional.<RestEndpoint>empty();
         Map<String, String> params = new HashMap<>();
-        assertThat(restEndpointService.findMatchingEndpoint("toto/au/ski", "DELETE", params)).isEqualTo(empty);
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "POST", params)).isEqualTo(empty);
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", params)).isNotEqualTo(empty);
+        assertThat(restEndpointService.delayFindMatchingEndpoint("toto/au/ski", "DELETE", params)).isEqualTo(empty);
+        assertThat(restEndpointService.delayFindMatchingEndpoint("/rest/hello", "POST", params)).isEqualTo(empty);
+        assertThat(restEndpointService.delayFindMatchingEndpoint("/rest/hello", "GET", params)).isNotEqualTo(empty);
         params.put("say", "coucou");
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", params)).isEqualTo(empty);
+        assertThat(restEndpointService.delayFindMatchingEndpoint("/rest/hello", "GET", params)).isEqualTo(empty);
         params.put("say", "hello");
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", params)).isEqualTo(empty);
+        assertThat(restEndpointService.delayFindMatchingEndpoint("/rest/hello", "GET", params)).isEqualTo(empty);
         params.put("toto", "titi");
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello", "GET", params)).isNotEqualTo(empty);
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello/joss", "GET", params)).isEqualTo(empty);
+        assertThat(restEndpointService.delayFindMatchingEndpoint("/rest/hello", "GET", params)).isNotEqualTo(empty);
+        assertThat(restEndpointService.delayFindMatchingEndpoint("/rest/hello/joss", "GET", params)).isEqualTo(empty);
         params.remove("say");
-        assertThat(restEndpointService.findMatchingEndpoint("/rest/hello/joss", "GET", params)).isNotEqualTo(empty);
+        assertThat(restEndpointService.delayFindMatchingEndpoint("/rest/hello/joss", "GET", params)).isNotEqualTo(empty);
     }
 
     @Test
