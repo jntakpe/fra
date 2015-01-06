@@ -48,18 +48,6 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', '$modal
             $scope.alert = null;
         };
 
-        $scope.delete = function (endpoint) {
-            endpoint.$delete(function () {
-                $scope.endpoints.splice($scope.endpoints.indexOf(endpoint), 1);
-                $scope.endpointsProps = PageService.listProps($scope.endpoints);
-                refresh();
-                $scope.alert = {
-                    type: 'success',
-                    msg: 'Suppression du endpoint : ' + endpoint.fullUri + ' effectuée avec succès'
-                };
-            });
-        };
-
         $scope.sortColumn = function (column) {
             PageService.refreshSort(column, $scope.sort);
             refresh();
@@ -69,7 +57,31 @@ fraApp.controller('EndpointsCtrl', ['$scope', '$routeParams', '$filter', '$modal
             return PageService.refreshSortClass(column, $scope.sort);
         };
 
-        $scope.openModal = function (row) {
+        $scope.confirmDelete = function (endpoint) {
+            var modalInstance = $modal.open({
+                templateUrl: 'views/modal/confirm-delete.html',
+                controller: 'ModalConfirmCtrl',
+                resolve: {
+                    endpoint: function () {
+                        return endpoint;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (endpoint) {
+                endpoint.$delete(function () {
+                    $scope.endpoints.splice($scope.endpoints.indexOf(endpoint), 1);
+                    $scope.endpointsProps = PageService.listProps($scope.endpoints);
+                    refresh();
+                    $scope.alert = {
+                        type: 'success',
+                        msg: 'Suppression du endpoint : ' + endpoint.fullUri + ' effectuée avec succès'
+                    };
+                });
+            });
+        };
+
+        $scope.openVisualizeModal = function (row) {
             $modal.open({
                 templateUrl: 'views/modal/json-view.html',
                 controller: 'ModalJsonViewCtrl',
@@ -108,6 +120,21 @@ fraApp.controller('ModalJsonViewCtrl', ['$scope', '$modalInstance', 'row', funct
         $modalInstance.close();
     };
 }]);
+
+fraApp.controller('ModalConfirmCtrl', ['$scope', '$modalInstance', 'endpoint',
+    function ($scope, $modalInstance, endpoint) {
+        "use strict";
+
+        $scope.endpoint = endpoint;
+
+        $scope.doDelete = function () {
+            $modalInstance.close(endpoint);
+        };
+
+        $scope.close = function () {
+            $modalInstance.dismiss('cancel');
+        };
+    }]);
 
 fraApp.controller('EndpointCreateCtrl', ['$scope', '$location', 'EndpointsService',
     function ($scope, $location, EndpointsService) {
