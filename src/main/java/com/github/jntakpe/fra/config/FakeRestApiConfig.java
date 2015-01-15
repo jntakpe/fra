@@ -13,6 +13,9 @@ import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomi
 import org.springframework.boot.context.embedded.MimeMappings;
 import org.springframework.boot.context.web.SpringBootServletInitializer;
 import org.springframework.boot.orm.jpa.EntityScan;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -25,6 +28,9 @@ import javax.servlet.Filter;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static com.github.jntakpe.fra.service.RestEndpointService.ENDPOINTS_CACHE;
+import static com.github.jntakpe.fra.service.RestEndpointService.ENDPOINT_MATCH_CACHE;
+
 /**
  * Classe mère de configuration
  *
@@ -32,6 +38,7 @@ import java.net.URISyntaxException;
  */
 @Configuration
 @EnableAutoConfiguration
+@EnableCaching
 @EnableScheduling
 @EntityScan("com.github.jntakpe.fra.domain")
 @EnableJpaRepositories("com.github.jntakpe.fra.repository")
@@ -39,6 +46,16 @@ import java.net.URISyntaxException;
 public class FakeRestApiConfig extends SpringBootServletInitializer implements EmbeddedServletContainerCustomizer {
 
     private static final Logger LOG = LoggerFactory.getLogger(FakeRestApiConfig.class);
+
+    /**
+     * Démarre l'application en mode 'embedded'
+     *
+     * @param args arguments passés par le goal maven
+     */
+    public static void main(String[] args) {
+        LOG.debug("Démarrage de l'application en mode 'embedded'");
+        new SpringApplication(FakeRestApiConfig.class).run(args);
+    }
 
     /**
      * Initialisation de la source de données POSTGRES pour le cloud Heroku
@@ -84,16 +101,6 @@ public class FakeRestApiConfig extends SpringBootServletInitializer implements E
     }
 
     /**
-     * Démarre l'application en mode 'embedded'
-     *
-     * @param args arguments passés par le goal maven
-     */
-    public static void main(String[] args) {
-        LOG.debug("Démarrage de l'application en mode 'embedded'");
-        new SpringApplication(FakeRestApiConfig.class).run(args);
-    }
-
-    /**
      * Démarrage sur un serveur classique (Tomcat, Jetty, JBoss, etc ...)
      *
      * @param application builder de la configuration Spring Boot
@@ -108,4 +115,13 @@ public class FakeRestApiConfig extends SpringBootServletInitializer implements E
         return application.sources(FakeRestApiConfig.class);
     }
 
+    /**
+     * Déclaration des caches manager
+     *
+     * @return les caches manager initialisés
+     */
+    @Bean
+    public CacheManager cacheManager() {
+        return new ConcurrentMapCacheManager(ENDPOINTS_CACHE, ENDPOINT_MATCH_CACHE);
+    }
 }

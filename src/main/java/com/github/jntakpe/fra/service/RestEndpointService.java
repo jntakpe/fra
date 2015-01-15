@@ -6,6 +6,8 @@ import com.github.jntakpe.fra.repository.RestEndpointRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +32,10 @@ public class RestEndpointService {
 
     public static final String REST_PREFIX = "/rest/";
 
+    public static final String ENDPOINTS_CACHE = "endpoints";
+
+    public static final String ENDPOINT_MATCH_CACHE = "endpointMatch";
+
     private static final Logger LOG = LoggerFactory.getLogger(FakeRestApiConfig.class);
 
     private RestEndpointRepository restEndpointRepository;
@@ -44,6 +50,7 @@ public class RestEndpointService {
      *
      * @return la liste de tous les endpoints
      */
+    @Cacheable(ENDPOINTS_CACHE)
     @Transactional(readOnly = true)
     public List<RestEndpoint> findAll() {
         LOG.debug("Récupération de tous les endpoints REST");
@@ -84,18 +91,6 @@ public class RestEndpointService {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    private ResponseEntity<String> applyDelay(RestEndpoint endpoint) {
-        try {
-            ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
-            return new ResponseEntity<>(executorService.schedule(endpoint::getContent, endpoint.getDelay(),
-                    TimeUnit.MILLISECONDS).get(), HttpStatus.OK);
-        } catch (InterruptedException | ExecutionException e) {
-            LOG.error("Erreur lors de la récupération du endpoint {}", endpoint.getUri(), e);
-            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
     /**
      * Indique un endpoint avec ces paramètres n'est pas déjà créé
      *
@@ -110,6 +105,7 @@ public class RestEndpointService {
         return opt.map(e -> e.getId().equals(endpoint.getId())).orElse(true);
     }
 
+
     /**
      * Enregistre un {@link com.github.jntakpe.fra.domain.RestEndpoint} en mettant en minuscules l'URI et en supprimant
      * le slash  de fin d'URI
@@ -118,6 +114,7 @@ public class RestEndpointService {
      * @return le endpoint enregistré (objet différent de celui passé en paramètre)
      */
     @Transactional
+    @CacheEvict(value = {ENDPOINTS_CACHE, ENDPOINT_MATCH_CACHE}, allEntries = true)
     public RestEndpoint save(RestEndpoint restEndpoint) {
         LOG.info("Enregistrement du endpoint {}", restEndpoint);
         String uri = restEndpoint.getUri().toLowerCase();
@@ -131,6 +128,7 @@ public class RestEndpointService {
      * @param id identifiant du endpoint à supprimer
      */
     @Transactional
+    @CacheEvict(value = {ENDPOINTS_CACHE, ENDPOINT_MATCH_CACHE}, allEntries = true)
     public void delete(Long id) {
         LOG.info("Suppression du endpoint ayant l'identifiant : {}", id);
         restEndpointRepository.delete(id);
@@ -144,6 +142,7 @@ public class RestEndpointService {
      * @param params map correspondant aux paramètres du endpoint
      * @return endpoint REST correspondant aux paramètre
      */
+    @Cacheable(ENDPOINT_MATCH_CACHE)
     @Transactional(readOnly = true)
     private Optional<RestEndpoint> findMatchingEndpoint(String uri, String method, Map<String, String> params) {
         LOG.debug("Récupération des données pour l'url {}, la méthode {} et les paramètres {}", uri, method, params);
@@ -168,5 +167,16 @@ public class RestEndpointService {
             uri = uri.substring(0, uri.length() - 1);
         }
         return REST_PREFIX + uri;
+    }
+
+    private ResponseEntity<String> applyDelay(RestEndpoint endpoint) {
+        try {
+            ScheduledExecutorService executorService = Executors.newSingleThreadScheduledExecutor();
+            return new ResponseEntity<>(executorService.schedule(endpoint::getContent, endpoint.getDelay(),
+                    TimeUnit.MILLISECONDS).get(), HttpStatus.OK);
+        } catch (InterruptedException | ExecutionException e) {
+            LOG.error("Erreur lors de la récupération du endpoint {}", endpoint.getUri(), e);
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 }
