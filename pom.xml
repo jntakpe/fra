@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.jntakpe</groupId>
     <artifactId>fra</artifactId>
-    <version>1.2.2</version>
+    <version>1.2.3</version>
     <name>fra</name>
     <description>API rest renvoyant des données</description>
     <packaging>jar</packaging>
@@ -13,7 +13,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>1.2.0.RELEASE</version>
+        <version>1.2.1.RELEASE</version>
     </parent>
 
     <properties>

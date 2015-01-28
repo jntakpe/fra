@@ -11,7 +11,7 @@
     <root level="TRACE">
         <appender-ref ref="CONSOLE"/>
     </root>
-    
+
     <logger name="ch.qos.logback" level="WARN">
     </logger>
 
@@ -19,6 +19,9 @@
     </logger>
 
     <logger name="org.hibernate" level="WARN">
+    </logger>
+
+    <logger name="com.zaxxer.hikari" level="WARN">
     </logger>
 
     <logger name="org.springframework" level="WARN">
@@ -32,5 +35,5 @@
 
     <logger name="org.springframework.cache" level="WARN">
     </logger>
-    
+
 </configuration>
