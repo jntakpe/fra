@@ -203,14 +203,16 @@ fraApp.controller('EndpointEditCtrl', ['$scope', '$location', 'EndpointsService'
         };
     }]);
 
-fraApp.controller('TraceCtrl', ['$scope', '$filter', 'PageService', 'resolvedRequests',
-    function ($scope, $filter, PageService, resolvedRequests) {
+fraApp.controller('TraceCtrl', ['$scope', '$filter', 'PageService', 'TraceService', 'resolvedRequests',
+    function ($scope, $filter, PageService, TraceService, resolvedRequests) {
         "use strict";
 
         function refresh() {
-            var orderedRequests = $filter('orderBy')($scope.requests, $scope.sort.column, $scope.sort.reverse);
-            $scope.currentRequests = PageService.paginate($scope.currentPage, $scope.requestsProps.numberPerPage,
-                orderedRequests).data;
+            if ($scope.requests.length) {
+                var orderedRequests = $filter('orderBy')($scope.requests, $scope.sort.column, $scope.sort.reverse);
+                $scope.currentRequests = PageService.paginate($scope.currentPage, $scope.requestsProps.numberPerPage,
+                    orderedRequests).data;
+            }
         }
 
         $scope.sort = {
@@ -233,4 +235,9 @@ fraApp.controller('TraceCtrl', ['$scope', '$filter', 'PageService', 'resolvedReq
         $scope.sortClass = function (column) {
             return PageService.refreshSortClass(column, $scope.sort);
         };
+
+        $scope.clean = function () {
+            TraceService.delete();
+        };
+
     }]);

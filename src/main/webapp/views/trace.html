@@ -21,7 +21,13 @@
         </tr>
         </tbody>
     </table>
-    <pagination total-items="requestsProps.total" ng-model="currentPage" max-size="5" boundary-links="true"
-                items-per-page="requestsProps.numberPerPage" num-pages="requestsProps.numPages" class="pull-right">
-    </pagination>
+    <div class="col-md-4 padding-top-20">
+        <button class="btn btn-danger" ng-click="clean()"><i class="fa fa-trash-o"></i> Vider les anciennes requêtes
+        </button>
+    </div>
+    <div class="col-md-8">
+        <pagination total-items="requestsProps.total" ng-model="currentPage" max-size="5" boundary-links="true"
+                    items-per-page="requestsProps.numberPerPage" num-pages="requestsProps.numPages" class="pull-right">
+        </pagination>
+    </div>
 </div>

@@ -48,7 +48,8 @@ fraApp.config(function ($routeProvider) {
         breadcrumb: [breadcrumbs.home, breadcrumbs.trace],
         resolve: {
             resolvedRequests: ['TraceService', function (TraceService) {
-                return TraceService.query().$promise;
+                var requests = TraceService.query();
+                return requests.$promise;
             }]
         }
     }).otherwise({
