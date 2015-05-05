@@ -12,3 +12,5 @@ spring:
     username: postgres
     password: sopra*
     driverClassName: org.postgresql.Driver
+server:
+  port: 9080
