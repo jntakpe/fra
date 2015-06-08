@@ -1,3 +1,10 @@
 'use strict';
 
-angular.module('fra', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngResource', 'ui.router', 'ui.bootstrap']);
+(function () {
+    angular.module('fra', [
+        'fra-core',
+        'fra-layout',
+        'fra-home'
+    ]);
+})();
+
