@@ -47,7 +47,8 @@
     "chalk": "~0.5.1",
     "protractor": "~1.7.0",
     "uglify-save-license": "~0.4.1",
-    "wrench": "~1.5.8"
+    "wrench": "~1.5.8",
+    "proxy-middleware": "~0.11.1"
   },
   "engines": {
     "node": ">=0.10.0"

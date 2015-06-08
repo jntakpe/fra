@@ -6,7 +6,7 @@ var browserSyncSpa = require('browser-sync-spa');
 
 var util = require('util');
 
-var middleware = require('./proxy');
+var proxies = require('./proxy');
 
 module.exports = function (options) {
 
@@ -25,9 +25,7 @@ module.exports = function (options) {
       routes: routes
     };
 
-    if (middleware.length > 0) {
-      server.middleware = middleware;
-    }
+    server.middleware = proxies();
 
     browserSync.instance = browserSync.init({
       startPath: '/',
