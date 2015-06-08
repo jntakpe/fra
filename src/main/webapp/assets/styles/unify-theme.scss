@@ -1,0 +1,843 @@
+a {
+  color: $main_color;
+}
+
+a:focus,
+a:hover,
+a:active {
+  color: $main_color;
+}
+
+.color-green {
+  color: $main_color;
+}
+
+a.read-more:hover {
+  color: $main_color;
+}
+
+.linked:hover {
+  color: $main_color;
+}
+
+/*Header v1
+------------------------------------*/
+/*Navber*/
+.header .navbar-default .navbar-nav > .active > a {
+  color: $main_color;
+}
+
+/*Navbar Toggle*/
+.navbar-toggle,
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background: $main_color;
+}
+
+.navbar-toggle:hover {
+  background: #c0392b !important;
+}
+
+.navbar-default .navbar-toggle {
+  border-color: #c0392b;
+}
+
+/*Responsive Navbar*/
+@media (max-width: 767px) {
+  .header .navbar-default .navbar-nav > li > a:hover {
+    color: $main_color;
+  }
+
+  .header .navbar-default .navbar-nav > .active > a,
+  .header .navbar-default .navbar-nav > .active > a:hover,
+  .header .navbar-default .navbar-nav > .active > a:focus {
+    background: $main_color;
+  }
+}
+
+@media (min-width: 767px) {
+  /*Navbar*/
+  .header .navbar-default .navbar-nav > li > a:hover,
+  .header .navbar-default .navbar-nav > .active > a {
+    border-bottom: solid 2px $main_color;
+  }
+
+  .header .navbar-default .navbar-nav > .open > a,
+  .header .navbar-default .navbar-nav > .open > a:hover,
+  .header .navbar-default .navbar-nav > .open > a:focus {
+    color: $main_color;
+  }
+
+  /*Dropdown Menu*/
+  .header .dropdown-menu {
+    border-top: solid 2px $main_color;
+  }
+}
+
+/*Search Box*/
+.header .navbar .nav > li > .search:hover {
+  color: $main_color;
+  border-bottom-color: $main_color;
+}
+
+@media (max-width: 767px) {
+  .header .navbar .nav > li > .search:hover {
+    background: #c0392b;
+  }
+}
+
+/*Header v2
+------------------------------------*/
+/*Topbar*/
+.topbar-v1 .top-v1-data li a:hover i {
+  color: $main_color;
+}
+
+/*Search Box*/
+.header-v1 .navbar .nav > li > .search:hover {
+  background: $main_color;
+}
+
+/*Responsive Navbar*/
+@media (min-width: 767px) {
+  .header-v1 .navbar-default .navbar-nav > li > a:hover,
+  .header-v1 .navbar-default .navbar-nav > .active > a {
+    color: #fff;
+    background: $main_color !important;
+  }
+
+  .header-v1 .navbar-default .navbar-nav > .open > a,
+  .header-v1 .navbar-default .navbar-nav > .open > a:hover,
+  .header-v1 .navbar-default .navbar-nav > .open > a:focus {
+    background: $main_color;
+  }
+}
+
+/*Sliders
+------------------------------------*/
+/*Main Parallax Sldier*/
+
+/*Sequence Parallax Sldier*/
+.sequence-inner {
+  background: -webkit-gradient(linear, 0 0, 0 bottom, from(#fff), to(#f9e6e6));
+  background: -webkit-linear-gradient(#fff, #f9e6e6);
+  background: -moz-linear-gradient(#fff, #f9e6e6);
+  background: -ms-linear-gradient(#fff, #f9e6e6);
+  background: -o-linear-gradient(#fff, #f9e6e6);
+  background: linear-gradient(#fff, #f9e6e6)
+}
+
+#sequence-theme h2 {
+  background: rgba(231, 76, 60, 0.8);
+}
+
+#sequence-theme .info p {
+  background: rgba(231, 76, 60, 0.8);
+}
+
+/*Buttons
+------------------------------------*/
+.btn-u {
+  background: $main_color;
+}
+
+.btn-u:hover,
+.btn-u:focus,
+.btn-u:active,
+.btn-u.active,
+.open .dropdown-toggle.btn-u {
+  background: #c0392b;
+}
+
+/*Buttons Color*/
+.btn-u-split.dropdown-toggle {
+  border-left: solid 1px #c0392b;
+}
+
+/*Bordered Buttons*/
+.btn-u.btn-brd {
+  border-color: $main_color;
+}
+
+.btn-u.btn-brd:hover {
+  color: #c0392b;
+  border-color: #c0392b;
+}
+
+.btn-u.btn-brd.btn-brd-hover:hover {
+  background: #c0392b;
+}
+
+/*Service
+------------------------------------*/
+.service .service-icon {
+  color: $main_color;
+}
+
+/*Service Blocks*/
+.service-alternative .service:hover {
+  background: $main_color;
+}
+
+/*Thumbnail (Recent Work)
+------------------------------------*/
+.thumbnail-style h3 a:hover {
+  color: $main_color;
+}
+
+.thumbnail-style a.btn-more {
+  background: $main_color;
+}
+
+.thumbnail-style a.btn-more:hover {
+  box-shadow: 0 0 0 2px #c0392b;
+}
+
+/*Carousel (Recent Work)*/
+.recent-work a:hover span {
+  border-bottom: solid 2px $main_color;
+}
+
+/*Typography
+------------------------------------*/
+/*Heading*/
+.headline h2,
+.headline h3,
+.headline h4 {
+  border-bottom: 2px solid $main_color;
+}
+
+/*Blockquote*/
+blockquote:hover {
+  border-left-color: $main_color;
+}
+
+.hero {
+  border-left-color: $main_color;
+}
+
+/*Carousel
+------------------------------------*/
+.carousel-arrow a.carousel-control:hover {
+  color: $main_color;
+}
+
+/*Footer
+------------------------------------*/
+.footer a,
+.copyright a,
+.footer a:hover,
+.copyright a:hover {
+  color: $main_color;
+}
+
+/*Footer Blog*/
+.footer .dl-horizontal a:hover {
+  color: $main_color !important;
+}
+
+/*Blog Posts
+------------------------------------*/
+.posts .dl-horizontal a:hover {
+  color: $main_color;
+}
+
+.posts .dl-horizontal:hover dt img,
+.posts .dl-horizontal:hover dd a {
+  color: $main_color;
+  border-color: $main_color !important;
+}
+
+/*Post Comment*/
+.post-comment h3,
+.blog-item .media h3,
+.blog-item .media h4.media-heading span a {
+  color: $main_color;
+}
+
+/*Tabs
+------------------------------------*/
+/*Tabs v1*/
+.tab-v1 .nav-tabs {
+  border-bottom: solid 2px $main_color;
+}
+
+.tab-v1 .nav-tabs > .active > a,
+.tab-v1 .nav-tabs > .active > a:hover,
+.tab-v1 .nav-tabs > .active > a:focus {
+  background: $main_color;
+}
+
+.tab-v1 .nav-tabs > li > a:hover {
+  background: $main_color;
+}
+
+/*Tabs v2*/
+.tab-v2 .nav-tabs li.active a {
+  border-top: solid 2px $main_color;
+}
+
+/*Tabs v3*/
+.tab-v3 .nav-pills li a:hover,
+.tab-v3 .nav-pills li.active a {
+  background: $main_color;
+  border: solid 1px #c0392b;
+}
+
+/*Accardion
+------------------------------------*/
+.acc-home a.active,
+.acc-home a.accordion-toggle:hover {
+  color: $main_color;
+}
+
+.acc-home .collapse.in {
+  border-bottom: solid 1px $main_color;
+}
+
+/*Testimonials
+------------------------------------*/
+.testimonials .testimonial-info {
+  color: $main_color;
+}
+
+.testimonials .carousel-arrow i:hover {
+  background: $main_color;
+}
+
+/*Info Blocks
+------------------------------------*/
+.info-blocks:hover i.icon-info-blocks {
+  color: $main_color;
+}
+
+/*Breadcrumb
+------------------------------------*/
+.breadcrumb li.active,
+.breadcrumb li a:hover {
+  color: $main_color;
+}
+
+/*About Page
+------------------------------------*/
+.team .thumbnail-style:hover h3 a {
+  color: $main_color !important;
+}
+
+/*Social Icons*/
+.team ul.team-socail li i:hover {
+  background: $main_color;
+}
+
+/*Pricing Page
+------------------------------------*/
+/*Pricing Head*/
+.pricing:hover h4 {
+  color: $main_color;
+}
+
+.pricing-head h3 {
+  background: $main_color;
+  text-shadow: 0 1px 0 #c0392b;
+  border-bottom: solid 1px #c0392b;
+}
+
+.pricing-head h4 {
+  color: #999;
+  background: #fcfcfc;
+  border-bottom: solid 1px #f9e6e6;
+}
+
+/*Pricing Content*/
+.pricing-content li {
+  border-bottom: solid 1px #f9e6e6;
+}
+
+.pricing-content li i {
+  color: $main_color;
+}
+
+/*Pricing Extra*/
+.sticker-left {
+  background: $main_color;
+}
+
+.sticker-right,
+.sticker-left {
+  background: #72c02c;
+}
+
+/*Pricing Table Mega-v1 Version
+------------------------------------*/
+.pricing-mega-v1 .pricing:hover h4 i {
+  color: $main_color;
+}
+
+.pricing-mega-v1 .pricing-content li i {
+  color: $main_color;
+}
+
+/*Pricing Table Colored Background Version
+------------------------------------*/
+.pricing-bg-colored .pricing:hover {
+  background: #c0392b;
+}
+
+.pricing-bg-colored .pricing-head i {
+  color: $main_color;
+}
+
+/*Pricing Footer*/
+.pricing-footer a,
+.pricing-footer button {
+  background: $main_color;
+  text-shadow: 0 1px 0 #c0392b;
+}
+
+.pricing-footer a:hover,
+.pricing-footer button:hover {
+  background: #c0392b;
+}
+
+/*Priceing Active*/
+.price-active h4 {
+  color: $main_color;
+}
+
+.no-space-pricing .price-active .pricing-head h4,
+.no-space-pricing .pricing:hover .pricing-head h4 {
+  color: $main_color;
+}
+
+/*Right Sidebar
+------------------------------------*/
+/*Right Sidebar*/
+.who li i,
+.who li:hover i,
+.who li:hover a {
+  color: $main_color;
+}
+
+/*Pricing Table Mega-v2
+------------------------------------*/
+.pricing-mega-v2 .block:hover .bg-color {
+  background: $main_color;
+}
+
+.pricing-mega-v2 .block:hover h3,
+.pricing-mega-v2 .block:hover h4,
+.pricing-mega-v2 .block:hover li,
+.pricing-mega-v2 .block:hover li i,
+.pricing-mega-v2 .block:hover h4 i {
+  background: $main_color;
+}
+
+/*Privacy Page
+------------------------------------*/
+.privacy a:hover {
+  color: $main_color;
+}
+
+/*Portfolio Page
+------------------------------------*/
+/*Portfolio v1*/
+.view a.info:hover {
+  background: $main_color;
+}
+
+/*Portfolio v2*/
+.sorting-block .sorting-nav li.active {
+  color: $main_color;
+  border-bottom: solid 1px $main_color;
+}
+
+.sorting-block .sorting-grid li a:hover span.sorting-cover {
+  background: $main_color;
+}
+
+/*Blog Page
+------------------------------------*/
+.blog h3 {
+  color: $main_color;
+}
+
+.blog li a:hover {
+  color: $main_color;
+}
+
+/*Blog Tags*/
+ul.blog-tags a:hover {
+  background: $main_color;
+}
+
+.blog-post-tags ul.blog-tags a:hover {
+  background: none repeat scroll 0 0 $main_color;
+}
+
+/*Blog Photos*/
+.blog-photos li img:hover {
+  box-shadow: 0 0 0 2px $main_color;
+}
+
+/*Blog Latest Tweets*/
+.blog-twitter .blog-twitter-inner:hover {
+  border-color: $main_color;
+  border-top-color: $main_color;
+}
+
+.blog-twitter .blog-twitter-inner:hover:after {
+  border-top-color: $main_color;
+}
+
+.blog-twitter .blog-twitter-inner a {
+  color: $main_color;
+}
+
+/*Blog Item Page
+------------------------------------*/
+.blog-item h4.media-heading span a {
+  color: $main_color;
+}
+
+/*Coming Soon Page
+------------------------------------*/
+.coming-soon-border {
+  border-top: solid 3px $main_color;
+}
+
+/*Search Page
+------------------------------------*/
+.booking-blocks p a {
+  color: $main_color;
+}
+
+/*Icons Page
+------------------------------------*/
+.icon-page li:hover {
+  color: $main_color;
+}
+
+/*Glyphicons*/
+.glyphicons-demo a:hover {
+  color: $main_color;
+  text-decoration: none;
+}
+
+/*Magazine Page
+------------------------------------*/
+/*Magazine News*/
+.magazine-news .by-author strong {
+  color: $main_color;
+}
+
+.magazine-news a.read-more {
+  color: $main_color;
+}
+
+/*Magazine Mini News*/
+.magazine-mini-news .post-author strong {
+  color: $main_color;
+}
+
+.news-read-more i {
+  background: $main_color;
+}
+
+/*Sidebar Features*/
+.magazine-page h3 a:hover {
+  color: $main_color;
+}
+
+/*Page Features
+------------------------------------*/
+/*Tag Boxes v1*/
+.tag-box-v1 {
+  border-top: solid 2px $main_color;
+}
+
+/*Tag Boxes v2*/
+.tag-box-v2 {
+  border-left: solid 2px $main_color;
+}
+
+/*Tag Boxes v7*/
+.tag-box-v7 {
+  border-bottom: solid 2px $main_color;
+}
+
+/*Font Awesome Icon Page Style*/
+.fa-icons li:hover {
+  color: $main_color;
+}
+
+.fa-icons li:hover i {
+  background: $main_color;
+}
+
+/*GLYPHICONS Icons Page Style*/
+.bs-glyphicons li:hover {
+  color: $main_color;
+}
+
+/*Navigation
+------------------------------------*/
+/*Pagination*/
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: $main_color;
+  border-color: $main_color;
+}
+
+.pagination li a:hover {
+  background: #c0392b;
+  border-color: #c0392b;
+}
+
+/*Pager*/
+.pager li > a:hover,
+.pager li > a:focus {
+  background: #c0392b;
+  border-color: #c0392b;
+}
+
+/*Registration and Login Page v2
+------------------------------------*/
+.reg-block {
+  border-top: solid 2px $main_color;
+}
+
+/*Image Hover
+------------------------------------*/
+/*Image-hover*/
+#effect-2 figure .img-hover {
+  background: $main_color;
+}
+
+/*Blog Large Page
+------------------------------------*/
+.blog h2 a:hover {
+  color: $main_color;
+}
+
+/*Timeline v1 Page
+------------------------------------*/
+.timeline-v1 > li > .timeline-badge i:hover {
+  color: $main_color;
+}
+
+.timeline-v1 .timeline-footer .likes:hover i {
+  color: $main_color;
+}
+
+/*Timeline v2 Page
+------------------------------------*/
+/* The icons */
+.timeline-v2 > li .cbp_tmicon {
+  background: $main_color;
+}
+
+/*Progress Bar
+------------------------------------*/
+.progress-bar-u {
+  background: $main_color;
+}
+
+/*Job Inner Page
+------------------------------------*/
+.job-description .save-job a:hover,
+.block-description .save-job a:hover {
+  color: $main_color;
+}
+
+.job-description .p-chart .overflow-h li i,
+.job-description .p-chart .overflow-h li a,
+.block-description .p-chart .overflow-h li i,
+.block-description .p-chart .overflow-h li a {
+  color: $main_color;
+}
+
+/*Colorful-ul*/
+.job-description .colorful-ul li a {
+  color: $main_color;
+}
+
+/*Search Inner Page
+------------------------------------*/
+.s-results .related-search a:hover {
+  color: $main_color;
+}
+
+.s-results .inner-results h3 a:hover {
+  color: $main_color;
+}
+
+.s-results .up-ul li a:hover {
+  color: $main_color;
+}
+
+.s-results .down-ul li a {
+  color: $main_color;
+}
+
+/*Funny Boxes
+------------------------------------*/
+.funny-boxes p a {
+  color: $main_color;
+}
+
+.funny-boxes .funny-boxes-img li i {
+  color: $main_color;
+}
+
+/*Sidebar Sub Navigation
+------------------------------------*/
+.sidebar-nav-v1 ul li:hover a,
+.sidebar-nav-v1 ul li.active a {
+  color: $main_color;
+}
+
+/*Blockquote
+------------------------------------*/
+blockquote.bq-green {
+  border-color: $main_color;
+}
+
+blockquote:hover,
+blockquote.text-right:hover {
+  border-color: $main_color;
+}
+
+/*Green Left Bordered Funny Box**/
+.funny-boxes-left-green {
+  border-left: solid 2px $main_color;
+}
+
+.funny-boxes-left-green:hover {
+  border-left-color: $main_color;
+}
+
+/*Testimonials Default
+------------------------------------*/
+/*Testimonials*/
+.testimonials .carousel-arrow i:hover {
+  background: $main_color;
+}
+
+/*Testimonials Default*/
+.testimonials-bg-default .item p {
+  background: $main_color;
+}
+
+.testimonials.testimonials-bg-default .item p:after,
+.testimonials.testimonials-bg-default .item p:after {
+  border-top-color: $main_color;
+}
+
+.testimonials-bg-default .carousel-arrow i {
+  background: $main_color;
+}
+
+.testimonials.testimonials-bg-default .carousel-arrow i:hover {
+  background: #c0392b;
+}
+
+/*Promo Page
+------------------------------------*/
+/*Promo Box*/
+.promo-box:hover strong,
+.promo-box:hover strong a {
+  color: $main_color;
+}
+
+/*Typography
+------------------------------------*/
+.dropcap {
+  color: $main_color;
+}
+
+.dropcap-bg {
+  color: #fff;
+  background: $main_color;
+}
+
+/*Breadcrumbs
+------------------------------------*/
+span.label-u,
+span.badge-u {
+  background: $main_color;
+}
+
+/*Icons
+------------------------------------*/
+/*Icon Link*/
+.link-icon:hover i {
+  color: $main_color;
+  border: solid 1px $main_color;
+}
+
+.link-bg-icon:hover i {
+  color: $main_color;
+  background: $main_color !important;
+  border-color: $main_color;
+}
+
+/*Icons Backgroun Color
+------------------------------------*/
+i.icon-color-u {
+  color: $main_color;
+  border: solid 1px $main_color;
+}
+
+i.icon-bg-u {
+  background: $main_color;
+}
+
+/*Line Icon Page
+------------------------------------*/
+.line-icon-page .item:hover {
+  color: $main_color;
+}
+
+/*Colored Content Boxes
+------------------------------------*/
+.servive-block-u {
+  background: $main_color;
+}
+
+/*Panels (Portlets)
+------------------------------------*/
+.panel-u > .panel-heading {
+  background: $main_color;
+}
+
+/*Owl Carousel
+------------------------------------*/
+.owl-btn:hover {
+  background: $main_color;
+}
+
+/*Counter
+------------------------------------*/
+.counters span.counter-icon i {
+  background: $main_color;
+}
+
+.counters span.counter-icon i:after {
+  border-top: 7px solid $main_color;
+}
+
+/*SKy-Forms
+------------------------------------*/
+/*Buttons*/
+.sky-form .button {
+  background: $main_color;
+}
+
+/*Rating*/
+.sky-form .rating input:checked ~ label {
+  color: $main_color;
+}

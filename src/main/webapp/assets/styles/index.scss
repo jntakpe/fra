@@ -1,0 +1,29 @@
+$main_color: #e74c3c;
+
+.table-wrap {
+  table-layout: fixed;
+}
+
+.table-wrap td {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.padding-top-20 {
+  padding-top: 20px;
+}
+
+.modal .modal-lg .modal-body {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.form-inline .full-size {
+  width: 100%;
+}
+
+/* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
+   all your sass files automatically */
+// injector
+// endinjector
