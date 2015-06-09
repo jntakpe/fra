@@ -5,6 +5,8 @@
         'fra-core',
         'fra-layout',
         'fra-home'
-    ]);
+    ]).config(function ($urlRouterProvider) {
+        $urlRouterProvider.otherwise('/');
+    });
 })();
 
