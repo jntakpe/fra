@@ -17,7 +17,7 @@ import java.util.List;
  * @author jntakpe
  */
 @RestController
-@RequestMapping("/endpoints")
+@RequestMapping("/api/endpoints")
 public class RestEndpointResource {
 
     private RestEndpointService restEndpointService;

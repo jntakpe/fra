@@ -1,9 +1,8 @@
 'use strict';
 
 (function () {
-    angular.module('fra-layout').controller('BreadcrumbCtrl', BreadcrumbCtrl);
-    
-    function BreadcrumbCtrl() {
-        
-    }
+    angular.module('fra-layout').controller('BreadcrumbCtrl', function () {
+
+    });
+
 })();

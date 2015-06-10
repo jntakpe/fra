@@ -17,6 +17,7 @@ import java.util.List;
  * @author jntakpe
  */
 @RestController
+@RequestMapping("/api/request")
 public class RequestResource {
 
     private RequestService requestService;
@@ -26,12 +27,12 @@ public class RequestResource {
         this.requestService = requestService;
     }
 
-    @RequestMapping(value = "/request", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public List<Request> list() {
         return requestService.findAll();
     }
 
-    @RequestMapping(value = "/request", method = RequestMethod.DELETE)
+    @RequestMapping(method = RequestMethod.DELETE)
     public ResponseEntity<String> clean() {
         requestService.clean();
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);

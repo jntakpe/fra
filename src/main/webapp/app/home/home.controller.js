@@ -1,9 +1,8 @@
 'use strict';
 
 (function () {
-  angular.module('fra-home').controller('HomeCtrl', HomeCtrl);
+    angular.module('fra-home').controller('HomeCtrl',
+        function () {
 
-  function HomeCtrl() {
-
-  }
+        });
 })();
