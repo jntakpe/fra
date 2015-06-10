@@ -23,6 +23,16 @@ $main_color: #e74c3c;
   width: 100%;
 }
 
+#center-container {
+  text-align: center;
+  padding-top: 200px;
+
+  h1 {
+    font-size: 10em;
+    margin-bottom: 50px;
+  }
+
+}
 /* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
    all your sass files automatically */
 // injector

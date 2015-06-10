@@ -11,6 +11,10 @@
                 }
             }
         });
+        $stateProvider.state('error', {
+            url: '/404',
+            templateUrl: 'app/error/404.html'
+        });
     });
 })();
 

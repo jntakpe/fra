@@ -7,7 +7,7 @@
         'fra-home',
         'fra-api-docs'
     ]).config(function ($urlRouterProvider) {
-        $urlRouterProvider.otherwise('/');
+        $urlRouterProvider.otherwise('/404');
     });
 })();
 
