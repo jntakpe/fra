@@ -1,0 +1,16 @@
+management:
+  context-path: /manage
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/fra
+    username: postgres
+    password: sopra*
+    driverClassName: org.postgresql.Driver
+server:
+  port: 8080
