@@ -7,6 +7,7 @@ var baseUri = 'http://localhost:8080';
 
 var proxyRoutes = [
     '/endpoints',
+    '/api',
     '/request',
     '/rest',
     '/api-docs',
