@@ -6,11 +6,9 @@ var url = require('url');
 var baseUri = 'http://localhost:8080';
 
 var proxyRoutes = [
-    '/endpoints',
-    '/api',
-    '/request',
-    '/rest',
     '/api-docs',
+    '/api',
+    '/rest',
     '/metrics'
 ];
 
