@@ -5,6 +5,7 @@
         'fra-core',
         'fra-layout',
         'fra-home',
+        'fra-error',
         'fra-api-docs'
     ]).config(function ($urlRouterProvider) {
         $urlRouterProvider.otherwise('/404');
