@@ -1,1 +1,44 @@
-<h1>Coucou je suis un endpoint</h1>
+<table class="table table-striped table-wrap">
+    <thead>
+    <tr>
+        <th class="col-md-4">URI du endpoint
+            <i class="pull-right fa"></i></th>
+        <th class="col-md-1">Méthode
+            <i class="pull-right fa"></i></th>
+        <th class="col-md-1">Délai
+            <i class="pull-right fa"></i></th>
+        <th class="col-md-3">Contenu</th>
+        <th class="col-md-1">Visualiser</th>
+        <th class="col-md-1">Modifier</th>
+        <th class="col-md-1">Supprimer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr><!-- TODO Itérer sur les endpoints -->
+        <td>
+            <a href="<!-- TODO Lien vers le endpoint (use méthode EndpointsService.mergeUri)-->"></a></td>
+        <!-- TODO Afficher l'url du endpoint (use méthode EndpointsService.mergeUri) -->
+        <td></td>
+        <!-- TODO Afficher la méthode HTTP du endpoint (propriété méthode) -->
+        <td></td>
+        <!-- TODO Afficher le délai du endpoint (propriété delay) -->
+        <td></td>
+        <!-- TODO Afficher le contenu HTTP du endpoint (propriété content) -->
+        <td>
+            <button class="btn btn-info btn-xs"> <!-- TODO (facultatif) ouvrir une popup de visualisation du JSON -->
+                <i class="fa fa-search"></i> Visualiser
+            </button>
+        </td>
+        <td>
+            <a class="btn btn-warning btn-xs"> <!-- TODO Débrancher vers l'état edit.endpoints -->
+                <i class="fa fa-pencil"></i> Modifier
+            </a>
+        </td>
+        <td>
+            <button class="btn btn-danger btn-xs"> <!-- TODO Supprimer le endpoint -->
+                <i class="fa fa-trash-o"></i> Supprimer
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
