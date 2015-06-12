@@ -22,7 +22,6 @@
         <testng.version>6.8.8</testng.version>
         <assertj.version>1.2.0</assertj.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
-        <postgres.version>9.3-1100-jdbc41</postgres.version>
         <hikaricp.version>2.1.0</hikaricp.version>
         <swagger-springmvc.version>0.9.5</swagger-springmvc.version>
     </properties>
@@ -71,9 +70,8 @@
             <version>${commons-lang3.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.postgresql</groupId>
-            <artifactId>postgresql</artifactId>
-            <version>${postgres.version}</version>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
         </dependency>
         <dependency>
             <groupId>com.zaxxer</groupId>
