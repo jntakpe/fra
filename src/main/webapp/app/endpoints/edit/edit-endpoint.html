@@ -1,1 +1,103 @@
-<h1>Edition de endpoint</h1>
+<div class="container">
+    <form class="sky-form" name="endpointForm" novalidate><!-- TODO Submit form -->
+        <fieldset>
+            <div class="row">
+                <section class="col-md-5">
+                    <label class="label">URI du endpoint REST</label>
+                    <label class="input"> <!-- TODO classe 'state-error' si invalide -->
+                        <input type="text" name="uri" placeholder="URI du endpoint REST" required/>
+
+                        <div class="note note-error"><!-- TODO afficher si des erreurs sur le champ -->
+                            <div>L'URI du endpoint REST est obligatoire.</div>
+                            <div>Cette URI et cette méthode HTTP sont déjà utilisées.
+                                Veuillez changer l'une de ces valeurs
+                            </div>
+                        </div>
+                    </label>
+                </section>
+                <section class="col-md-5">
+                    <label class="label">Méthode HTTP</label>
+
+                    <div class="inline-group">
+                        <label class="radio">
+                            <input name="method" type="radio" value="GET" ng-model="endpoint.method">
+                            <i class="rounded-x"></i>GET</label>
+                        <label class="radio">
+                            <input name="method" type="radio" value="POST" ng-model="endpoint.method">
+                            <i class="rounded-x"></i>POST</label>
+                        <label class="radio">
+                            <input name="method" type="radio" value="PUT" ng-model="endpoint.method">
+                            <i class="rounded-x"></i>PUT</label>
+                        <label class="radio">
+                            <input name="method" type="radio" value="DELETE" ng-model="endpoint.method">
+                            <i class="rounded-x"></i>DELETE</label>
+                    </div>
+                    <div class="note note-error"><!-- TODO afficher si des erreurs sur le champ -->
+                        <div>La méthode HTTP est obligatoire.</div>
+                        <div>Cette URI et cette méthode HTTP sont déjà utilisées.
+                            Veuillez changer l'une de ces valeurs
+                        </div>
+                    </div>
+                </section>
+                <section class="col-md-2">
+                    <label class="label">Délai d'attente en ms</label>
+                    <label class="input"><!-- TODO classe 'state-error' si invalide -->
+                        <input type="number" name="delay" placeholder="Délai d'attente" ng-model="endpoint.delay"
+                               min="0"/>
+
+                        <div class="note note-error"><!-- TODO afficher si des erreurs sur le champ -->
+                            <div>Le délai d'attente doit être numérique</div>
+                            <div>Le délai d'attente doit être un positif</div>
+                        </div>
+                    </label>
+                </section>
+
+            </div>
+            <section>
+                <table class="table table-wrap table-striped"><!-- TODO Afficher si des paramètres sont a créer -->
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Valeur</th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr><!-- Itérer sur les paramètres -->
+                        <td><label class="input"><input type="text" ng-model="param.name"></label></td>
+                        <td><label class="input"><input ng-model="param.value"></label></td>
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger center-block">
+                                <!-- TODO Supprimer un param -->
+                                <i class="fa fa-remove"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" type="button"> <!-- TODO Ajouter un paramètre -->
+                    <i class="fa fa-plus"></i> Ajouter un paramètre
+                </button>
+            </section>
+            <section>
+                <label class="label">Réponse du endpoint REST au format JSON</label>
+                <label class="textarea textarea-resizable"><!-- TODO classe 'state-error' si invalide -->
+                    <textarea name="content" rows="6" ng-model="endpoint.content" required></textarea>
+
+                </label>
+
+                <div class="note note-error"><!-- TODO afficher si des erreurs sur le champ -->
+                    <div>La réponse du endpoint REST est obligatoire.</div>
+                </div>
+            </section>
+            <footer>
+                <button type="button" class="btn btn-warning"><!--TODO  Implémenter le btn précédent -->
+                    <i class="fa fa-arrow-circle-left"></i> Précédent
+                </button>
+                <button type="submit" class="btn btn-success pull-right"><!--TODO  Disable btn si form invalide -->
+                    <i class="fa fa-check"></i> Créer ou modifier le endpoint
+                </button>
+            </footer>
+        </fieldset>
+    </form>
+</div>
