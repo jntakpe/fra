@@ -3,14 +3,14 @@ management:
 spring:
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: create-drop
 ---
 spring:
   profiles: dev
   datasource:
     url: jdbc:postgresql://localhost:5432/fra
     username: postgres
-    password: sopra*
+    password: MARS2013$
     driverClassName: org.postgresql.Driver
 server:
   port: 8080

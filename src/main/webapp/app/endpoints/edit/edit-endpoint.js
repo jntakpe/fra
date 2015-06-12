@@ -7,7 +7,7 @@
             views: {
                 'content@layout': {
                     templateUrl: 'app/endpoints/edit/edit-endpoint.html',
-                    controller: 'EditEndpointCtlr as editEndpoint'
+                    controller: 'EditEndpointCtrl as editEndpoint'
                 }
             }
         });

@@ -14,15 +14,15 @@
     </tr>
     </thead>
     <tbody>
-    <tr><!-- TODO Itérer sur les endpoints -->
+    <tr ng-repeat="endpoint in endpoints.list"><!-- TODO Itérer sur les endpoints -->
         <td>
-            <a href="<!-- TODO Lien vers le endpoint (use méthode EndpointsService.mergeUri)-->"></a></td>
-        <!-- TODO Afficher l'url du endpoint (use méthode EndpointsService.mergeUri) -->
-        <td></td>
+            <a href="">{{endpoint.uri}}</a></td>
+
+        <td>{{endpoint.method}}</td>
         <!-- TODO Afficher la méthode HTTP du endpoint (propriété méthode) -->
-        <td></td>
+        <td>{{endpoint.delay}}</td>
         <!-- TODO Afficher le délai du endpoint (propriété delay) -->
-        <td></td>
+        <td>{{endpoint.content}}</td>
         <!-- TODO Afficher le contenu HTTP du endpoint (propriété content) -->
         <td>
             <button class="btn btn-info btn-xs"> <!-- TODO (facultatif) ouvrir une popup de visualisation du JSON -->
@@ -30,12 +30,14 @@
             </button>
         </td>
         <td>
-            <a class="btn btn-warning btn-xs"> <!-- TODO Débrancher vers l'état edit.endpoints -->
+            <a class="btn btn-warning btn-xs" ui-sref="main.endpoints.edit({id: endpoint.id})">
+                <!-- TODO Débrancher vers l'état edit.endpoints -->
                 <i class="fa fa-pencil"></i> Modifier
             </a>
         </td>
         <td>
-            <button class="btn btn-danger btn-xs"> <!-- TODO Supprimer le endpoint -->
+            <button class="btn btn-danger btn-xs" ng-click="endpoints.remove(endpoint)">
+                <!-- TODO Supprimer le endpoint -->
                 <i class="fa fa-trash-o"></i> Supprimer
             </button>
         </td>

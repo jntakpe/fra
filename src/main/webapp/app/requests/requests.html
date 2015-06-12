@@ -13,7 +13,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr><!-- TODO Afficher les dernières requêtes triées des plus récentes au plus anciennes  -->
+        <tr ng-repeat="request in requests.data">
             <td>{{request.path}}</td>
             <!-- TODO Affichier la colonne 'path' -->
             <td>{{request.status}}</td>

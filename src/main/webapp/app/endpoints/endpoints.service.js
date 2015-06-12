@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-    angular.module('fra-endpoints').factory('EndpointsService', function () {
+    angular.module('fra-endpoints').factory('EndpointsService', function ($resource) {
 
         function isLiteral(obj) {
             return Object.prototype.toString.call(obj) === '[object Object]';
@@ -31,7 +31,8 @@
         }
 
         return {
-            mergeUri: mergeUri
+            mergeUri: mergeUri,
+            res: $resource('api/endpoints/:idendpoint', {idendpoint: '@id'})
         };
     });
 
