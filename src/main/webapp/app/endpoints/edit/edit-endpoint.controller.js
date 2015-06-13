@@ -1,5 +1,8 @@
 'use strict';
 
 (function () {
-    //TODO Facultatif - Créer un contrôleur vide
+    angular.module('fra-endpoints').controller('EditEndpointsCtrl', function () {
+        var vm = this;
+
+    });
 })();
