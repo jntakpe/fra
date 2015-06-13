@@ -1,7 +1,15 @@
 'use strict';
 
-
 (function () {
-    //TODO Créer un module 'fra-endpoints' avec en dépendance 'fra-core'
-    //TODO Créer l'état 'main.endpoints'
+    angular.module('fra-endpoints', ['fra-core']).config(function ($stateProvider) {
+        $stateProvider.state('main.endpoints', {
+            url: '/endpoints',
+            views: {
+                'content@layout': {
+                    templateUrl: 'app/endpoints/endpoints.html',
+                    controller: 'EndpointsCtrl as endpoints'
+                }
+            }
+        });
+    });
 })();

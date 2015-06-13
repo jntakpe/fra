@@ -1,6 +1,16 @@
 'use strict';
 
 (function () {
-    //TODO Créer un module 'fra-requests' avec en dépendance 'fra-core'
-    //TODO Créer l'état 'main.requests'
+    angular.module('fra-requests', ['fra-core']).config(function ($stateProvider) {
+        $stateProvider.state('main.requests', {
+            url: '/requests',
+            views: {
+                'content@layout': {
+                    templateUrl: 'app/requests/requests.html',
+                    controller: 'RequestsCtrl as requests'
+                }
+            }
+        });
+    });
+
 })();
