@@ -1,9 +1,11 @@
 <div class="container">
-    <h1 class="pull-left">{{title}}</h1>
+    <h1 class="pull-left">{{breadcrumb.infos.title}}</h1>
     <ul class="pull-right breadcrumb">
-        <li ng-repeat="item in breadcrumb" ng-class="{'active':$last}">
-            <a ng-if="!$last" href="{{item.link}}">{{item.title}}</a>
-            <span ng-if="$last">{{item.title}}</span>
+        <li ng-repeat="item in breadcrumb.infos.parents">
+            <a ui-sref="{{item.name}}">{{item.title}}</a>
+        </li>
+        <li class="active">
+            <span>{{breadcrumb.infos.title}}</span>
         </li>
     </ul>
 </div>
