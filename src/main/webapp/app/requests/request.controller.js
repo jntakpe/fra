@@ -1,5 +1,7 @@
 'use strict';
 
 (function () {
-    //TODO Créer un contrôleur vide
+    angular.module('fra-requests').controller('RequestsCtrl', function () {
+
+    });
 })();
