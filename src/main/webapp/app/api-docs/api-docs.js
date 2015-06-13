@@ -6,8 +6,7 @@
             url: '/doc',
             views: {
                 'content@layout': {
-                    templateUrl: 'app/api-docs/api-docs.html',
-                    controller: 'DocCtrl as doc'
+                    templateUrl: 'app/api-docs/api-docs.html'
                 }
             }
         });
