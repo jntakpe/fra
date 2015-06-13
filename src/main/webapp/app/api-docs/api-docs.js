@@ -1,7 +1,16 @@
 'use strict';
 
 (function () {
-    //TODO Créer le module api-docs nommé 'fra-api-docs' avec en dépendance 'fra-core'
-    //TODO Créer l'état 'main.apidocs'
+    angular.module('fra-api-docs', ['fra-core']).config(function ($stateProvider) {
+        $stateProvider.state('main.apidocs', {
+            url: '/doc',
+            views: {
+                'content@layout': {
+                    templateUrl: 'app/api-docs/api-docs.html',
+                    controller: 'DocCtrl as doc'
+                }
+            }
+        });
+    });
 })();
 
