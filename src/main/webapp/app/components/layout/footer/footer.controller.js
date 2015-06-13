@@ -4,6 +4,5 @@
     angular.module('fra-layout').controller('FooterCtrl', function () {
 
     });
-
 })();
 
