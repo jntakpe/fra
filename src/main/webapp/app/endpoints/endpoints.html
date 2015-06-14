@@ -19,8 +19,7 @@
             <td>{{endpoint.delay}}</td>
             <td>{{endpoint.content}}</td>
             <td>
-                <button class="btn btn-info btn-xs">
-                    <!-- TODO Afficher la popup permettant de visualiser le contenu JSON -->
+                <button class="btn btn-info btn-xs" ng-click="endpoints.visualize(endpoint)">
                     <i class="fa fa-search"></i> Visualiser
                 </button>
             </td>
