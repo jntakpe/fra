@@ -1,1 +1,97 @@
-<h1>Création/modification d'un endpoint</h1>
+<div class="container">
+    <form class="sky-form" name="endpointForm" novalidate>
+        <fieldset>
+            <div class="row">
+                <section class="col-md-5">
+                    <label class="label">URI du endpoint REST</label>
+                    <label class="input"> <!--TODO Appliquer la classe 'state-error' si le champ est invalide -->
+                        <input type="text" name="uri" placeholder="URI du endpoint REST" required/>
+
+                        <div class="note note-error"><!-- TODO Afficher en cas d'erreur -->
+                            <div>L'URI du endpoint REST est obligatoire.</div>
+                        </div>
+                    </label>
+                </section>
+                <section class="col-md-5">
+                    <label class="label">Méthode HTTP</label>
+
+                    <div class="inline-group">
+                        <label class="radio">
+                            <input name="method" type="radio" value="GET" ng-model="endpoint.method">
+                            <i class="rounded-x"></i>GET</label>
+                        <label class="radio">
+                            <input name="method" type="radio" value="POST" ng-model="endpoint.method">
+                            <i class="rounded-x"></i>POST</label>
+                        <label class="radio">
+                            <input name="method" type="radio" value="PUT" ng-model="endpoint.method">
+                            <i class="rounded-x"></i>PUT</label>
+                        <label class="radio">
+                            <input name="method" type="radio" value="DELETE" ng-model="endpoint.method">
+                            <i class="rounded-x"></i>DELETE</label>
+                    </div>
+                </section>
+                <section class="col-md-2">
+                    <label class="label">Délai d'attente en ms</label>
+                    <label class="input"><!--TODO Appliquer la classe 'state-error' si le champ est invalide -->
+                        <input type="number" name="delay" placeholder="Délai d'attente" min="0"/>
+
+                        <div class="note note-error"><!-- TODO Afficher en cas d'erreur -->
+                            <div>Le délai d'attente doit être numérique</div>
+                            <div>Le délai d'attente doit être un positif</div>
+                        </div>
+                    </label>
+                </section>
+
+            </div>
+            <section>
+                <table class="table table-wrap table-striped"><!--TODO Afficher le endpoint possède des paramètres -->
+                    <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Valeur</th>
+                        <th class="col-md-1"></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr><!-- TODO Itérer sur les paramètres (name, value)-->
+                        <td><label class="input"><input type="text"></label></td>
+                        <!-- TODO Nom du param -->
+                        <td><label class="input"><input></label></td>
+                        <!-- TODO Valeur du param -->
+                        <td>
+                            <button type="button" class="btn btn-sm btn-danger center-block">
+                                <!-- TODO Suppression de param -->
+                                <i class="fa fa-remove"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <button class="btn btn-primary" type="button"><!-- TODO Ajout de param -->
+                    <i class="fa fa-plus"></i> Ajouter un paramètre
+                </button>
+            </section>
+            <section>
+                <label class="label">Réponse du endpoint REST au format JSON</label>
+                <label class="textarea textarea-resizable">
+                    <!--TODO Appliquer la classe 'state-error' si le champ est invalide -->
+                    <textarea name="content" rows="6" required></textarea>
+                </label>
+
+                <div class="note note-error"><!-- TODO Afficher en cas d'erreur -->
+                    <div>La réponse du endpoint REST est obligatoire.</div>
+                </div>
+            </section>
+            <footer>
+                <button type="button" class="btn btn-warning"><!-- TODO Retour à la liste des endpoints -->
+                    <i class="fa fa-arrow-circle-left"></i> Retour
+                </button>
+                <button type="submit" class="btn btn-success pull-right">
+                    <!-- TODO Désactiver le button si le formulaire est invalide -->
+                    <i class="fa fa-check"></i> Modifier/Créer le endpoint
+                    <!-- TODO Afficher "Modifier/Créer le endpoint" en fonction du cas -->
+                </button>
+            </footer>
+        </fieldset>
+    </form>
+</div>
