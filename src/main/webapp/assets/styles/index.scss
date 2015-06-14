@@ -1,5 +1,10 @@
 $main_color: #e74c3c;
 
+@import "sky-forms";
+@import "sky-forms-custom";
+@import "unify";
+@import "unify-theme";
+
 .table-wrap {
   table-layout: fixed;
 }
@@ -33,7 +38,3 @@ $main_color: #e74c3c;
   }
 
 }
-/* Do not remove this comments bellow. It's the markers used by gulp-inject to inject
-   all your sass files automatically */
-// injector
-// endinjector
