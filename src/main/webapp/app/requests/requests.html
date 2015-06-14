@@ -9,15 +9,17 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
+        <tr ng-repeat="request in requests.requests">
+            <td>{{request.path}}</td>
+            <td>{{request.status}}</td>
+            <td>{{request.method}}</td>
+            <td>{{request.timestamp | date: 'dd/MM/yyyy HH:mm:ss'}}</td>
         </tr>
         </tbody>
     </table>
     <div class="col-md-4 padding-top-20">
-        <button class="btn btn-danger"><i class="fa fa-trash-o"></i> Vider les anciennes requêtes</button>
+        <button class="btn btn-danger" ng-click="requests.clear()"><i class="fa fa-trash-o"></i>
+            Vider les anciennes requêtes
+        </button>
     </div>
 </div>
