@@ -1,14 +1,13 @@
 <div class="modal-header">
     <h2 class="modal-title">URI :
-        <small><!-- TODO URI --></small>
+        <small>{{jsonView.endpoint.uri}}</small>
     </h2>
 </div>
 <div class="modal-body">
-    <pre>{{row.content | json}}</pre>
-    <!-- TODO JSON -->
+    <pre>{{jsonView.endpoint.content | json}}</pre>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-warning"><!-- TODO Close modal -->
+    <button class="btn btn-warning" ng-click="jsonView.close()">
         <i class="fa fa-times"></i> Fermer
     </button>
 </div>
