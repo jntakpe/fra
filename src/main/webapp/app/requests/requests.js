@@ -13,6 +13,11 @@
                     templateUrl: 'app/requests/requests.html',
                     controller: 'RequestsCtrl as requests'
                 }
+            },
+            resolve: {
+                requests: function (RequestsService) {
+                    return RequestsService.findAll();
+                }
             }
         });
     });
