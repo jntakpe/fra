@@ -12,15 +12,12 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
+        <tr ng-repeat="endpoint in endpoints.endpoints">
             <td>
-                <a href="<!-- TODO lien vers l'URL -->"><!-- TODO Afficher propriété 'uri' --></a></td>
-            <td></td>
-            <!-- TODO Afficher propriété 'method' -->
-            <td></td>
-            <!-- TODO Afficher propriété 'delay' -->
-            <td></td>
-            <!-- TODO Afficher propriété 'content' -->
+                <a href="{{endpoint.uri}}">{{endpoint.uri}}</a></td>
+            <td>{{endpoint.method}}</td>
+            <td>{{endpoint.delay}}</td>
+            <td>{{endpoint.content}}</td>
             <td>
                 <button class="btn btn-info btn-xs">
                     <!-- TODO Afficher la popup permettant de visualiser le contenu JSON -->
