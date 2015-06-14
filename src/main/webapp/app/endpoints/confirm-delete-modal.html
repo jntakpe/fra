@@ -2,13 +2,13 @@
     <h2 class="modal-title">Confirmation de la suppression d'un endpoint</h2>
 </div>
 <div class="modal-body">
-    Confirmez-vous la suppression du endpoint : <em><!-- TODO URI --> </em> ?
+    Confirmez-vous la suppression du endpoint : <em> {{confirmDelete.endpoint.uri}}</em> ?
 </div>
 <div class="modal-footer">
-    <button class="btn btn-warning"><!-- TODO Close modal -->
+    <button class="btn btn-warning" ng-click="confirmDelete.close()">
         <i class="fa fa-times"></i> Fermer
     </button>
-    <button class="btn btn-danger"><!-- TODO Delete endpoint -->
+    <button class="btn btn-danger" ng-click="confirmDelete.delete()">
         <i class="fa fa-trash"></i> Supprimer
     </button>
 </div>

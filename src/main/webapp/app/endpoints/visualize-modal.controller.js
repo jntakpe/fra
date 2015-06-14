@@ -7,6 +7,6 @@
         vm.endpoint = endpoint;
         vm.close = function () {
             $modalInstance.close();
-        }
+        };
     });
 })();
