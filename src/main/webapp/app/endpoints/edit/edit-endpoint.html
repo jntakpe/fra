@@ -17,16 +17,16 @@
 
                     <div class="inline-group">
                         <label class="radio">
-                            <input name="method" type="radio" value="GET" ng-model="endpoint.method">
+                            <input name="method" type="radio" value="GET">
                             <i class="rounded-x"></i>GET</label>
                         <label class="radio">
-                            <input name="method" type="radio" value="POST" ng-model="endpoint.method">
+                            <input name="method" type="radio" value="POST">
                             <i class="rounded-x"></i>POST</label>
                         <label class="radio">
-                            <input name="method" type="radio" value="PUT" ng-model="endpoint.method">
+                            <input name="method" type="radio" value="PUT">
                             <i class="rounded-x"></i>PUT</label>
                         <label class="radio">
-                            <input name="method" type="radio" value="DELETE" ng-model="endpoint.method">
+                            <input name="method" type="radio" value="DELETE">
                             <i class="rounded-x"></i>DELETE</label>
                     </div>
                 </section>
@@ -43,34 +43,6 @@
                 </section>
 
             </div>
-            <section>
-                <table class="table table-wrap table-striped"><!--TODO Afficher le endpoint possède des paramètres -->
-                    <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Valeur</th>
-                        <th class="col-md-1"></th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr><!-- TODO Itérer sur les paramètres (name, value)-->
-                        <td><label class="input"><input type="text"></label></td>
-                        <!-- TODO Nom du param -->
-                        <td><label class="input"><input></label></td>
-                        <!-- TODO Valeur du param -->
-                        <td>
-                            <button type="button" class="btn btn-sm btn-danger center-block">
-                                <!-- TODO Suppression de param -->
-                                <i class="fa fa-remove"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-                <button class="btn btn-primary" type="button"><!-- TODO Ajout de param -->
-                    <i class="fa fa-plus"></i> Ajouter un paramètre
-                </button>
-            </section>
             <section>
                 <label class="label">Réponse du endpoint REST au format JSON</label>
                 <label class="textarea textarea-resizable">

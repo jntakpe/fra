@@ -10,6 +10,6 @@
         };
         vm.close = function () {
             $modalInstance.close();
-        }
+        };
     });
 })();
