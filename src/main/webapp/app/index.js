@@ -9,8 +9,9 @@
         'fra-api-docs',
         'fra-endpoints',
         'fra-requests'
-    ]).config(function ($urlRouterProvider) {
+    ]).config(function ($urlRouterProvider, RestangularProvider) {
         $urlRouterProvider.otherwise('/404');
+        RestangularProvider.setBaseUrl('/api');
     });
 })();
 

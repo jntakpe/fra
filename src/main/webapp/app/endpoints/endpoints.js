@@ -13,6 +13,11 @@
                     templateUrl: 'app/endpoints/endpoints.html',
                     controller: 'EndpointsCtrl as endpoints'
                 }
+            },
+            resolve: {
+                endpoints: function (EndpointsService) {
+                    return EndpointsService.baseEndpoints.getList();
+                }
             }
         });
     });

@@ -1,5 +1,5 @@
 'use strict';
 
 (function () {
-    angular.module('fra-core', ['ngResource', 'ngMessages', 'ui.router', 'ui.bootstrap']);
+    angular.module('fra-core', ['ngResource', 'ngMessages', 'ui.router', 'ui.bootstrap', 'restangular']);
 })();
