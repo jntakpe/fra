@@ -2,10 +2,12 @@
     <form class="sky-form" name="endpointForm" novalidate>
         <fieldset>
             <div class="row">
+
                 <section class="col-md-5">
                     <label class="label">URI du endpoint REST</label>
                     <label class="input"> <!--TODO Appliquer la classe 'state-error' si le champ est invalide -->
-                        <input type="text" name="uri" placeholder="URI du endpoint REST" required/>
+                        <input type="text" name="uri" placeholder="URI du endpoint REST" required
+                               ng-model="editEndpoints.endpoint.uri"/>
 
                         <div class="note note-error"><!-- TODO Afficher en cas d'erreur -->
                             <div>L'URI du endpoint REST est obligatoire.</div>
@@ -17,23 +19,24 @@
 
                     <div class="inline-group">
                         <label class="radio">
-                            <input name="method" type="radio" value="GET" ng-model="endpoint.method">
+                            <input name="method" type="radio" value="GET" ng-model="editEndpoints.endpoint.method">
                             <i class="rounded-x"></i>GET</label>
                         <label class="radio">
-                            <input name="method" type="radio" value="POST" ng-model="endpoint.method">
+                            <input name="method" type="radio" value="POST" ng-model="editEndpoints.endpoint.method">
                             <i class="rounded-x"></i>POST</label>
                         <label class="radio">
-                            <input name="method" type="radio" value="PUT" ng-model="endpoint.method">
+                            <input name="method" type="radio" value="PUT" ng-model="editEndpoints.endpoint.method">
                             <i class="rounded-x"></i>PUT</label>
                         <label class="radio">
-                            <input name="method" type="radio" value="DELETE" ng-model="endpoint.method">
+                            <input name="method" type="radio" value="DELETE" ng-model="editEndpoints.endpoint.method">
                             <i class="rounded-x"></i>DELETE</label>
                     </div>
                 </section>
                 <section class="col-md-2">
                     <label class="label">Délai d'attente en ms</label>
                     <label class="input"><!--TODO Appliquer la classe 'state-error' si le champ est invalide -->
-                        <input type="number" name="delay" placeholder="Délai d'attente" min="0"/>
+                        <input type="number" name="delay" placeholder="Délai d'attente" min="0"
+                               ng-model="editEndpoints.endpoint.delay"/>
 
                         <div class="note note-error"><!-- TODO Afficher en cas d'erreur -->
                             <div>Le délai d'attente doit être numérique</div>
@@ -53,10 +56,10 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr><!-- TODO Itérer sur les paramètres (name, value)-->
-                        <td><label class="input"><input type="text"></label></td>
+                    <tr ng-repeat="param in params"><!-- TODO Itérer sur les paramètres (name, value)-->
+                        <td><label class="input"><input type="text" ng-model="param.name"></label></td>
                         <!-- TODO Nom du param -->
-                        <td><label class="input"><input></label></td>
+                        <td><label class="input"><input type="text" ng-model="param.value"></label></td>
                         <!-- TODO Valeur du param -->
                         <td>
                             <button type="button" class="btn btn-sm btn-danger center-block">
@@ -75,7 +78,7 @@
                 <label class="label">Réponse du endpoint REST au format JSON</label>
                 <label class="textarea textarea-resizable">
                     <!--TODO Appliquer la classe 'state-error' si le champ est invalide -->
-                    <textarea name="content" rows="6" required></textarea>
+                    <textarea name="content" rows="6" required ng-model="editEndpoints.endpoint.content"></textarea>
                 </label>
 
                 <div class="note note-error"><!-- TODO Afficher en cas d'erreur -->
