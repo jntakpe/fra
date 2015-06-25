@@ -17,7 +17,7 @@
             resolve: {
                 endpoint: function (EndpointsService, $stateParams) {
                     if ($stateParams.id) {
-                        return EndpointsService.singleEndpoint($stateParams.id).get()
+                        return EndpointsService.singleEndpoint($stateParams.id).get();
                     } else {
                         return {
                             params: [],
