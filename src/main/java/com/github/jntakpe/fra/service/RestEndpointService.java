@@ -95,7 +95,7 @@ public class RestEndpointService {
      * Indique un endpoint avec ces paramètres n'est pas déjà créé
      *
      * @param endpoint formulaire représentant un {@link com.github.jntakpe.fra.domain.RestEndpoint}
-     * @return true si les valeurs sont disponnibles
+     * @return true si les valeurs sont disponibles
      */
     @Transactional(readOnly = true)
     public boolean isAvailable(RestEndpoint endpoint) {
