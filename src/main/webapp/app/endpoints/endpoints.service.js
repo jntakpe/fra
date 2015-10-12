@@ -6,7 +6,8 @@
         var baseEndpoints = Restangular.all('endpoints');
         return {
             list: list,
-            one: one
+            one: one,
+            create: create
         };
 
         function list() {
@@ -15,6 +16,10 @@
 
         function one(id) {
             return baseEndpoints.get(id);
+        }
+
+        function create(endpoint) {
+            return baseEndpoints.post(endpoint);
         }
     });
 

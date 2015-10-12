@@ -1,5 +1,5 @@
 <div class="container">
-    <form class="sky-form" name="endpointForm" novalidate>
+    <form class="sky-form" name="endpointForm" ng-submit="editEndpoints.submit()" novalidate>
         <fieldset>
             <div class="row">
 
@@ -63,13 +63,11 @@
 
             </section>
             <footer>
-                <button type="button" class="btn btn-warning"><!-- TODO Retour à la liste des endpoints -->
+                <button type="button" class="btn btn-warning" ui-sref="main.endpoints">
                     <i class="fa fa-arrow-circle-left"></i> Retour
                 </button>
-                <button type="submit" class="btn btn-success pull-right">
-                    <!-- TODO Désactiver le button si le formulaire est invalide -->
-                    <i class="fa fa-check"></i> Modifier/Créer le endpoint
-
+                <button type="submit" class="btn btn-success pull-right" ng-disabled="endpointForm.$invalid">
+                    <i class="fa fa-check"></i> {{editEndpoints.endpoint.id ? 'Modifier' : 'Créer'}} le endpoint
                 </button>
             </footer>
         </fieldset>

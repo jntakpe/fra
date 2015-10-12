@@ -20,7 +20,8 @@
                         return EndpointsService.one($stateParams.id)
                     } else {
                         return {
-                            delay: 0
+                            delay: 0,
+                            method: 'GET'
                         };
                     }
                 }
