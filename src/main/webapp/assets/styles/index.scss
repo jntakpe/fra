@@ -5,6 +5,10 @@ $main_color: #e74c3c;
 @import "unify";
 @import "unify-theme";
 
+body {
+  margin-bottom: 50px;
+}
+
 .table-wrap {
   table-layout: fixed;
 }
