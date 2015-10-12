@@ -5,12 +5,13 @@
 
                 <section class="col-md-5">
                     <label class="label">URI du endpoint REST</label>
-                    <label class="input"> <!--TODO Appliquer la classe 'state-error' si le champ est invalide -->
+                    <label class="input"
+                           ng-class="{'state-error': endpointForm.uri.$dirty && endpointForm.uri.$invalid}">
                         <input type="text" name="uri" placeholder="URI du endpoint REST" required
                                ng-model="editEndpoints.endpoint.uri"/>
 
-                        <div class="note note-error"><!-- TODO Afficher en cas d'erreur -->
-                            <div>L'URI du endpoint REST est obligatoire.</div>
+                        <div class="note note-error" ng-if="endpointForm.uri.$dirty" ng-messages="endpointForm.uri.$error">
+                            <div ng-message="required">L'URI du endpoint REST est obligatoire.</div>
                         </div>
                     </label>
                 </section>
@@ -34,13 +35,16 @@
                 </section>
                 <section class="col-md-2">
                     <label class="label">Délai d'attente en ms</label>
-                    <label class="input"><!--TODO Appliquer la classe 'state-error' si le champ est invalide -->
-                        <input type="number" name="delay" placeholder="Délai d'attente" min="0"
+                    <label class="input"
+                           ng-class="{'state-error': endpointForm.delay.$dirty && endpointForm.delay.$invalid}">
+                        <input type="number" name="delay" placeholder="Délai d'attente" required min="0"
                                ng-model="editEndpoints.endpoint.delay"/>
 
-                        <div class="note note-error"><!-- TODO Afficher en cas d'erreur -->
-                            <div>Le délai d'attente doit être numérique</div>
-                            <div>Le délai d'attente doit être un positif</div>
+                        <div class="note note-error" ng-if="endpointForm.delay.$dirty"
+                             ng-messages="endpointForm.delay.$error">
+                            <div ng-message="required">Le délai d'attente est obligatoire</div>
+                            <div ng-message="number">Le délai d'attente doit être numérique</div>
+                            <div ng-message="min">Le délai d'attente doit être un positif</div>
                         </div>
                     </label>
                 </section>
@@ -48,12 +52,12 @@
             </div>
             <section>
                 <label class="label">Réponse du endpoint REST au format JSON</label>
-                <label class="textarea textarea-resizable">
-                    <!--TODO Appliquer la classe 'state-error' si le champ est invalide -->
+                <label class="textarea textarea-resizable"
+                       ng-class="{'state-error': endpointForm.content.$dirty && endpointForm.content.$invalid}">
                     <textarea name="content" rows="6" required ng-model="editEndpoints.endpoint.content"></textarea>
 
-                    <div class="note note-error"><!-- TODO Afficher en cas d'erreur -->
-                        <div>La réponse du endpoint REST est obligatoire.</div>
+                    <div class="note note-error" ng-if="endpointForm.content.$dirty" ng-messages="endpointForm.content.$error">
+                        <div ng-message="required">La réponse du endpoint REST est obligatoire.</div>
                     </div>
                 </label>
 
@@ -65,7 +69,7 @@
                 <button type="submit" class="btn btn-success pull-right">
                     <!-- TODO Désactiver le button si le formulaire est invalide -->
                     <i class="fa fa-check"></i> Modifier/Créer le endpoint
-                    <!-- TODO Afficher "Modifier/Créer le endpoint" en fonction du cas -->
+
                 </button>
             </footer>
         </fieldset>
