@@ -38,4 +38,7 @@
 
     <logger name="com.mangofactory.swagger" level="WARN">
     </logger>
+
+    <logger name="javax" level="WARN">
+    </logger>
 </configuration>
