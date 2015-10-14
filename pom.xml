@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.jntakpe</groupId>
@@ -25,7 +25,7 @@
         <assertj.version>3.2.0</assertj.version>
         <commons-lang3.version>3.3.2</commons-lang3.version>
         <hikaricp.version>2.1.0</hikaricp.version>
-        <springfox-swagger2.version>2.2.2</springfox-swagger2.version>
+        <swagger-springmvc.version>0.9.5</swagger-springmvc.version>
     </properties>
 
     <dependencies>
