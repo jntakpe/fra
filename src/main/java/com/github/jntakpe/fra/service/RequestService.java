@@ -6,6 +6,9 @@ import com.github.jntakpe.fra.repository.RequestRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,5 +57,11 @@ public class RequestService {
     public List<Request> findAll() {
         LOG.debug("Récupération de toutes requêtes");
         return requestRepository.findAll();
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Request> findLastRequest() {
+        LOG.debug("Récupération du nombre total de requêtes traitées par l'application");
+        return requestRepository.findAll(new PageRequest(0, 1, Sort.Direction.DESC, "id"));
     }
 }

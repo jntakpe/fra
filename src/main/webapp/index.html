@@ -63,7 +63,7 @@
     <div ng-view></div>
     <!--Fin vues AngularJS-->
 </div>
-<footer>
+<footer ng-controller="FooterController">
     <div class="navbar navbar-default navbar-fixed-bottom copyright">
         <div class="container">
             <div class="col-md-6">
@@ -79,6 +79,11 @@
                     <li><a href="https://twitter.com/jntakpe" data-original-title="Twitter" class="social_twitter"></a>
                     </li>
                 </ul>
+            </div>
+            <div class="col-md-4" ng-if="totalRequests">
+                <p class="copyright-space pull-right">
+                    Nombre total de requêtes servies : <strong>{{ totalRequests }}</strong>
+                </p>
             </div>
         </div>
     </div>
