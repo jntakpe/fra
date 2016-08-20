@@ -92,3 +92,8 @@ fraApp.factory('TraceService', ['$resource', function ($resource) {
     "use strict";
     return $resource('/request');
 }]);
+
+fraApp.factory('FooterService', ['$http', function ($http) {
+    "use strict";
+    return $http.get('/request/last');
+}]);

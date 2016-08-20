@@ -241,3 +241,11 @@ fraApp.controller('TraceCtrl', ['$scope', '$filter', 'PageService', 'TraceServic
         };
 
     }]);
+
+fraApp.controller('FooterController', ['$scope', 'FooterService', function ($scope, FooterService) {
+    FooterService.then(function (response) {
+        if (response.data.content) {
+            $scope.totalRequests = response.data.content[0].id;
+        }
+    })
+}]);
